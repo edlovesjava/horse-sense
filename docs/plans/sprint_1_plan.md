@@ -17,13 +17,13 @@ Transform the current repo layout into a conformant Claude Code plugin with `.cl
 
 | Story ID | Title | Priority | Points | Status |
 |---|---|---|---|---|
-| T-001 | Create `.claude-plugin/plugin.json` manifest | Must | 1 | ⬜ To Do |
-| T-002 | Move `.claude/commands/*.md` → `commands/*.md` at plugin root | Must | 2 | ⬜ To Do |
-| T-003 | Update command content: replace `/user:` refs with `/horse-sense:` | Must | 2 | ⬜ To Do |
-| T-004 | Rename `skills/*/README.md` → `skills/*/SKILL.md` with frontmatter | Must | 3 | ⬜ To Do |
-| T-005 | Restructure `agents/` into `agents/workers/` | Must | 1 | ⬜ To Do |
-| T-006 | Create `bin/` directory (placeholder) | Could | 1 | ⬜ To Do |
-| T-007 | Remove `.claude/settings.json` (replaced by plugin.json) | Must | 1 | ⬜ To Do |
+| T-001 | Create `.claude-plugin/plugin.json` manifest | Must | 1 | ✅ Done |
+| T-002 | Move `.claude/commands/*.md` → `commands/*.md` at plugin root | Must | 2 | ✅ Done |
+| T-003 | Update command content: replace `/user:` refs with `/horse-sense:` | Must | 2 | ✅ Done |
+| T-004 | Rename `skills/*/README.md` → `skills/*/SKILL.md` with frontmatter | Must | 3 | ✅ Done |
+| T-005 | Restructure `agents/` into `agents/workers/` | Must | 1 | ✅ Done |
+| T-006 | Create `bin/` directory (placeholder) | Could | 1 | ✅ Done |
+| T-007 | Remove `.claude/settings.json` (replaced by plugin.json) | Must | 1 | ✅ Done |
 | T-008 | Verify plugin loads via `claude --plugin-dir ./horse-sense` | Must | 2 | ⬜ To Do |
 | **Total** | | | **13** | |
 

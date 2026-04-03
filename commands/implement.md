@@ -1,4 +1,4 @@
-# /user:implement
+# /horse-sense:implement
 
 Begin implementing a user story or task.
 
@@ -6,7 +6,7 @@ Begin implementing a user story or task.
 
 - Reads the story and acceptance criteria
 - Breaks the work into small, independently commitable steps
-- Follows the TDD workflow from `skills/implementation/README.md`
+- Follows the TDD workflow from `skills/implementation/SKILL.md`
 - Ensures code quality rules from `rules/code_quality.md` are applied
 
 ## Instructions for Claude

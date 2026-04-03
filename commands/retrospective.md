@@ -1,4 +1,4 @@
-# /user:retrospective
+# /horse-sense:retrospective
 
 Facilitate a sprint retrospective and capture action items.
 

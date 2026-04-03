@@ -1,3 +1,8 @@
+---
+name: architecture-design
+description: Design system architecture, select technologies, create ADRs
+---
+
 # Skill: Architecture Design
 
 ## Purpose

@@ -1,4 +1,4 @@
-# /user:sdlc-start
+# /horse-sense:sdlc-start
 
 Kick off the full SDLC workflow for a new project or feature.
 
@@ -10,9 +10,9 @@ Guides you step-by-step through the horse-sense SDLC phases:
 2. **Architecture** — populate `templates/architecture_doc.md` and create ADRs
 3. **Planning** — populate `templates/project_plan.md` and `templates/sprint_plan.md`
 4. **Environment Setup** — run `scripts/setup_env.sh`
-5. **Implementation** — follow `skills/implementation/README.md`
-6. **Testing** — follow `skills/testing/README.md`
-7. **Deployment** — follow `skills/deployment/README.md`
+5. **Implementation** — follow `skills/implementation/SKILL.md`
+6. **Testing** — follow `skills/testing/SKILL.md`
+7. **Deployment** — follow `skills/deployment/SKILL.md`
 
 ## Instructions for Claude
 
@@ -27,7 +27,7 @@ When this command is invoked:
 7. Once the user selects an architecture, generate a draft `architecture_doc.md`.
 8. Break the requirements into a sprint backlog and generate a `sprint_plan.md`.
 9. Run `scripts/setup_env.sh` or guide the user to do so.
-10. Confirm the user is ready to begin implementation and point them to `agents/developer.md`.
+10. Confirm the user is ready to begin implementation and point them to `agents/workers/developer.md`.
 
 ## Guiding Principles
 

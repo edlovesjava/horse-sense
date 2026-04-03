@@ -1,4 +1,4 @@
-# /user:test
+# /horse-sense:test
 
 Create and run tests for a feature or module.
 

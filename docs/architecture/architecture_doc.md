@@ -28,7 +28,7 @@ The plugin is distributed via the official Claude Code plugin system (`.claude-p
 | 1 | Extensibility | New skills, rules, and agents added without changing core structure |
 | 2 | Adaptability | Works across Python and TypeScript projects via configuration |
 | 3 | Simplicity | No build step, no runtime dependencies — plain Markdown + shell scripts |
-| 4 | Discoverability | Users find the right skill/agent through clear naming and `/user:sdlc-start` |
+| 4 | Discoverability | Users find the right skill/agent through clear naming and `/horse-sense:sdlc-start` |
 
 ### Constraints
 

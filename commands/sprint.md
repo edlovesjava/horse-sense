@@ -1,4 +1,4 @@
-# /user:sprint
+# /horse-sense:sprint
 
 Plan and manage a sprint.
 
@@ -40,4 +40,4 @@ At the end of the sprint:
 1. Mark completed stories as ✅ Done in the sprint plan.
 2. Move incomplete stories back to the backlog with a note.
 3. Calculate velocity: total story points completed.
-4. Prompt: *"Ready to run a retrospective? Use /user:retrospective"*
+4. Prompt: *"Ready to run a retrospective? Use /horse-sense:retrospective"*

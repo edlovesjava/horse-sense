@@ -1,4 +1,4 @@
-# /user:review
+# /horse-sense:review
 
 Perform a thorough code review of the current changes or a specified file/PR.
 
@@ -15,7 +15,7 @@ When this command is invoked:
 
 1. Ask: *"What should I review? (current uncommitted changes / a specific file / a PR number)"*
 2. If reviewing uncommitted changes: run `git diff` to see what has changed.
-3. Apply the full review checklist from `agents/reviewer.md`:
+3. Apply the full review checklist from `agents/workers/reviewer.md`:
    - Correctness
    - Code quality
    - Testing
