@@ -1,3 +1,8 @@
+---
+name: testing
+description: Create and run tests following the test pyramid strategy
+---
+
 # Skill: Testing
 
 ## Purpose

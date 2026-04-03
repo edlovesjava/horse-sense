@@ -1,4 +1,4 @@
-# /user:plan
+# /horse-sense:plan
 
 Create or update the project plan and sprint backlog.
 

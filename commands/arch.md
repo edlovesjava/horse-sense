@@ -1,4 +1,4 @@
-# /user:arch
+# /horse-sense:arch
 
 Design or update the system architecture.
 

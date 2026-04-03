@@ -1,10 +1,10 @@
-# /user:deploy
+# /horse-sense:deploy
 
 Prepare and execute a deployment to the target environment.
 
 ## What This Command Does
 
-- Runs the full pre-deployment checklist from `skills/deployment/README.md`
+- Runs the full pre-deployment checklist from `skills/deployment/SKILL.md`
 - Helps configure the target environment
 - Executes or guides the deployment steps
 - Verifies the deployment with health checks

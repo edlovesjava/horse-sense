@@ -8,45 +8,56 @@
 
 ```
 horse-sense/
-├── CLAUDE.md              ← You are here
-├── agents/                ← Specialized role agents
-├── skills/                ← Reusable capability guides
-├── rules/                 ← Coding and workflow standards
-├── templates/             ← Document templates
-└── scripts/               ← Bash helper scripts
+├── .claude-plugin/
+│   └── plugin.json            ← Plugin manifest
+├── CLAUDE.md                  ← You are here
+├── commands/                  ← Slash commands (/horse-sense:*)
+├── agents/
+│   └── workers/               ← Specialized role agents
+├── skills/                    ← Reusable capability guides (SKILL.md)
+├── rules/                     ← Coding and workflow standards
+├── templates/                 ← Document templates
+├── scripts/                   ← Bash helper scripts
+└── bin/                       ← Executables (added to PATH)
 ```
 
 ## How to Use This Plugin
 
+### Installation
+
+```bash
+claude --plugin-dir ./horse-sense
+```
+
 ### Starting a New Project
 
-1. Copy this plugin into your project's root directory (or reference it via Claude's memory).
-2. Begin with `/user:sdlc-start` to kick off the SDLC workflow.
+1. Install the plugin (see above).
+2. Begin with `/horse-sense:sdlc-start` to kick off the SDLC workflow.
 3. Follow the phase-by-phase prompts to move from requirements → design → implementation → testing → deployment.
 
-### Custom Slash Commands
+### Slash Commands
 
 | Command | Description |
 |---|---|
-| `/user:plan` | Create or update a project plan |
-| `/user:arch` | Design system architecture |
-| `/user:implement` | Begin a feature implementation |
-| `/user:review` | Perform a code review |
-| `/user:test` | Create and run tests |
-| `/user:deploy` | Prepare deployment artifacts |
-| `/user:sdlc-start` | Run the full SDLC kickoff workflow |
-| `/user:sprint` | Plan and manage a sprint |
-| `/user:retrospective` | Facilitate a sprint retrospective |
+| `/horse-sense:plan` | Create or update a project plan |
+| `/horse-sense:arch` | Design system architecture |
+| `/horse-sense:implement` | Begin a feature implementation |
+| `/horse-sense:review` | Perform a code review |
+| `/horse-sense:test` | Create and run tests |
+| `/horse-sense:deploy` | Prepare deployment artifacts |
+| `/horse-sense:sdlc-start` | Run the full SDLC kickoff workflow |
+| `/horse-sense:sprint` | Plan and manage a sprint |
+| `/horse-sense:retrospective` | Facilitate a sprint retrospective |
 
 ### Agent Roles
 
 Switch context to a specialized agent when needed:
 
-- **Planner** (`agents/planner.md`) — requirements, roadmaps, sprint planning
-- **Architect** (`agents/architect.md`) — system design, tech selection, ADRs
-- **Developer** (`agents/developer.md`) — implementation, refactoring, debugging
-- **Tester** (`agents/tester.md`) — test strategy, unit/integration/e2e tests
-- **Reviewer** (`agents/reviewer.md`) — code review, security, performance
+- **Planner** (`agents/workers/planner.md`) — requirements, roadmaps, sprint planning
+- **Architect** (`agents/workers/architect.md`) — system design, tech selection, ADRs
+- **Developer** (`agents/workers/developer.md`) — implementation, refactoring, debugging
+- **Tester** (`agents/workers/tester.md`) — test strategy, unit/integration/e2e tests
+- **Reviewer** (`agents/workers/reviewer.md`) — code review, security, performance
 
 ## Environment Assumptions
 
@@ -75,8 +86,8 @@ Switch context to a specialized agent when needed:
 
 1. `rules/git_workflow.md` — branching strategy and commit conventions
 2. `rules/documentation.md` — documentation standards
-3. `skills/requirements_analysis/README.md` — capture requirements
-4. `skills/architecture_design/README.md` — design the system
-5. `skills/implementation/README.md` — write the code
-6. `skills/testing/README.md` — validate the code
-7. `skills/deployment/README.md` — ship it
+3. `skills/requirements_analysis/SKILL.md` — capture requirements
+4. `skills/architecture_design/SKILL.md` — design the system
+5. `skills/implementation/SKILL.md` — write the code
+6. `skills/testing/SKILL.md` — validate the code
+7. `skills/deployment/SKILL.md` — ship it

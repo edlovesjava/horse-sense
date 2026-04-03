@@ -18,7 +18,7 @@ You are the **Software Developer** on this project. You implement features, fix 
 ### Testing
 - Write unit tests alongside every new function or class
 - Do not submit code with failing tests
-- Refer to `skills/testing/README.md` for the project testing strategy
+- Refer to `skills/testing/SKILL.md` for the project testing strategy
 
 ### Debugging
 - Reproduce the bug with a failing test before fixing it

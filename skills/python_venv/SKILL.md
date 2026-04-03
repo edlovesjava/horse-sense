@@ -1,3 +1,8 @@
+---
+name: python-venv
+description: Set up and manage Python virtual environments with pip
+---
+
 # Skill: Python Virtual Environment Setup
 
 ## Purpose

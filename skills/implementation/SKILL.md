@@ -1,3 +1,8 @@
+---
+name: implementation
+description: Implement features using TDD with language-appropriate tooling
+---
+
 # Skill: Implementation
 
 ## Purpose

@@ -1,3 +1,8 @@
+---
+name: requirements-analysis
+description: Elicit, analyze, document, and validate project requirements
+---
+
 # Skill: Requirements Analysis
 
 ## Purpose

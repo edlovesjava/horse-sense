@@ -10,29 +10,26 @@
 
 | Capability | Description |
 |---|---|
-| 🤖 **Agents** | Specialized role prompts: Planner, Architect, Developer, Tester, Reviewer |
-| 🛠️ **Skills** | Step-by-step guides for every SDLC phase |
-| 📋 **Rules** | Coding standards, documentation, testing, and git workflow rules |
-| 📄 **Templates** | Fill-in-the-blank docs for project plans, requirements, architecture, and sprints |
-| ⚡ **Slash Commands** | Custom Claude commands to trigger SDLC workflows |
-| 🖥️ **Scripts** | Bash scripts for environment setup, running tests, and linting |
+| **Agents** | Specialized role prompts: Planner, Architect, Developer, Tester, Reviewer |
+| **Skills** | Step-by-step guides for every SDLC phase |
+| **Rules** | Coding standards, documentation, testing, and git workflow rules |
+| **Templates** | Fill-in-the-blank docs for project plans, requirements, architecture, and sprints |
+| **Slash Commands** | Custom Claude commands to trigger SDLC workflows |
+| **Scripts** | Bash scripts for environment setup, running tests, and linting |
 
 ---
 
 ## Quick Start
 
 ```bash
-# 1. Clone the plugin into your project (or reference it in Claude's memory)
-git clone https://github.com/edlovesjava/horse-sense .horse-sense
+# 1. Clone the plugin
+git clone https://github.com/edlovesjava/horse-sense
 
-# 2. Copy CLAUDE.md to your project root so Claude picks it up automatically
-cp .horse-sense/CLAUDE.md ./CLAUDE.md
+# 2. Use it with Claude Code
+claude --plugin-dir ./horse-sense
 
-# 3. Bootstrap your Python environment
-bash .horse-sense/scripts/setup_env.sh
-
-# 4. Start the SDLC workflow in Claude Code
-# /user:sdlc-start
+# 3. Start the SDLC workflow
+# /horse-sense:sdlc-start
 ```
 
 ---
@@ -41,34 +38,35 @@ bash .horse-sense/scripts/setup_env.sh
 
 ```
 horse-sense/
+├── .claude-plugin/
+│   └── plugin.json              ← Plugin manifest
 ├── CLAUDE.md                    ← Main plugin instructions (Claude reads this)
-├── .claude/
-│   ├── settings.json            ← Plugin configuration
-│   └── commands/                ← Custom slash commands
-│       ├── sdlc-start.md        ← /user:sdlc-start
-│       ├── plan.md              ← /user:plan
-│       ├── arch.md              ← /user:arch
-│       ├── implement.md         ← /user:implement
-│       ├── review.md            ← /user:review
-│       ├── test.md              ← /user:test
-│       ├── deploy.md            ← /user:deploy
-│       ├── sprint.md            ← /user:sprint
-│       └── retrospective.md     ← /user:retrospective
+├── commands/                    ← Custom slash commands
+│   ├── sdlc-start.md           ← /horse-sense:sdlc-start
+│   ├── plan.md                 ← /horse-sense:plan
+│   ├── arch.md                 ← /horse-sense:arch
+│   ├── implement.md            ← /horse-sense:implement
+│   ├── review.md               ← /horse-sense:review
+│   ├── test.md                 ← /horse-sense:test
+│   ├── deploy.md               ← /horse-sense:deploy
+│   ├── sprint.md               ← /horse-sense:sprint
+│   └── retrospective.md        ← /horse-sense:retrospective
 ├── agents/
-│   ├── planner.md               ← Project planning agent
-│   ├── architect.md             ← System design agent
-│   ├── developer.md             ← Implementation agent
-│   ├── tester.md                ← QA / test automation agent
-│   └── reviewer.md              ← Code review agent
+│   └── workers/                 ← Specialized role agents
+│       ├── planner.md           ← Project planning agent
+│       ├── architect.md         ← System design agent
+│       ├── developer.md         ← Implementation agent
+│       ├── tester.md            ← QA / test automation agent
+│       └── reviewer.md          ← Code review agent
 ├── skills/
-│   ├── python_venv/README.md    ← Python virtual environment setup
-│   ├── requirements_analysis/README.md
-│   ├── architecture_design/README.md
-│   ├── implementation/README.md
-│   ├── testing/README.md
-│   └── deployment/README.md
+│   ├── python_venv/SKILL.md     ← Python virtual environment setup
+│   ├── requirements_analysis/SKILL.md
+│   ├── architecture_design/SKILL.md
+│   ├── implementation/SKILL.md
+│   ├── testing/SKILL.md
+│   └── deployment/SKILL.md
 ├── rules/
-│   ├── code_quality.md          ← Python coding standards
+│   ├── code_quality.md          ← Coding standards
 │   ├── documentation.md         ← Documentation standards
 │   ├── testing.md               ← Testing requirements
 │   └── git_workflow.md          ← Branching and commit conventions
@@ -77,30 +75,31 @@ horse-sense/
 │   ├── requirements_doc.md      ← Requirements document template
 │   ├── architecture_doc.md      ← Architecture document template
 │   └── sprint_plan.md           ← Sprint plan template
-└── scripts/
-    ├── setup_env.sh             ← Bootstrap Python venv
-    ├── run_tests.sh             ← Run tests with coverage
-    ├── lint.sh                  ← Run all linters
-    └── new_project.sh           ← Scaffold a new project
+├── scripts/
+│   ├── setup_env.sh             ← Bootstrap Python venv
+│   ├── run_tests.sh             ← Run tests with coverage
+│   ├── lint.sh                  ← Run all linters
+│   └── new_project.sh           ← Scaffold a new project
+└── bin/                         ← Executables (added to PATH)
 ```
 
 ---
 
-## Custom Slash Commands
+## Slash Commands
 
 Use these in Claude Code to trigger structured workflows:
 
 | Command | Description |
 |---|---|
-| `/user:sdlc-start` | Full SDLC kickoff: requirements → design → planning → implementation |
-| `/user:plan` | Create or update project plan and sprint backlog |
-| `/user:arch` | Design system architecture, generate diagrams and ADRs |
-| `/user:implement` | Implement a user story with TDD workflow |
-| `/user:review` | Code review against project standards |
-| `/user:test` | Create and run tests with coverage reporting |
-| `/user:deploy` | Deploy to staging or production with pre-flight checks |
-| `/user:sprint` | Plan and manage a sprint |
-| `/user:retrospective` | Facilitate a sprint retrospective |
+| `/horse-sense:sdlc-start` | Full SDLC kickoff: requirements → design → planning → implementation |
+| `/horse-sense:plan` | Create or update project plan and sprint backlog |
+| `/horse-sense:arch` | Design system architecture, generate diagrams and ADRs |
+| `/horse-sense:implement` | Implement a user story with TDD workflow |
+| `/horse-sense:review` | Code review against project standards |
+| `/horse-sense:test` | Create and run tests with coverage reporting |
+| `/horse-sense:deploy` | Deploy to staging or production with pre-flight checks |
+| `/horse-sense:sprint` | Plan and manage a sprint |
+| `/horse-sense:retrospective` | Facilitate a sprint retrospective |
 
 ---
 
@@ -109,16 +108,16 @@ Use these in Claude Code to trigger structured workflows:
 Switch context by referencing the relevant agent file:
 
 ```
-Read agents/architect.md and help me design the data model for my user management system.
+Read agents/workers/architect.md and help me design the data model for my user management system.
 ```
 
 | Agent | File | Best For |
 |---|---|---|
-| Planner | `agents/planner.md` | Requirements, roadmaps, sprint planning |
-| Architect | `agents/architect.md` | System design, tech selection, ADRs |
-| Developer | `agents/developer.md` | Implementation, debugging, refactoring |
-| Tester | `agents/tester.md` | Test strategy, coverage, security scans |
-| Reviewer | `agents/reviewer.md` | Code review, security, performance |
+| Planner | `agents/workers/planner.md` | Requirements, roadmaps, sprint planning |
+| Architect | `agents/workers/architect.md` | System design, tech selection, ADRs |
+| Developer | `agents/workers/developer.md` | Implementation, debugging, refactoring |
+| Tester | `agents/workers/tester.md` | Test strategy, coverage, security scans |
+| Reviewer | `agents/workers/reviewer.md` | Code review, security, performance |
 
 ---
 
@@ -147,11 +146,11 @@ bash scripts/new_project.sh my-api
 
 ```mermaid
 flowchart LR
-    R[Requirements\n/user:plan] --> A[Architecture\n/user:arch]
-    A --> I[Implementation\n/user:implement]
-    I --> T[Testing\n/user:test]
-    T --> CR[Code Review\n/user:review]
-    CR --> D[Deployment\n/user:deploy]
+    R[Requirements\n/horse-sense:plan] --> A[Architecture\n/horse-sense:arch]
+    A --> I[Implementation\n/horse-sense:implement]
+    I --> T[Testing\n/horse-sense:test]
+    T --> CR[Code Review\n/horse-sense:review]
+    CR --> D[Deployment\n/horse-sense:deploy]
     D --> R
 ```
 
@@ -159,10 +158,10 @@ flowchart LR
 
 ## Prerequisites
 
-- Python ≥ 3.11
+- Python >= 3.11
 - Git
 - Bash-compatible shell (Linux / macOS / WSL)
-- [Claude Code](https://claude.ai/code) with custom command support
+- [Claude Code](https://claude.ai/code) with plugin support
 
 ---
 

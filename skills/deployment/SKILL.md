@@ -1,3 +1,8 @@
+---
+name: deployment
+description: Prepare deployment artifacts, CI/CD workflows, and runbooks
+---
+
 # Skill: Deployment
 
 ## Purpose
