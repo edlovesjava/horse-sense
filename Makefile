@@ -12,7 +12,7 @@ fix:
 # Validate plugin structure and frontmatter.
 validate:
 	scripts/validate-plugin.sh
-	python scripts/validate-frontmatter.py
+	python3 scripts/validate-frontmatter.py
 
 # Lint Markdown files and shell scripts.
 lint:

@@ -4,6 +4,14 @@
 
 set -euo pipefail
 
+# ---------------------------------------------------------------------------
+# Prerequisite check
+# ---------------------------------------------------------------------------
+if ! command -v jq &>/dev/null; then
+  echo "Error: jq is required but not installed. Install it with: sudo apt-get install jq" >&2
+  exit 1
+fi
+
 PLUGIN_DIR="${PLUGIN_DIR:-horse}"
 
 # ---------------------------------------------------------------------------
