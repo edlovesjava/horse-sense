@@ -43,9 +43,9 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-030s | Create `agents/scout.md` — research and investigation agent persona | US-082 | 3 | ⬜ To Do |
-| T-031s | Create `skills/scout/SKILL.md` — spike research skill with report template | US-082 | 3 | ⬜ To Do |
-| T-032s | Create `templates/spike_report.md` — spike report scaffold | US-082 | 1 | ⬜ To Do |
+| T-030s | Create `agents/scout.md` — research and investigation agent persona | US-082 | 3 | ✅ Done |
+| T-031s | Create `skills/scout/SKILL.md` — spike research skill with report template | US-082 | 3 | ✅ Done |
+| T-032s | Create `templates/spike_report.md` — spike report scaffold | US-082 | 1 | ✅ Done |
 | | **Part 3 subtotal** | | **7** | |
 
 | | **Parts 1–3 subtotal** | | **33** | |
