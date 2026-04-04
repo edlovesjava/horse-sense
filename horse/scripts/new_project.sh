@@ -177,7 +177,7 @@ jobs:
       - name: Type check
         run: |
           source .venv/bin/activate
-          mypy src/ || true
+          mypy src/
 
       - name: Test with coverage
         run: |
