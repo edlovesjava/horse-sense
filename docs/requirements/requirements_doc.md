@@ -116,13 +116,20 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 | [US-077](stories/US-077-cicd-pipeline-via-github-actions-draft.md) | CI/CD pipeline via GitHub Actions | Must Have | 5 | Draft |
 | [US-078](stories/US-078-local-developer-workflow-draft.md) | Local developer workflow | Must Have | 3 | Draft |
 
+### 3.10 PR Review & Fix Skills
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-080](stories/US-080-pr-review-skill-draft.md) | PR review skill | Must Have | 8 | Draft |
+| [US-081](stories/US-081-pr-fix-skill-draft.md) | PR fix skill | Must Have | 8 | Draft |
+
 ### Summary
 
 | Priority | Count | Total SP |
 |---|---|---|
-| Must Have | 25 | 120 |
+| Must Have | 27 | 136 |
 | Should Have | 9 | 29 |
-| **Total** | **34** | **149** |
+| **Total** | **36** | **165** |
 
 ---
 
