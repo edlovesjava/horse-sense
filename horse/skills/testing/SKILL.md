@@ -6,6 +6,7 @@ description: Create and run tests following the test pyramid strategy
 # Skill: Testing
 
 ## Purpose
+
 Validate that the software behaves correctly, reliably, and securely at every level — from individual functions to full user journeys. A good test suite is a safety net that enables confident, frequent releases.
 
 ## The Test Pyramid
@@ -23,15 +24,18 @@ Validate that the software behaves correctly, reliably, and securely at every le
 ## Unit Testing
 
 ### Goal
+
 Verify individual functions, methods, or classes in complete isolation.
 
 ### Setup
+
 ```bash
 source .venv/bin/activate
 pip install pytest pytest-cov
 ```
 
 ### Writing a Unit Test
+
 ```python
 # tests/unit/test_calculator.py
 import pytest
@@ -58,6 +62,7 @@ class TestCalculator:
 ```
 
 ### Running Unit Tests
+
 ```bash
 python -m pytest tests/unit/ -v
 python -m pytest tests/unit/ -v --tb=short   # shorter tracebacks
@@ -67,9 +72,11 @@ python -m pytest tests/unit/ -x              # stop on first failure
 ## Integration Testing
 
 ### Goal
+
 Verify that components work together correctly — typically testing a service against a real (or containerized) database or external API.
 
 ### Using pytest-fixtures for Setup/Teardown
+
 ```python
 # tests/integration/conftest.py
 import pytest
@@ -90,6 +97,7 @@ def db_session(db_engine):
 ```
 
 ### Running Integration Tests
+
 ```bash
 python -m pytest tests/integration/ -v
 ```
@@ -97,9 +105,11 @@ python -m pytest tests/integration/ -v
 ## End-to-End Testing
 
 ### Goal
+
 Validate complete user journeys against a running application instance.
 
 ### Example (using `httpx`)
+
 ```python
 # tests/e2e/test_auth_flow.py
 import httpx
@@ -136,6 +146,7 @@ open htmlcov/index.html
 ```
 
 ### Coverage Targets
+
 - New business logic: ≥ 80% line coverage
 - Critical paths (auth, payments, data integrity): ≥ 90%
 - Auto-generated or trivial code: exempt
@@ -181,6 +192,7 @@ bandit -r src/ -ll
 ## Continuous Integration
 
 Add this to your CI workflow:
+
 ```yaml
 - name: Run tests
   run: |

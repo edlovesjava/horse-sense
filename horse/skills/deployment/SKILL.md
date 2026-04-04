@@ -6,11 +6,13 @@ description: Prepare deployment artifacts, CI/CD workflows, and runbooks
 # Skill: Deployment
 
 ## Purpose
+
 Package, configure, and ship software to its target environment reliably and repeatably. A good deployment process is automated, auditable, and reversible.
 
 ## Deployment Checklist
 
 Before any deployment:
+
 - [ ] All tests pass in CI
 - [ ] Coverage meets the project threshold
 - [ ] No known security vulnerabilities (`pip audit`)
@@ -48,6 +50,7 @@ LOG_LEVEL=WARNING
 ```
 
 Generate a secure secret key:
+
 ```bash
 python3 -c "import secrets; print(secrets.token_hex(32))"
 ```
@@ -55,6 +58,7 @@ python3 -c "import secrets; print(secrets.token_hex(32))"
 ## Containerization with Docker
 
 ### Dockerfile (Python)
+
 ```dockerfile
 FROM python:3.11-slim
 
@@ -76,6 +80,7 @@ CMD ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "
 ```
 
 ### Docker Compose (local dev)
+
 ```yaml
 services:
   app:
@@ -185,6 +190,7 @@ curl https://app.example.com/health
 ## Health Checks
 
 Every service should expose a `/health` endpoint:
+
 ```python
 @app.get("/health")
 def health_check():

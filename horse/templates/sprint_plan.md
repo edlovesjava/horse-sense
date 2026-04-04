@@ -24,6 +24,7 @@ _Describe in plain language what the team will achieve by the end of this sprint
 | **Total** | | | **13** | | |
 
 ### Status Key
+
 - ⬜ To Do
 - 🔵 In Progress
 - 🔍 In Review
@@ -53,6 +54,7 @@ _Describe in plain language what the team will achieve by the end of this sprint
 ## Definition of Done
 
 A story is **Done** when:
+
 - [ ] Code implemented and passing linter (`ruff check .`)
 - [ ] Unit tests written (coverage ≥ 80% on new code)
 - [ ] All tests passing (`pytest tests/ -x`)
@@ -75,11 +77,13 @@ A story is **Done** when:
 ## Daily Standup Notes
 
 ### Day 1 — [Date]
+
 | Person | Yesterday | Today | Blockers |
 |---|---|---|---|
 | [Name] | — | Sprint kickoff | None |
 
 ### Day 2 — [Date]
+
 | Person | Yesterday | Today | Blockers |
 |---|---|---|---|
 | [Name] | | | |
@@ -93,9 +97,11 @@ A story is **Done** when:
 **Velocity**: [N story points completed]  
 
 ### What was delivered
+
 - [Story ID]: [brief description of outcome]
 
 ### What was not completed (and why)
+
 - [Story ID]: [reason — moved to next sprint / de-scoped]
 
 ---
@@ -103,9 +109,11 @@ A story is **Done** when:
 ## Retrospective Notes
 
 ### What went well 🟢
+
 - [Item]
 
 ### What could improve 🟡
+
 - [Item]
 
 ### Action items 🔴

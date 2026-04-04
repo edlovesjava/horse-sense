@@ -15,6 +15,7 @@ main (always deployable)
 ```
 
 ### Rules
+
 1. `main` is always in a deployable state — never commit broken code directly
 2. All work happens on short-lived feature branches
 3. Branches are merged via pull requests with at least one approval
@@ -87,6 +88,7 @@ Resolves deprecation warnings introduced in 8.1.x.
 ```
 
 ### Commit Hygiene
+
 - Commits should be atomic — one logical change per commit
 - Write commit messages in the imperative mood: "add feature", not "added feature"
 - Include the ticket number in the footer: `Closes #42` or `Fixes #87`
@@ -95,12 +97,14 @@ Resolves deprecation warnings introduced in 8.1.x.
 ## Pull Request Process
 
 ### Opening a PR
+
 1. Push your branch and open a PR against `main`
 2. Fill out the PR description using the template
 3. Link the relevant ticket
 4. Request review from at least one team member (or the Reviewer agent)
 
 ### PR Description Template
+
 ```markdown
 ## Summary
 Brief description of what this PR does and why.
@@ -119,11 +123,13 @@ Closes #<ticket-number>
 ```
 
 ### Review Requirements
+
 - At least one approving review required
 - All CI checks must pass
 - No unresolved review comments
 
 ### Merging
+
 - Use **Squash and Merge** for feature branches (clean history on `main`)
 - Use **Merge Commit** only for release branches (preserve branch history)
 - Delete the branch after merging
@@ -141,6 +147,7 @@ v2.0.0   ← breaking change
 ```
 
 Create a release:
+
 ```bash
 git tag -a v1.1.0 -m "Release v1.1.0: add password reset"
 git push origin v1.1.0
@@ -149,12 +156,14 @@ git push origin v1.1.0
 ## Git Hooks (Optional)
 
 Install pre-commit hooks to catch issues before they reach CI:
+
 ```bash
 pip install pre-commit
 pre-commit install
 ```
 
 Example `.pre-commit-config.yaml`:
+
 ```yaml
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit

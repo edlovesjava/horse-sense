@@ -36,19 +36,23 @@ Support both Python and TypeScript toolchains from the start, driven by `.claude
 | Security | pip audit | npm audit |
 
 ### New skills needed:
+
 - `skills/typescript-setup/SKILL.md` — analogous to `skills/python-venv/SKILL.md`
 
 ### New rules needed:
+
 - `rules/typescript_quality.md` — TypeScript naming, style, linting standards (globs: `**/*.ts`, `**/*.tsx`)
 
 ## Consequences
 
 **Positive:**
+
 - Plugin useful for both Python and TypeScript projects immediately
 - Config-driven approach means adding a third language later is straightforward
 - Shared SDLC process across languages (same agents, templates, workflow)
 
 **Negative:**
+
 - Skills are longer (conditional sections for each language)
 - Scripts need branching logic (adds complexity)
 - Must test plugin behavior against both toolchains

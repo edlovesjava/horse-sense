@@ -5,7 +5,9 @@ Every project using horse-sense follows these documentation standards. Good docu
 ## Required Documentation
 
 ### 1. `README.md` (root level)
+
 Every project must have a `README.md` covering:
+
 - **What it is** — one-paragraph description
 - **Prerequisites** — runtime/build requirements
 - **Quick start** — five commands or fewer to get it running
@@ -15,7 +17,9 @@ Every project must have a `README.md` covering:
 - **Contributing** — where to find contribution guidelines
 
 ### 2. `CHANGELOG.md`
+
 Track all notable changes following [Keep a Changelog](https://keepachangelog.com/):
+
 ```markdown
 # Changelog
 
@@ -33,7 +37,9 @@ Track all notable changes following [Keep a Changelog](https://keepachangelog.co
 ```
 
 ### 3. `docs/` Directory
+
 Longer-form documentation lives here:
+
 ```
 docs/
 ├── adr/           ← Architecture Decision Records
@@ -43,6 +49,7 @@ docs/
 ```
 
 ### 4. Code-Level Documentation
+
 - Public functions and classes: Google-style docstrings (see `rules/code_quality.md`)
 - Complex algorithms: inline comments explaining *why*, not *what*
 - Configuration files: comments for non-obvious settings

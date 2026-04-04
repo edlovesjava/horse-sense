@@ -15,7 +15,7 @@ section: "3.7 Dual Toolchain Support"
 
 ```gherkin
 Given .claude/config.json has language=typescript
-When  I run /horse-sense:implement
+When  I run /horse:implement
 Then  it uses npm, writes vitest tests, runs eslint, runs tsc
 And   commit messages follow Conventional Commits
 And   CI workflow uses Node.js-specific steps

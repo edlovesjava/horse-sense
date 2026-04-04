@@ -35,6 +35,7 @@ When this command is invoked:
 ## Rollback
 
 If anything goes wrong:
+
 ```bash
 # Redeploy the previous tag
 bash ${CLAUDE_PLUGIN_ROOT}/scripts/deploy.sh <previous-tag>
@@ -46,6 +47,7 @@ alembic downgrade -1
 ## Environment Variables Reminder
 
 Before deploying to a new environment, ensure all required environment variables are set:
+
 ```bash
 # List all env vars the application needs
 grep -r "os.getenv\|os.environ" src/ | grep -v ".pyc"

@@ -44,6 +44,7 @@ Tasks T-001 through T-007 were completed under the old structure (plugin at root
 | **Total (revised)** | | | **13** | |
 
 ### Status Key
+
 - ⬜ To Do
 - 🔵 In Progress
 - 🔍 In Review
@@ -71,7 +72,7 @@ horse/
 ├── .claude-plugin/
 │   └── plugin.json              # name: "horse"
 ├── commands/                     # /horse:* slash commands [auto-discovered]
-│   ├── sdlc-start.md
+│   ├── guide.md
 │   ├── plan.md
 │   ├── arch.md
 │   ├── implement.md
@@ -100,6 +101,7 @@ horse/
 ```
 
 **Steps:**
+
 1. Create `horse/` directory with all subdirectories
 2. Create `horse/.claude-plugin/plugin.json` with `name: "horse"`
 3. Copy `commands/*.md` → `horse/commands/*.md`, updating `/horse-sense:` → `/horse:`
@@ -144,6 +146,7 @@ maxTurns: 20
 Commands and skills currently reference `rules/code_quality.md`, `templates/architecture_doc.md`, `scripts/run_tests.sh`, etc. as bare relative paths. Since `rules/`, `templates/`, and `scripts/` are not auto-discovered, these references should be clear they're plugin-relative.
 
 **Update pattern in commands/skills:**
+
 - `rules/code_quality.md` → `Read the code quality rules from ${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`
 - `templates/architecture_doc.md` → `Use the template at ${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md`
 - `scripts/run_tests.sh` → `Run ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh`
@@ -156,6 +159,7 @@ Commands and skills currently reference `rules/code_quality.md`, `templates/arch
 ### T-009c: Update CLAUDE.md and README.md
 
 Update project-level documentation to reflect:
+
 - Plugin lives in `horse/` subdirectory
 - Installation: `claude --plugin-dir ./horse`
 - Commands: `/horse:*` namespace
@@ -169,6 +173,7 @@ Update project-level documentation to reflect:
 ### T-008: Smoke test plugin loading
 
 Run `claude --plugin-dir ./horse` and verify:
+
 - [ ] Plugin is recognized (check plugin list or `/help`)
 - [ ] `/horse:plan` and other commands are available
 - [ ] Agents appear in `/agents` with correct names and descriptions
@@ -196,6 +201,7 @@ Document any issues found — they inform Sprint 2 work.
 ## Definition of Done
 
 A story is **Done** when:
+
 - [ ] All plugin files are in `horse/` subdirectory
 - [ ] No broken internal references (grep for old paths, `/horse-sense:`, `agents/workers/`)
 - [ ] Plugin structure matches official spec (flat agents, YAML frontmatter, auto-discovered dirs correct)

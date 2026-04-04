@@ -1,4 +1,4 @@
-# /horse:sdlc-start
+# /horse:guide
 
 Kick off the full SDLC workflow for a new project or feature.
 

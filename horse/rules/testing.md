@@ -86,6 +86,7 @@ def test_bulk_import_1000_records():
 ```
 
 Configure in `pyproject.toml`:
+
 ```toml
 [tool.pytest.ini_options]
 markers = [
@@ -97,6 +98,7 @@ markers = [
 ```
 
 Run specific categories:
+
 ```bash
 python -m pytest -m unit          # only unit tests
 python -m pytest -m "not slow"    # skip slow tests
@@ -132,6 +134,7 @@ def sample_user():
 ## CI Enforcement
 
 The CI pipeline must:
+
 1. Run the full test suite
 2. Fail if coverage drops below the threshold
 3. Report coverage metrics on every PR

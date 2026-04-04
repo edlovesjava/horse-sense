@@ -1,20 +1,20 @@
 ---
 id: US-025
-title: Process definition documents
+title: Trail definition documents
 status: draft
 priority: Must Have
 story_points: 8
-section: "3.4 Process Definitions — Workflow Specification"
+section: "3.4 Trail Definitions — Workflow Specification"
 ---
 
-# US-025 — Process definition documents
+# US-025 — Trail definition documents
 
-> As a **plugin author**, I want to **define workflows as structured process documents** so that **orchestrator agents have a clear, repeatable specification to follow**.
+> As a **plugin author**, I want to **define workflows as structured trail documents** so that **orchestrator agents have a clear, repeatable specification to follow**.
 
 ## Acceptance Criteria
 
 ```gherkin
-Given a process document exists at processes/feature_delivery.md
+Given a trail document exists at trails/feature_delivery.md
 When  an orchestrator reads it
 Then  it can identify:
   | Element              | Description                                      |
@@ -35,7 +35,7 @@ And  it executes the process by following the steps in order
 ---
 name: feature-delivery
 description: End-to-end feature delivery from requirements to deployment
-trigger: /horse-sense:deliver
+trigger: /horse:deliver
 ---
 
 # Feature Delivery Process

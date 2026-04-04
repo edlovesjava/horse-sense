@@ -14,7 +14,7 @@
 
 Claude Code produces inconsistent results without structured guidance. horse-sense exists as a collection of skills, agents, rules, and scripts but needs to be packaged as an official Claude Code plugin named **horse** — it must be installable into other projects via `claude --plugin-dir ./horse`, with commands namespaced as `/horse:*`, and a directory layout conforming to the official plugin spec.
 
-**Key constraint discovered 2026-04-04**: After reviewing the [official plugin docs](https://code.claude.com/docs/en/plugins), only certain directories are auto-discovered by the plugin manager (`commands/`, `agents/`, `skills/`, `hooks/`, `bin/`, `output-styles/`). Non-standard directories (`rules/`, `templates/`, `processes/`, `scripts/`) must exist as supporting files referenced by agents and skills, not as first-class plugin components. Additionally, `agents/` must be flat (no subdirectories) with proper YAML frontmatter.
+**Key constraint discovered 2026-04-04**: After reviewing the [official plugin docs](https://code.claude.com/docs/en/plugins), only certain directories are auto-discovered by the plugin manager (`commands/`, `agents/`, `skills/`, `hooks/`, `bin/`, `output-styles/`). Non-standard directories (`rules/`, `templates/`, `trails/`, `scripts/`) must exist as supporting files referenced by agents and skills, not as first-class plugin components. Additionally, `agents/` must be flat (no subdirectories) with proper YAML frontmatter.
 
 ### Goals
 
@@ -56,12 +56,13 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | Milestone | Description | Target Date | Status |
 |---|---|---|---|
 | M0: Planning complete | Requirements, architecture, ADRs, project plan | 2026-04-03 | ✅ Done |
-| M0.5: Spec review | Review official plugin docs, resolve open questions, update plans | 2026-04-04 | 🔵 In Progress |
-| M1: Plugin structure | `horse/` module with `.claude-plugin/plugin.json`, `commands/`, flat `agents/` with frontmatter | Sprint 1 | ⬜ |
-| M2: Skills & agents migrated | SKILL.md format, config.json support, rules folded into agent prompts | Sprint 2 | ⬜ |
-| M3: Dual toolchain + CI | TypeScript support, GitHub Actions template, documentation | Sprint 3 | ⬜ |
+| M0.5: Spec review | Review official plugin docs, resolve open questions, update plans | 2026-04-04 | ✅ Done |
+| M1: Plugin structure | `horse/` module with `.claude-plugin/plugin.json`, `commands/`, flat `agents/` with frontmatter | Sprint 1 | ✅ Done |
+| M1.5: Plugin toolchain | Validation, linting, `make check`, GitHub Actions CI | Sprint 2 | ⬜ |
+| M2: Skills & agents migrated | config.json support, rules folded into agent prompts | Sprint 2 | ⬜ |
+| M3: Dual toolchain + CI | TypeScript support, documentation, end-to-end validation | Sprint 3 | ⬜ |
 | M4: Phase 1 complete — usable plugin | End-to-end `claude --plugin-dir ./horse` → use in a real project | Sprint 3 | ⬜ |
-| M5: Process definitions & orchestrators | Process docs, orchestrator agents, monitor agent | Sprint 4 | ⬜ |
+| M5: Trail definitions & orchestrators | Trail docs, orchestrator agents, monitor agent | Sprint 4 | ⬜ |
 | M6: Phase 2 complete — orchestrated SDLC | Feature-delivery workflow running end-to-end | Sprint 5 | ⬜ |
 | M7: Subagent dispatch infrastructure | `bin/claude-sandbox` runner, Dockerfile, dispatch skill working | Sprint 6 | ⬜ |
 | M8: Phase 3 complete — containerized subagents | Orchestrator can dispatch one-shot Claude tasks in Docker, collect JSON results | Sprint 7 | ⬜ |
@@ -73,6 +74,7 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 ### Phase 1: Plugin Packaging
 
 #### Epic 1: Plugin Structure & Installation (Sprint 1)
+>
 > Create the `horse/` plugin module conforming to the official Claude Code plugin spec, installable via `claude --plugin-dir ./horse`.
 
 **Note (2026-04-04)**: Sprint 1 was originally scoped to restructure at the repo root as `horse-sense`. After reviewing the official plugin docs, the scope has been revised: the plugin is now a module named `horse` in a `horse/` subdirectory, agents must be flat with frontmatter, and `rules/`/`templates/` are supporting files (not auto-discovered). Tasks T-001 through T-007 were completed under the old structure and need rework.
@@ -86,14 +88,29 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-005 | ~~Restructure `agents/` into `agents/workers/`~~ | Must | 1 | 1 | ✅ Done (needs rework → T-009) |
 | T-006 | ~~Create `bin/` directory (placeholder)~~ | Could | 1 | 1 | ✅ Done (needs rework → T-009) |
 | T-007 | ~~Remove `.claude/settings.json` (replaced by plugin.json)~~ | Must | 1 | 1 | ✅ Done |
-| T-008 | Verify plugin loads: `claude --plugin-dir ./horse` smoke test | Must | 2 | 1 | ⬜ To Do |
-| T-009 | Create `horse/` plugin module — move all plugin files into `horse/` subdir, rename to `horse`, flatten agents with frontmatter, update all `/horse-sense:` → `/horse:` refs | Must | 5 | 1 | ⬜ To Do |
-| T-009a | Add YAML frontmatter to all 5 agent files (name, description, model, maxTurns) | Must | 3 | 1 | ⬜ To Do |
-| T-009b | Update commands to reference `${CLAUDE_PLUGIN_ROOT}/` paths for rules, templates, scripts | Must | 2 | 1 | ⬜ To Do |
-| T-009c | Update CLAUDE.md and README.md for new `horse/` structure | Must | 1 | 1 | ⬜ To Do |
+| T-008 | Verify plugin loads: `claude --plugin-dir ./horse` smoke test | Must | 2 | 1 | ✅ Done |
+| T-009 | Create `horse/` plugin module — move all plugin files into `horse/` subdir, rename to `horse`, flatten agents with frontmatter, update all `/horse-sense:` → `/horse:` refs | Must | 5 | 1 | ✅ Done |
+| T-009a | Add YAML frontmatter to all 5 agent files (name, description, model, maxTurns) | Must | 3 | 1 | ✅ Done |
+| T-009b | Update commands to reference `${CLAUDE_PLUGIN_ROOT}/` paths for rules, templates, scripts | Must | 2 | 1 | ✅ Done |
+| T-009c | Update CLAUDE.md and README.md for new `horse/` structure | Must | 1 | 1 | ✅ Done |
 | | **Sprint 1 Total (revised)** | | **13** | | |
 
-#### Epic 2: Skills, Agents & Configuration (Sprint 2)
+#### Epic 1.5: Plugin Toolchain (Sprint 2, Part 1)
+>
+> Establish validation, linting, and CI for the plugin itself — build the safety net before modifying skills and agents.
+
+| Story ID | Title | Priority | Points | Sprint | Status |
+|---|---|---|---|---|---|
+| T-100 | Create Makefile with `check` and `fix` targets | Must | 2 | 2 | ⬜ |
+| T-101 | Create plugin structure validation script | Must | 3 | 2 | ⬜ |
+| T-102 | Add frontmatter validation for agents, commands, skills, rules | Must | 3 | 2 | ⬜ |
+| T-103 | Add markdownlint configuration and Makefile integration | Must | 2 | 2 | ⬜ |
+| T-104 | Add shellcheck integration for scripts/ and bin/ | Must | 1 | 2 | ⬜ |
+| T-105 | Create GitHub Actions CI workflow | Must | 3 | 2 | ⬜ |
+| | **Epic 1.5 Total** | | **14** | | |
+
+#### Epic 2: Skills, Agents & Configuration (Sprint 2, Part 2)
+>
 > Make skills config-aware, add project configuration model, fold rules content into agent prompts and skill references.
 
 | Story ID | Title | Priority | Points | Sprint | Status |
@@ -106,6 +123,7 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | | **Sprint 2 Total** | | **16** | | |
 
 #### Epic 3: Dual Toolchain, CI & Documentation (Sprint 3)
+>
 > Add TypeScript support, GitHub Actions template, update all documentation for v1.0 release.
 
 | Story ID | Title | Priority | Points | Sprint | Status |
@@ -120,25 +138,27 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 3 | ⬜ |
 | | **Sprint 3 Total** | | **27** | | |
 
-**Phase 1 Total: 55 story points across 3 sprints**
+**Phase 1 Total: 69 story points across 3 sprints**
 
 ---
 
 ### Phase 2: Process Orchestration
 
-#### Epic 4: Process Definitions (Sprint 4)
-> Create the process definition format and initial workflow documents that orchestrators will execute.
+#### Epic 4: Trail Definitions (Sprint 4)
+>
+> Create the trail definition format and initial workflow documents that orchestrators will execute.
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-030 | Define process document format (frontmatter, steps, gates, flow control) | Must | 5 | 4 | ⬜ |
-| T-031 | Create `processes/feature_delivery.md` (full SDLC lifecycle) | Must | 5 | 4 | ⬜ |
-| T-032 | Create `processes/sprint_execution.md` (story-level iteration) | Must | 3 | 4 | ⬜ |
-| T-033 | Create `processes/bug_fix.md` (triage → fix → verify) | Should | 3 | 4 | ⬜ |
-| T-034 | Create `processes/code_review.md` (review → feedback → resolve) | Should | 2 | 4 | ⬜ |
+| T-030 | Define trail document format (frontmatter, steps, gates, flow control) | Must | 5 | 4 | ⬜ |
+| T-031 | Create `trails/feature_delivery.md` (full SDLC lifecycle) | Must | 5 | 4 | ⬜ |
+| T-032 | Create `trails/sprint_execution.md` (story-level iteration) | Must | 3 | 4 | ⬜ |
+| T-033 | Create `trails/bug_fix.md` (triage → fix → verify) | Should | 3 | 4 | ⬜ |
+| T-034 | Create `trails/code_review.md` (review → feedback → resolve) | Should | 2 | 4 | ⬜ |
 | | **Sprint 4 Total** | | **18** | | |
 
 #### Epic 5: Orchestrator & Monitor Agents (Sprint 5)
+>
 > Create orchestrator agents that read process definitions and direct worker agents, plus monitor agents for loop quality.
 
 | Story ID | Title | Priority | Points | Sprint | Status |
@@ -146,7 +166,7 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-040 | Create `agents/sdlc.md` — SDLC orchestrator agent (flat, with frontmatter) | Must | 8 | 5 | ⬜ |
 | T-041 | Create `agents/sprint-orchestrator.md` — Sprint orchestrator agent | Must | 5 | 5 | ⬜ |
 | T-042 | Create `agents/monitor.md` — Loop quality monitor agent | Should | 5 | 5 | ⬜ |
-| T-043 | Update `/horse:sdlc-start` command to invoke SDLC orchestrator | Must | 3 | 5 | ⬜ |
+| T-043 | Update `/horse:guide` command to invoke SDLC orchestrator | Must | 3 | 5 | ⬜ |
 | T-044 | Update `/horse:sprint` command to invoke Sprint orchestrator | Must | 2 | 5 | ⬜ |
 | T-045 | End-to-end validation: run feature-delivery process on a test project | Must | 5 | 5 | ⬜ |
 | | **Sprint 5 Total** | | **28** | | |
@@ -158,6 +178,7 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 ### Phase 3: Containerized Subagent Execution
 
 #### Epic 6: Subagent Dispatch Infrastructure (Sprint 6)
+>
 > Build the scaffolding for spawning `claude` CLI instances in Docker containers as one-shot subagents. The orchestrator invokes `claude -p "<prompt>" --output-format json` inside a sandboxed container and collects structured results.
 
 **Rationale**: The orchestrator/subagent model is explicitly part of Claude Code's design. The `claude` CLI supports non-interactive use (`-p`, `--output-format json`, `--input-file`), and Anthropic's multi-agent patterns describe orchestrators spawning subagents. The SKILL.md layer encodes _when_ and _how_ to dispatch as reusable instruction.
@@ -173,6 +194,7 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | | **Sprint 6 Total** | | **21** | | |
 
 #### Epic 7: Orchestrator Integration & Patterns (Sprint 7)
+>
 > Wire subagent dispatch into the orchestrator agents from Phase 2. Define reusable patterns for common one-shot tasks (code generation, test execution, linting, security scanning).
 
 | Story ID | Title | Priority | Points | Sprint | Status |
@@ -211,7 +233,7 @@ Details in [docs/architecture/architecture_doc.md](../architecture/architecture_
 - **Plugin spec**: `.claude-plugin/plugin.json` manifest ([ADR-0001](../adr/0001-adopt-official-plugin-format.md))
 - **Configuration**: Two-tier — plugin.json + `.claude/config.json` ([ADR-0002](../adr/0002-two-tier-configuration.md))
 - **Toolchains**: Python (venv/pytest/ruff) + TypeScript (npm/vitest/eslint) ([ADR-0003](../adr/0003-dual-toolchain-support.md))
-- **Orchestration**: Process definitions + orchestrator/worker/monitor agents ([ADR-0004](../adr/0004-process-orchestration-model.md))
+- **Orchestration**: Trail definitions + orchestrator/worker/monitor agents ([ADR-0004](../adr/0004-process-orchestration-model.md))
 - **Subagent Execution**: Containerized one-shot `claude -p` invocations in Docker for sandboxed task delegation ([ADR-0005](../adr/0005-containerized-subagent-execution.md)). Orchestrator constructs prompt, mounts workspace, collects JSON result. Degrades to local CLI when Docker unavailable.
 - **CI/CD**: GitHub Actions workflow template shipped with the plugin
 
@@ -228,7 +250,7 @@ templates/*.md                   → horse/templates/*.md (supporting files, NOT
 scripts/*.sh                     → horse/scripts/*.sh (supporting files)
 bin/                             → horse/bin/ (auto-discovered, added to PATH)
 (none)                           → horse/agents/sdlc.md, etc. (Phase 2, flat in agents/)
-(none)                           → horse/processes/*.md (Phase 2, supporting files)
+(none)                           → horse/trails/*.md (Phase 2, supporting files)
 (none)                           → .claude/config.json (per-project, in host project)
 ```
 
@@ -300,7 +322,7 @@ Maps implementation tasks to requirement user stories:
 | T-023 | US-060 (GitHub Actions) |
 | T-026, T-027 | US-001, US-002, US-011 (end-to-end validation) |
 | **Sprint 4 (Processes)** | |
-| T-030 | US-025 (process definitions), US-026 (flow control), US-027 (gates) |
+| T-030 | US-025 (trail definitions), US-026 (flow control), US-027 (gates) |
 | T-031 through T-034 | US-025, US-040 (SDLC flow) |
 | **Sprint 5 (Orchestration)** | |
 | T-040 through T-042 | US-023 (orchestrator), US-024 (monitor), US-028 (human-in-loop) |
@@ -326,3 +348,4 @@ Maps implementation tasks to requirement user stories:
 | 2026-04-03 | Ed Wentworth | Initial draft — Phase 1 + Phase 2 plan based on requirements v1.0, architecture v1.0, ADR-0001 through ADR-0004 |
 | 2026-04-04 | Ed Wentworth | v1.1 — Reviewed official plugin docs. Plugin renamed to `horse` in `horse/` subdir. `rules/`/`templates/` confirmed not auto-discovered. Agents must be flat with YAML frontmatter. Sprint 1 stories revised (T-009 series added). Open questions 1-3, 5, 8 resolved. Risks updated. |
 | 2026-04-04 | Ed Wentworth | v1.2 — Added Phase 3: Containerized Subagent Execution. Removed "Dynamic agent spawning" from Non-Goals. Added Epic 6 (Sprint 6: subagent infra) and Epic 7 (Sprint 7: orchestrator integration). New milestones M7, M8. Docker and Claude CLI non-interactive mode added as dependencies. |
+| 2026-04-04 | Ed Wentworth | v1.3 — Sprint 1 marked complete. Added Epic 1.5 (Plugin Toolchain, T-100–T-105) to Sprint 2 Part 1. Sprint 2 now covers toolchain + config/skills (30 SP). Adopted trail/guide naming convention. Added milestone M1.5. |

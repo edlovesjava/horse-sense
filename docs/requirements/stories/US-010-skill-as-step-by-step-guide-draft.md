@@ -14,7 +14,7 @@ section: "3.2 Skills — Primary Behavior Definition"
 ## Acceptance Criteria
 
 ```gherkin
-Given I invoke a skill (e.g., /horse-sense:implement)
+Given I invoke a skill (e.g., /horse:implement)
 When  Claude executes the skill
 Then  it follows the steps defined in the skill's Markdown guide
 And   it reads .claude/config.json to adapt commands and paths

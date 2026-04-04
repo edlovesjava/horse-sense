@@ -11,9 +11,11 @@
 ## 1. Context & Goals
 
 ### System Purpose
+
 _What does this system do? Who uses it?_
 
 ### Quality Attribute Priorities
+
 Ranked by importance for this system:
 
 | # | Quality Attribute | Target |
@@ -24,6 +26,7 @@ Ranked by importance for this system:
 | 4 | [e.g., Maintainability] | [e.g., MTTR < 30min] |
 
 ### Constraints
+
 - [Technology constraint, e.g., must use existing PostgreSQL database]
 - [Team constraint, e.g., team has Python expertise, not Go]
 - [Operational constraint, e.g., must deploy on AWS]
@@ -33,6 +36,7 @@ Ranked by importance for this system:
 ## 2. System Architecture
 
 ### Architecture Style
+
 _[Describe the chosen style: modular monolith / microservices / event-driven / etc. and the rationale.]_
 
 ### High-Level Component Diagram
@@ -109,12 +113,15 @@ erDiagram
 ## 4. API Design
 
 ### Base URL
+
 ```
 https://api.example.com/v1
 ```
 
 ### Authentication
+
 All endpoints (except `/auth/*`) require:
+
 ```
 Authorization: Bearer <JWT token>
 ```
@@ -134,12 +141,15 @@ Authorization: Bearer <JWT token>
 ## 5. Security Architecture
 
 ### Authentication & Authorization
+
 - [Describe auth mechanism]
 
 ### Secrets Management
+
 - [Where secrets are stored, e.g., AWS Secrets Manager, HashiCorp Vault]
 
 ### Network Security
+
 - TLS 1.2+ enforced on all endpoints
 - Internal services communicate over private network only
 - [Any WAF, rate limiting, DDoS protection]

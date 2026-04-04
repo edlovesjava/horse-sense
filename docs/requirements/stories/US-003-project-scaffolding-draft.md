@@ -15,7 +15,7 @@ section: "3.1 Plugin Installation & Configuration"
 
 ```gherkin
 Given horse-sense is installed
-When  I run /horse-sense:sdlc-start with a project name
+When  I run /horse:guide with a project name
 Then  project directories are created (src/, tests/, docs/adr/)
 And   .claude/config.json is generated with prompted values
 And   CI workflow template is placed in .github/workflows/

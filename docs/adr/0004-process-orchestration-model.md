@@ -29,7 +29,8 @@ Introduce a three-tier agent model with explicit process definitions:
 
 ### Process Definitions
 
-Workflows are defined as Markdown documents in `processes/` with:
+Workflows are defined as Markdown documents in `trails/` with:
+
 - **Entry gates** — checklist preconditions
 - **Steps** — ordered, each assigned to a worker agent with skills
 - **Flow control** — sequence (default), loops (with exit/fail conditions), conditional branches (GOTO), and sub-process recursion
@@ -52,6 +53,7 @@ Orchestrators follow a state machine: load process → check entry gate → for 
 ## Consequences
 
 **Positive:**
+
 - Workflows are declarative, readable, and customizable
 - Quality gates are enforced, not suggested
 - Human-in-the-loop is explicit and consistent
@@ -60,11 +62,13 @@ Orchestrators follow a state machine: load process → check entry gate → for 
 - Workers remain focused on their role; orchestrators handle sequencing
 
 **Negative:**
+
 - More agent definitions to maintain (orchestrators + monitors in addition to workers)
 - Process definition format is a convention, not a schema — could drift
 - Orchestrator behavior depends on Claude Code's ability to maintain state and context across agent dispatches (open question #6)
 - Monitor agents add latency to loops (observation step between iterations)
 
 **Risks:**
+
 - Claude Code may not natively support the "dispatch worker" pattern — orchestrators may need to use the Agent tool or context-switching, which needs testing
 - Long processes may exceed context limits — need to verify orchestrators can manage state efficiently

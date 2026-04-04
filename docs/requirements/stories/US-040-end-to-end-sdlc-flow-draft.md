@@ -14,8 +14,8 @@ section: "3.6 SDLC Workflow (Orchestrated)"
 ## Acceptance Criteria
 
 ```gherkin
-Given I run /horse-sense:sdlc-start on a new project
-When  the SDLC Orchestrator loads the feature-delivery process definition
+Given I run /horse:guide on a new project
+When  the SDLC Orchestrator loads the feature-delivery trail definition
 Then  it guides me through these phases using worker agents:
   | Phase          | Worker Agent | Output                                    |
   | Requirements   | Planner      | Filled requirements_doc.md                |
@@ -31,4 +31,4 @@ And  I can re-enter any phase to iterate
 
 ## Notes
 
-Implemented via process definitions (US-025) and orchestrator agents (US-023). The SDLC flow is defined in `processes/feature_delivery.md`.
+Implemented via trail definitions (US-025) and orchestrator agents (US-023). The SDLC flow is defined in `trails/feature_delivery.md`.

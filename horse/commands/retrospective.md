@@ -21,17 +21,21 @@ When this command is invoked:
 ### Start / Stop / Continue
 
 **Start**: Things the team should start doing
+
 - Ask: *"What should we start doing that we haven't been doing?"*
 
 **Stop**: Things the team should stop doing
+
 - Ask: *"What should we stop doing because it's not helping?"*
 
 **Continue**: Things the team should keep doing
+
 - Ask: *"What's working well and should be continued?"*
 
 ### Action Items
 
 For each improvement identified:
+
 - Define a **specific, measurable action** (not vague wishes)
 - Assign an **owner** (a specific person)
 - Set a **due date** (ideally within the next sprint)
@@ -39,6 +43,7 @@ For each improvement identified:
 ### Output
 
 Update the sprint plan's Retrospective Notes section with:
+
 - Sprint goal achieved: Yes / Partial / No
 - Velocity
 - Start / Stop / Continue items

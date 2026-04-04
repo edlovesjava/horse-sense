@@ -9,6 +9,7 @@
 horse-sense was initially built with a custom layout (`.claude/settings.json`, `.claude/commands/`) before the official Claude Code plugin specification was finalized. The official spec defines a standard structure with `.claude-plugin/plugin.json`, `commands/`, `skills/` (with `SKILL.md` frontmatter), `agents/`, `hooks/`, and `bin/` directories.
 
 Continuing with the custom layout means:
+
 - No marketplace distribution without manual repackaging
 - Plugin manager won't recognize the plugin natively
 - Skills won't get namespaced (`/horse-sense:<skill>`) automatically
@@ -28,6 +29,7 @@ Restructure horse-sense to fully conform to the official Claude Code plugin spec
 ## Consequences
 
 **Positive:**
+
 - Native recognition by Claude Code plugin manager
 - Automatic skill namespacing (`/horse-sense:*`)
 - Future marketplace distribution without restructuring
@@ -35,10 +37,12 @@ Restructure horse-sense to fully conform to the official Claude Code plugin spec
 - Consistent with community plugins
 
 **Negative:**
+
 - One-time migration effort (move files, rename README.md → SKILL.md)
 - Slash commands change from `/user:plan` to `/horse-sense:plan` — users need to update muscle memory
 - `rules/` and `templates/` are not standard plugin directories — need to verify they're included in plugin loading
 
 **Risks:**
+
 - Plugin spec may evolve; need to track changes
 - Non-standard directories (rules/, templates/) may require workarounds if plugin manager ignores them

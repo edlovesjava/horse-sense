@@ -36,7 +36,7 @@ claude --plugin-dir ./horse
 ### Starting a New Project
 
 1. Install the plugin (see above).
-2. Begin with `/horse:sdlc-start` to kick off the SDLC workflow.
+2. Begin with `/horse:guide` to kick off the SDLC workflow.
 3. Follow the phase-by-phase prompts to move from requirements → design → implementation → testing → deployment.
 
 ### Slash Commands
@@ -49,7 +49,7 @@ claude --plugin-dir ./horse
 | `/horse:review` | Perform a code review |
 | `/horse:test` | Create and run tests |
 | `/horse:deploy` | Prepare deployment artifacts |
-| `/horse:sdlc-start` | Run the full SDLC kickoff workflow |
+| `/horse:guide` | Run the full SDLC kickoff workflow |
 | `/horse:sprint` | Plan and manage a sprint |
 | `/horse:retrospective` | Facilitate a sprint retrospective |
 

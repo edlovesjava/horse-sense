@@ -6,6 +6,7 @@ description: Design system architecture, select technologies, create ADRs
 # Skill: Architecture Design
 
 ## Purpose
+
 Translate requirements into a coherent, scalable system design before implementation begins. Good architecture reduces technical debt, enables independent team work, and makes the system easier to evolve.
 
 ## Architecture Process
@@ -17,6 +18,7 @@ Understand Context → Identify Constraints → Generate Options → Decide → 
 ### 1. Understand the Context
 
 Before drawing boxes and arrows, answer:
+
 - What are the quality attributes driving this design? (see NFRs)
 - What is the expected scale (users, data, requests/sec)?
 - What is the team's size and experience level?
@@ -36,6 +38,7 @@ Before drawing boxes and arrows, answer:
 ### 3. Design the Components
 
 Identify:
+
 - **Bounded contexts** — logical areas of responsibility (Domain-Driven Design)
 - **Service interfaces** — public APIs between components
 - **Data ownership** — which component owns which data
@@ -51,6 +54,7 @@ Identify:
 ### 5. API Design
 
 For REST APIs:
+
 ```
 GET    /resources          → list
 GET    /resources/{id}     → get one
@@ -73,6 +77,7 @@ Version APIs from the start: `/api/v1/resources`
 ### 7. Observability
 
 Design for:
+
 - **Logging**: structured JSON logs with correlation IDs
 - **Metrics**: RED (Rate, Errors, Duration) for services
 - **Tracing**: distributed traces across service boundaries
@@ -83,6 +88,7 @@ Design for:
 Create `templates/architecture_doc.md` and write an ADR for each significant decision.
 
 **ADR format** (`docs/adr/NNNN-title.md`):
+
 ```markdown
 # ADR-0001: Use PostgreSQL for Primary Storage
 
@@ -104,6 +110,7 @@ We will use PostgreSQL 16 because...
 ## Diagramming with Mermaid
 
 ### Component Diagram
+
 ```mermaid
 graph TD
     Client[Web Browser] --> LB[Load Balancer]
@@ -116,6 +123,7 @@ graph TD
 ```
 
 ### Sequence Diagram
+
 ```mermaid
 sequenceDiagram
     Client->>API: POST /auth/login

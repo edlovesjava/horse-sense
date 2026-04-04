@@ -40,6 +40,7 @@ When this command is invoked:
 ## Security Checks
 
 Always check for:
+
 - Hardcoded secrets or credentials
 - Unsanitized user input
 - SQL injection risks

@@ -15,8 +15,8 @@ section: "3.1 Plugin Installation & Configuration"
 
 ```gherkin
 Given I have Claude Code installed
-When  I install horse-sense via `claude --plugin-dir ./horse-sense` or plugin marketplace
-Then  all slash commands are available as /horse-sense:<command>
+When  I install horse-sense via `claude --plugin-dir ./horse` or plugin marketplace
+Then  all slash commands are available as /horse:<command>
 And   agents are listed in the agent selector
 And   rules are active based on glob patterns
 And   CLAUDE.md instructions are loaded into context

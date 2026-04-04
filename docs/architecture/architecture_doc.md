@@ -16,7 +16,7 @@
 
 The plugin lives in the `horse/` subdirectory of the horse-sense repo and is distributed via `claude --plugin-dir ./horse` or Git clone. Once installed, it provides slash commands (`/horse:*`), agent personas, and model-invoked skills that adapt to the host project's language, framework, and conventions through a configuration file.
 
-> **Important architectural constraint (resolved 2026-04-04)**: The official Claude Code plugin spec only auto-discovers these directories: `.claude-plugin/`, `commands/`, `agents/`, `skills/`, `hooks/`, `output-styles/`, `bin/`, and files `.mcp.json`, `.lsp.json`, `settings.json`. Directories like `rules/`, `templates/`, `processes/`, and `scripts/` are **not** recognized plugin components — they exist as supporting files that skills and agents reference by path, but the plugin manager does not auto-load them into context.
+> **Important architectural constraint (resolved 2026-04-04)**: The official Claude Code plugin spec only auto-discovers these directories: `.claude-plugin/`, `commands/`, `agents/`, `skills/`, `hooks/`, `output-styles/`, `bin/`, and files `.mcp.json`, `.lsp.json`, `settings.json`. Directories like `rules/`, `templates/`, `trails/`, and `scripts/` are **not** recognized plugin components — they exist as supporting files that skills and agents reference by path, but the plugin manager does not auto-load them into context.
 
 ### Target Users
 
@@ -30,7 +30,7 @@ The plugin lives in the `horse/` subdirectory of the horse-sense repo and is dis
 | 1 | Extensibility | New skills and agents added without changing core structure |
 | 2 | Adaptability | Works across Python and TypeScript projects via configuration |
 | 3 | Simplicity | No build step, no runtime dependencies — plain Markdown + shell scripts |
-| 4 | Discoverability | Users find the right skill/agent through clear naming and `/horse:sdlc-start` |
+| 4 | Discoverability | Users find the right skill/agent through clear naming and `/horse:guide` |
 
 ### Constraints
 
@@ -51,7 +51,7 @@ The plugin lives in the `horse/` subdirectory of the horse-sense repo and is dis
 - **Skills** (auto-discovered) — `SKILL.md` files with frontmatter, model-invoked based on task context
 - **Commands** (auto-discovered) — user-invoked slash commands (`/horse:*`) as flat `.md` files
 - **bin/** (auto-discovered) — executables added to Bash tool's PATH
-- **Supporting files** (NOT auto-discovered) — `templates/`, `scripts/`, `rules/`, `processes/` exist within the plugin directory as reference material that agents and skills read via `${CLAUDE_PLUGIN_ROOT}` paths, but the plugin manager does not inject them into context automatically
+- **Supporting files** (NOT auto-discovered) — `templates/`, `scripts/`, `rules/`, `trails/` exist within the plugin directory as reference material that agents and skills read via `${CLAUDE_PLUGIN_ROOT}` paths, but the plugin manager does not inject them into context automatically
 - **Configuration** adapts skills to a specific project (language, framework, test runner, paths)
 
 ### High-Level Component Diagram
@@ -68,7 +68,7 @@ graph TD
         Config[".claude/config.json<br/>(project-level)"]
 
         subgraph "Process Layer"
-            Processes["processes/<br/>Workflow definitions<br/>(gates, steps, loops, branches)"]
+            Trails["trails/<br/>Trail definitions<br/>(gates, steps, loops, branches)"]
         end
 
         subgraph "Orchestration Layer"
@@ -140,7 +140,7 @@ graph TD
 | **rules/** | **No** | Coding standards referenced by agent prompts and skill content | Markdown |
 | **templates/** | **No** | Scaffolds for requirements, architecture, sprint plans, project plans | Markdown |
 | **scripts/** | **No** | Shell automation (env setup, linting, testing, scaffolding) | Bash |
-| **processes/** | **No** | Workflow definitions with steps, gates, loops (Phase 2) | Markdown |
+| **trails/** | **No** | Trail definitions with steps, gates, loops (Phase 2) | Markdown |
 | **.claude/config.json** | N/A (host project) | Project-specific configuration consumed by skills | JSON |
 
 ---
@@ -285,7 +285,7 @@ horse-sense/                          # Project repo root
 │   ├── .claude-plugin/
 │   │   └── plugin.json              # Plugin manifest: name="horse" [auto-discovered]
 │   ├── commands/                     # User-invoked slash commands [auto-discovered]
-│   │   ├── sdlc-start.md           # /horse:sdlc-start
+│   │   ├── guide.md                 # /horse:guide
 │   │   ├── plan.md                  # /horse:plan
 │   │   ├── arch.md                  # /horse:arch
 │   │   ├── implement.md             # /horse:implement
@@ -333,7 +333,7 @@ horse-sense/                          # Project repo root
 │   │   ├── testing.md
 │   │   ├── git_workflow.md
 │   │   └── documentation.md
-│   └── processes/                    # Workflow definitions [NOT auto-discovered] (Phase 2)
+│   └── trails/                       # Trail definitions [NOT auto-discovered] (Phase 2)
 │       ├── feature_delivery.md
 │       ├── sprint_execution.md
 │       ├── bug_fix.md
@@ -353,7 +353,7 @@ horse-sense/                          # Project repo root
 | Sprint 1 (current) | New Target | Reason |
 |---|---|---|
 | Plugin at repo root | Plugin in `horse/` subdirectory | Separates plugin from project; cleaner distribution |
-| `name: "horse-sense"` | `name: "horse"` | Shorter namespace (`/horse:*` vs `/horse-sense:*`) |
+| `name: "horse-sense"` | `name: "horse"` | Shorter namespace (`/horse:*` vs `/horse:*`) |
 | `agents/workers/*.md` (no frontmatter) | `agents/*.md` (flat, with frontmatter) | Plugin spec requires flat `agents/` with YAML frontmatter |
 | `rules/` assumed auto-loaded | `rules/` as reference files only | Plugin spec does NOT auto-discover `rules/` |
 | `templates/` assumed auto-loaded | `templates/` as reference files only | Plugin spec does NOT auto-discover `templates/` |
@@ -361,25 +361,25 @@ horse-sense/                          # Project repo root
 
 ---
 
-## 5. Process & Orchestration Architecture
+## 5. Trail & Orchestration Architecture
 
-### Process Definition Format
+### Trail Definition Format
 
-Process documents live in `processes/` and define workflows as structured Markdown with frontmatter:
+Trail documents live in `trails/` and define workflows as structured Markdown with frontmatter:
 
 ```markdown
 ---
-name: process-name
-description: What this process accomplishes
-trigger: /horse-sense:command  # optional slash command trigger
+name: trail-name
+description: What this trail accomplishes
+trigger: /horse:command  # optional slash command trigger
 ---
 ```
 
-Each process document contains:
+Each trail document contains:
 
 | Element | Purpose | Example |
 |---|---|---|
-| **Entry gate** | Preconditions (checklist) that must be satisfied before the process starts | `- [ ] requirements_doc.md exists` |
+| **Entry gate** | Preconditions (checklist) that must be satisfied before the trail starts | `- [ ] requirements_doc.md exists` |
 | **Steps** | Ordered sequence of work units | `### Step 1: Requirements` |
 | **Agent assignment** | Which worker agent executes the step | `- **Agent**: planner` |
 | **Skills & tools** | Which skills the step uses | `- **Skills**: requirements-analysis` |
@@ -391,12 +391,12 @@ Each process document contains:
 
 ### Flow Control Primitives
 
-| Primitive | Syntax in Process Doc | Behavior |
+| Primitive | Syntax in Trail Doc | Behavior |
 |---|---|---|
 | **Sequence** | Steps numbered in order | Execute step N, then step N+1 |
 | **Loop** | `- **Loop**: step_a → step_b → step_c` | Repeat until `- **Loop exit**: condition` |
 | **Branch** | `- **Branch**: If condition → GOTO Step N` | Conditional jump to another step |
-| **Recurse** | `- **Sub-process**: processes/other.md` | Load and execute a child process, return when done |
+| **Recurse** | `- **Sub-trail**: trails/other.md` | Load and execute a child trail, return when done |
 | **Human gate** | `- **Gate**: HUMAN APPROVAL` | Pause, present summary, wait for human response |
 | **Fail/escalate** | `- **Fail**: condition → HUMAN DECISION` | Halt step, present options to human |
 
@@ -473,14 +473,14 @@ stateDiagram-v2
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Shipped Process Definitions
+### Shipped Trail Definitions
 
-| Process | Trigger | Steps | Use Case |
+| Trail | Trigger | Steps | Use Case |
 |---|---|---|---|
-| `feature_delivery.md` | `/horse-sense:sdlc-start` | Requirements → Architecture → Implementation → Testing → Review → Deploy | Full feature lifecycle |
-| `sprint_execution.md` | `/horse-sense:sprint` | For each story: Implement → Test → Review | Sprint iteration |
+| `feature_delivery.md` | `/horse:guide` | Requirements → Architecture → Implementation → Testing → Review → Deploy | Full feature lifecycle |
+| `sprint_execution.md` | `/horse:sprint` | For each story: Implement → Test → Review | Sprint iteration |
 | `bug_fix.md` | (manual) | Reproduce → Root cause → Fix → Regression test → Review | Bug triage and fix |
-| `code_review.md` | `/horse-sense:review` | Review → Feedback → Author fixes → Re-review | Review cycle |
+| `code_review.md` | `/horse:review` | Review → Feedback → Author fixes → Re-review | Review cycle |
 
 ---
 
@@ -489,11 +489,13 @@ stateDiagram-v2
 ### Skill Types
 
 **Slash-command skills** (`commands/`) — explicitly invoked by users:
-- Trigger: user types `/horse-sense:<command>`
+
+- Trigger: user types `/horse:<command>`
 - Content: Markdown instructions for Claude, with `$ARGUMENTS` placeholder
-- Example: `/horse-sense:implement add user authentication`
+- Example: `/horse:implement add user authentication`
 
 **Model-invoked skills** (`skills/`) — automatically triggered by Claude based on context:
+
 - Trigger: Claude recognizes the need based on SKILL.md `description` field
 - Content: SKILL.md with YAML frontmatter (`name`, `description`) + guide body
 - May include sibling reference docs and scripts

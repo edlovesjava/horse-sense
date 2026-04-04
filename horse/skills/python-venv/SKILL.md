@@ -6,9 +6,11 @@ description: Set up and manage Python virtual environments with pip
 # Skill: Python Virtual Environment Setup
 
 ## Purpose
+
 Establish a clean, reproducible Python environment for every project using `venv`. This skill ensures all contributors use the same dependencies and avoids conflicts with system Python packages.
 
 ## Prerequisites
+
 - Python ≥ 3.11 installed and available as `python3`
 - `pip` ≥ 23.0
 - Git repository initialized at the project root
@@ -90,6 +92,7 @@ pip freeze > requirements.txt
 - `requirements-dev.txt` — packages for development and testing only
 
 Example `requirements-dev.txt`:
+
 ```
 -r requirements.txt
 pytest>=8.0
@@ -108,6 +111,7 @@ cp .env.example .env
 ```
 
 Load environment variables in Python using `python-dotenv`:
+
 ```python
 from dotenv import load_dotenv
 load_dotenv()
@@ -129,6 +133,7 @@ bash scripts/setup_env.sh
 ## CI/CD Considerations
 
 In CI pipelines, skip the `activate` step and call Python/pip directly:
+
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install --upgrade pip

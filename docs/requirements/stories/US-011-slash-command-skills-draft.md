@@ -15,19 +15,19 @@ section: "3.2 Skills — Primary Behavior Definition"
 
 ```gherkin
 Given horse-sense is installed
-When  I type /horse-sense:plan
+When  I type /horse:plan
 Then  Claude enters planning mode following the plan skill guide
 And   $ARGUMENTS are passed through to the skill
 
 Given horse-sense is installed
-When  I type /horse-sense:implement add user authentication
+When  I type /horse:implement add user authentication
 Then  Claude follows the implementation skill guide
 And   "add user authentication" is available as $ARGUMENTS context
 ```
 
 ## Required slash commands
 
-- `/horse:sdlc-start` — full SDLC kickoff workflow
+- `/horse:guide` — follow the SDLC trail
 - `/horse:plan` — create or update a project plan
 - `/horse:arch` — design system architecture
 - `/horse:implement` — begin a feature implementation

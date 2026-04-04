@@ -64,11 +64,11 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 | [US-023](stories/US-023-orchestrator-agents-direct-worker-agents-draft.md) | Orchestrator agents direct worker agents | Must Have | 8 | Draft |
 | [US-024](stories/US-024-monitor-agents-observe-and-refine-draft.md) | Monitor agents observe and refine | Should Have | 5 | Draft |
 
-### 3.4 Process Definitions — Workflow Specification
+### 3.4 Trail Definitions — Workflow Specification
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-025](stories/US-025-process-definition-documents-draft.md) | Process definition documents | Must Have | 8 | Draft |
+| [US-025](stories/US-025-process-definition-documents-draft.md) | Trail definition documents | Must Have | 8 | Draft |
 | [US-026](stories/US-026-process-flow-control-draft.md) | Process flow control | Must Have | 8 | Draft |
 | [US-027](stories/US-027-entry-gates-and-completion-criteria-draft.md) | Entry gates and completion criteria | Must Have | 5 | Draft |
 | [US-028](stories/US-028-human-in-the-loop-decision-points-draft.md) | Human-in-the-loop decision points | Must Have | 5 | Draft |
@@ -160,7 +160,7 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 | Requirement | Target |
 |---|---|
 | Time to first use | < 5 minutes from install to first skill invocation |
-| Discoverability | `/horse-sense:sdlc-start` guides users through all capabilities |
+| Discoverability | `/horse:guide` walks users through the SDLC trail |
 | Error messages | Skills explain what's wrong and what to do next (e.g., missing config, failed prerequisites) |
 | Learning curve | Developer familiar with Claude Code productive within one session |
 
@@ -169,12 +169,14 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 ## 5. Constraints & Assumptions
 
 ### Constraints
+
 - Must conform to the official Claude Code plugin specification
 - No runtime dependencies beyond Claude Code, Bash, Git, and standard CLI tools
 - Plugin is static content (Markdown + scripts) — no compilation, no server, no database
 - Skills must work offline (no external API calls from the plugin itself)
 
 ### Assumptions
+
 - Users have Claude Code installed and are familiar with basic usage
 - Users have either Python >= 3.11 or Node.js >= 20 (or both) installed
 - Projects use Git for version control
@@ -208,10 +210,10 @@ The following are **explicitly excluded** from this version:
 | 4 | How do agents persist across long sessions — does Claude Code handle this or must the plugin? | Ed | 2026-04-10 | ⬜ Open |
 | 5 | Should config.json support inheritance (base config + environment overrides)? | Ed | 2026-04-17 | ⬜ Open |
 | 6 | How do orchestrator agents "dispatch" worker agents — via Claude Code's Agent tool, subagent spawning, or context switching within a single session? | Ed | 2026-04-10 | ⬜ Open |
-| 7 | What is the best format for process definitions — Markdown with conventions (as proposed), YAML, or a DSL? | Ed | 2026-04-10 | ⬜ Open |
+| 7 | What is the best format for trail definitions — Markdown with conventions (as proposed), YAML, or a DSL? | Ed | 2026-04-10 | ⬜ Open |
 | 8 | Can monitor agents run concurrently with worker agents, or must they observe after each iteration? | Ed | 2026-04-10 | ⬜ Open |
 | 9 | How should process execution state (current step, iteration count, decisions) be tracked within a session? | Ed | 2026-04-10 | ⬜ Open |
-| 10 | Should process definitions support parameterization (e.g., same process for different feature sizes with different loop limits)? | Ed | 2026-04-17 | ⬜ Open |
+| 10 | Should trail definitions support parameterization (e.g., same trail for different feature sizes with different loop limits)? | Ed | 2026-04-17 | ⬜ Open |
 | 11 | Which JSON schema validator to use — ajv-cli (Node.js) or check-jsonschema (Python)? Depends on which runtime we want as a dev dependency. | Ed | 2026-04-10 | ⬜ Open |
 | 12 | Should the validation script be Python or Bash? Python is easier for YAML parsing; Bash avoids a runtime dependency. | Ed | 2026-04-10 | ⬜ Open |
 | 13 | Should we publish to a plugin registry if/when Claude Code adds one, or stay Git-only? | Ed | 2026-04-17 | ⬜ Open |

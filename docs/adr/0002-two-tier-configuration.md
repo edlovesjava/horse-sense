@@ -44,11 +44,13 @@ When `.claude/config.json` is absent, skills fall back to auto-detection (presen
 ## Consequences
 
 **Positive:**
+
 - Clean separation of plugin identity vs project settings
 - JSON is easy for both humans and skills to read
 - Explicit config beats heuristic detection
 - Extensible — new fields can be added without breaking existing configs
 
 **Negative:**
+
 - Users must create `.claude/config.json` in their project (mitigated by auto-detection fallback)
 - Two config files to understand (mitigated by clear purpose separation)

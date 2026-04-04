@@ -33,9 +33,17 @@ EXIT_CODE=0
 if command -v ruff &>/dev/null; then
     info "Running ruff linter..."
     if [ "${FIX}" = "--fix" ]; then
-        ruff check . --fix && pass "ruff check (with auto-fix)" || { fail "ruff check"; EXIT_CODE=1; }
+        if ruff check . --fix; then
+            pass "ruff check (with auto-fix)"
+        else
+            fail "ruff check"; EXIT_CODE=1
+        fi
     else
-        ruff check . && pass "ruff check" || { fail "ruff check (run with --fix to auto-fix)"; EXIT_CODE=1; }
+        if ruff check .; then
+            pass "ruff check"
+        else
+            fail "ruff check (run with --fix to auto-fix)"; EXIT_CODE=1
+        fi
     fi
 else
     warn "ruff not installed — skipping lint. Install with: pip install ruff"
@@ -45,9 +53,17 @@ fi
 if command -v ruff &>/dev/null; then
     info "Running ruff formatter..."
     if [ "${FIX}" = "--fix" ]; then
-        ruff format . && pass "ruff format" || { fail "ruff format"; EXIT_CODE=1; }
+        if ruff format .; then
+            pass "ruff format"
+        else
+            fail "ruff format"; EXIT_CODE=1
+        fi
     else
-        ruff format --check . && pass "ruff format" || { fail "ruff format (run with --fix to auto-format)"; EXIT_CODE=1; }
+        if ruff format --check .; then
+            pass "ruff format"
+        else
+            fail "ruff format (run with --fix to auto-format)"; EXIT_CODE=1
+        fi
     fi
 fi
 
@@ -55,7 +71,11 @@ fi
 if command -v mypy &>/dev/null; then
     info "Running mypy type checker..."
     if [ -d "src" ]; then
-        mypy src/ && pass "mypy" || { fail "mypy"; EXIT_CODE=1; }
+        if mypy src/; then
+            pass "mypy"
+        else
+            fail "mypy"; EXIT_CODE=1
+        fi
     else
         warn "No 'src/' directory found — skipping mypy."
     fi

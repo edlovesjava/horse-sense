@@ -15,7 +15,7 @@ section: "3.7 Dual Toolchain Support"
 
 ```gherkin
 Given .claude/config.json has language=python
-When  I run /horse-sense:implement
+When  I run /horse:implement
 Then  it activates venv, writes pytest tests, runs ruff, runs mypy
 And   commit messages follow Conventional Commits
 And   CI workflow uses Python-specific steps

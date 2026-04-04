@@ -11,18 +11,22 @@
 ## 1. Project Overview
 
 ### Problem Statement
+
 _What problem does this project solve? Why does it matter?_
 
 ### Goals
+
 1. [Primary goal]
 2. [Secondary goal]
 3. [Tertiary goal]
 
 ### Non-Goals (Out of Scope)
+
 - [Explicitly excluded feature or scope item]
 - [Another exclusion]
 
 ### Success Metrics
+
 | Metric | Baseline | Target | Timeline |
 |---|---|---|---|
 | [KPI 1] | [current] | [goal] | [date] |
@@ -56,6 +60,7 @@ _What problem does this project solve? Why does it matter?_
 ## 4. Epics & Stories
 
 ### Epic 1: [Name]
+>
 > [Brief description of the epic]
 
 | Story ID | Title | Priority | Points | Sprint | Status |
@@ -65,6 +70,7 @@ _What problem does this project solve? Why does it matter?_
 | US-003 | [Story title] | Could | 2 | 2 | ⬜ |
 
 ### Epic 2: [Name]
+>
 > [Brief description of the epic]
 
 | Story ID | Title | Priority | Points | Sprint | Status |
@@ -104,6 +110,7 @@ _High-level technical approach — details in `templates/architecture_doc.md`._
 ## 8. Definition of Done
 
 A story is **Done** when:
+
 - [ ] Code implemented and passing all linters
 - [ ] Unit tests written and passing (coverage ≥ 80%)
 - [ ] Integration tests passing

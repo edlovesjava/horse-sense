@@ -12,6 +12,7 @@ These rules apply to all code in this repository. They are enforced by automated
 ## Python-Specific Rules
 
 ### Naming
+
 | Type | Convention | Example |
 |---|---|---|
 | Variables, functions | `snake_case` | `user_id`, `get_user()` |
@@ -21,7 +22,9 @@ These rules apply to all code in this repository. They are enforced by automated
 | Modules | `snake_case` | `user_service.py` |
 
 ### Type Hints
+
 All public functions and methods must have type hints:
+
 ```python
 # Good
 def get_user(user_id: int) -> User | None:
@@ -33,6 +36,7 @@ def get_user(user_id):
 ```
 
 ### Docstrings (Google Style)
+
 ```python
 def calculate_discount(price: float, rate: float) -> float:
     """Calculate the discounted price.
@@ -53,6 +57,7 @@ def calculate_discount(price: float, rate: float) -> float:
 ```
 
 ### Error Handling
+
 ```python
 # Good — specific exception, informative message
 try:
@@ -69,6 +74,7 @@ except Exception:
 ```
 
 ### Imports
+
 ```python
 # Order: stdlib → third-party → local (ruff handles this automatically)
 import os
@@ -81,6 +87,7 @@ from src.models import User
 ```
 
 ### Magic Numbers
+
 ```python
 # Bad
 if len(password) < 8:
@@ -105,6 +112,7 @@ Exceeding these limits is a signal to refactor, not a hard block.
 ## Linting Configuration
 
 Configure `ruff` in `pyproject.toml`:
+
 ```toml
 [tool.ruff]
 line-length = 100
@@ -121,6 +129,7 @@ ignore_missing_imports = true
 ```
 
 Run the linter:
+
 ```bash
 ruff check . --fix
 ruff format .

@@ -6,6 +6,7 @@ description: Implement features using TDD with language-appropriate tooling
 # Skill: Implementation
 
 ## Purpose
+
 Write correct, readable, and maintainable code that satisfies the acceptance criteria and fits the established architecture. This skill covers the day-to-day development workflow from picking up a ticket to opening a pull request.
 
 ## Development Workflow
@@ -17,6 +18,7 @@ Read ticket → Create branch → Write failing test → Implement → Refactor 
 ### Step 1: Understand Before You Code
 
 Before touching any file:
+
 - Read the user story and acceptance criteria in full
 - Check the relevant ADRs in `docs/adr/`
 - Identify which files/modules will change
@@ -47,6 +49,7 @@ source .venv/bin/activate
 ### Step 4: Write Tests First (TDD)
 
 Write a failing test that documents the expected behavior:
+
 ```python
 def test_user_can_reset_password():
     # Given
@@ -59,6 +62,7 @@ def test_user_can_reset_password():
 ```
 
 Run it to confirm it fails:
+
 ```bash
 python -m pytest tests/unit/test_user.py -x -v
 ```
@@ -68,6 +72,7 @@ python -m pytest tests/unit/test_user.py -x -v
 Write the minimum code needed to make the test pass. Then iterate.
 
 **Python code standards:**
+
 - Use type hints on all function signatures
 - Write docstrings for public functions and classes (Google style)
 - Keep functions short (< 30 lines) and single-purpose

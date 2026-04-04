@@ -16,7 +16,7 @@ section: "3.3 Agents — Workers and Orchestrators"
 ```gherkin
 Given the SDLC Orchestrator is active and a process definition exists for "feature delivery"
 When  I ask it to deliver a feature
-Then  it reads the process definition from processes/feature_delivery.md
+Then  it reads the trail definition from trails/feature_delivery.md
 And   it dispatches the planner worker to gather requirements
 And   it waits for the entry gate to pass before advancing to the next step
 And   it dispatches the architect worker for design

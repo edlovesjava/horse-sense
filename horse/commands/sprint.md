@@ -28,6 +28,7 @@ Plan and manage a sprint.
 ### Daily Standup Support
 
 Ask each team member:
+
 - *"What did you complete yesterday?"*
 - *"What are you working on today?"*
 - *"Do you have any blockers?"*
@@ -37,6 +38,7 @@ Update the sprint plan's standup notes table.
 ### Sprint Completion
 
 At the end of the sprint:
+
 1. Mark completed stories as ✅ Done in the sprint plan.
 2. Move incomplete stories back to the backlog with a note.
 3. Calculate velocity: total story points completed.
