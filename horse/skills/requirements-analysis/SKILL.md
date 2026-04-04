@@ -100,7 +100,10 @@ Once approved:
 
 ## Output
 
-Fill out `templates/requirements_doc.md` with the elicited requirements.
+Check the project's `horse.config.md` for the `requirements_format` setting:
+
+- **monolith** (default): Fill out `templates/requirements_doc.md` with all user stories inline.
+- **per-story**: Fill out `templates/requirements_index.md` for background, stakeholders, NFRs, and a story index table. Create each user story as a separate file using `templates/user_story.md`, saved to the directory specified by `requirements_stories_dir` (default: `docs/requirements/stories/`). Name files as `US-<NNN>-<kebab-title>-<status>.md`.
 
 ## Common Anti-Patterns to Avoid
 

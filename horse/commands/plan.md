@@ -13,7 +13,9 @@ Create or update the project plan and sprint backlog.
 
 When this command is invoked:
 
-1. Check if `${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md` exists and read it.
+1. Check `horse.config.md` for `requirements_format`.
+   - **monolith**: read the project's `requirements_doc.md` for all stories.
+   - **per-story**: read the project's `requirements_doc.md` index and scan the `requirements_stories_dir` (default: `docs/requirements/stories/`) for individual story files.
 2. Check if `${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md` exists.
    - If yes: ask "Do you want to update the existing plan or create a new sprint plan?"
    - If no: start the project plan from scratch using `${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md`.

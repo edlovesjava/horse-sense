@@ -14,7 +14,11 @@ Begin implementing a user story or task.
 When this command is invoked:
 
 1. Ask: *"Which story or task are you implementing? (provide story ID or description)"*
-2. Confirm the acceptance criteria are clear — if not, clarify before writing code.
+2. Look up the story:
+   - Check `horse.config.md` for `requirements_format`.
+   - **monolith**: find the story in `requirements_doc.md`.
+   - **per-story**: find the story file in the configured `requirements_stories_dir` (default: `docs/requirements/stories/`) matching the given ID.
+3. Confirm the acceptance criteria are clear — if not, clarify before writing code.
 3. Identify the files that need to change.
 4. Write a failing test first (TDD):
    - Place in `tests/unit/` or `tests/integration/` as appropriate

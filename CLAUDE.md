@@ -39,6 +39,18 @@ claude --plugin-dir ./horse
 2. Begin with `/horse:guide` to kick off the SDLC workflow.
 3. Follow the phase-by-phase prompts to move from requirements → design → implementation → testing → deployment.
 
+### Project Configuration
+
+The plugin supports a `horse.config.md` file in your project root (scaffolded from `templates/horse_config.md`). Key settings:
+
+| Setting | Values | Default | Description |
+|---|---|---|---|
+| `requirements_format` | `monolith` / `per-story` | `monolith` | How user stories are organized |
+| `requirements_stories_dir` | directory path | `docs/requirements/stories` | Where per-story files live |
+
+- **monolith** — all stories in a single `requirements_doc.md`
+- **per-story** — a lightweight `requirements_doc.md` index + individual `US-<NNN>-<title>-<status>.md` files
+
 ### Slash Commands
 
 | Command | Description |

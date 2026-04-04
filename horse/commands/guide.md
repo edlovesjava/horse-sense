@@ -6,7 +6,7 @@ Kick off the full SDLC workflow for a new project or feature.
 
 Guides you step-by-step through the horse-sense SDLC phases:
 
-1. **Requirements** — populate `${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md`
+1. **Requirements** — populate requirements (monolith or per-story, based on `horse.config.md`)
 2. **Architecture** — populate `${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md` and create ADRs
 3. **Planning** — populate `${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md` and `${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md`
 4. **Environment Setup** — run `${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh`
@@ -22,7 +22,11 @@ When this command is invoked:
 2. Ask: *"Who are the primary users and what problem does it solve for them?"*
 3. Ask: *"What are the must-have features for the first release?"*
 4. Ask: *"Do you have any technology preferences or constraints?"*
-5. Based on the answers, generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md`.
+5. Ask: *"How would you like to organize requirements — a single document or one file per story?"*
+6. Generate `horse.config.md` in the project root using `${CLAUDE_PLUGIN_ROOT}/templates/horse_config.md`, setting `requirements_format` to `monolith` or `per-story` based on the user's answer.
+7. Based on the config:
+   - **monolith**: generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md`.
+   - **per-story**: generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_index.md` (index only), then create individual story files using `${CLAUDE_PLUGIN_ROOT}/templates/user_story.md` in the configured `requirements_stories_dir`.
 6. Propose a high-level architecture with two or three options and trade-offs.
 7. Once the user selects an architecture, generate a draft `architecture_doc.md`.
 8. Break the requirements into a sprint backlog and generate a `sprint_plan.md`.

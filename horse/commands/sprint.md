@@ -16,6 +16,7 @@ Plan and manage a sprint.
 1. Ask: *"Is this a new sprint or an update to an in-progress sprint?"*
 2. If new sprint:
    - Read the current `${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md` to find unfinished stories.
+   - Check `horse.config.md` for `requirements_format`. If **per-story**, also scan `requirements_stories_dir` for story files to cross-reference status and details.
    - Ask: *"What is the sprint goal (in one sentence)?"*
    - Ask: *"How many person-days of capacity does the team have?"*
    - Select stories from the backlog to fill ~80% of capacity (leave buffer for unplanned work).
