@@ -1,8 +1,0 @@
-{
-  "name": "horse-sense",
-  "description": "Structured SDLC plugin for Claude Code — skills, agents, rules, and process orchestration for building high-quality software",
-  "version": "1.0.0",
-  "author": {
-    "name": "Ed Wentworth"
-  }
-}
