@@ -35,8 +35,8 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-028 | Create `skills/pr-review/SKILL.md` — PR review skill with gh CLI integration | US-080 | 5 | ⬜ To Do |
-| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply skill | US-081 | 5 | ⬜ To Do |
+| T-028 | Create `skills/pr-review/SKILL.md` — PR review skill with gh CLI integration | US-080 | 5 | ✅ Done |
+| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply skill | US-081 | 5 | ✅ Done |
 | | **Part 2 subtotal** | | **10** | |
 
 ### Part 3: Scout Agent & Skill (US-082)
