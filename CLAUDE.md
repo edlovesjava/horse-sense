@@ -100,6 +100,7 @@ Agents are auto-discovered by the plugin manager and appear in `/agents`:
 - **developer** — implementation, refactoring, debugging
 - **tester** — test strategy, unit/integration/e2e tests
 - **reviewer** — code review, security, performance
+- **trainer** — artifact quality auditing, process trail compliance
 
 ### Plugin Component Types
 

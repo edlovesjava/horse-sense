@@ -129,13 +129,19 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 |---|---|---|---|---|
 | [US-082](stories/US-082-scout-research-skill-draft.md) | Scout research and investigation skill | Must Have | 8 | Draft |
 
+### 3.12 Trainer — Process Quality Auditing
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-083](stories/US-083-trainer-process-audit-draft.md) | Trainer agent with process audit skill and command | Must Have | 8 | Draft |
+
 ### Summary
 
 | Priority | Count | Total SP |
 |---|---|---|
-| Must Have | 28 | 144 |
+| Must Have | 29 | 152 |
 | Should Have | 9 | 29 |
-| **Total** | **37** | **173** |
+| **Total** | **38** | **181** |
 
 ---
 

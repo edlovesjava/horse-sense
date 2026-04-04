@@ -144,15 +144,18 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-036s | Add docs build to CI and GitHub Pages deployment | Should | 3 | 3 | ⬜ |
 | | **Sprint 3 Total (with stretch)** | | **41** | | |
 
-#### Deferred to Sprint 4 (from original Sprint 3)
+#### Deferred to Sprint 4 (from original Sprint 3 + new work)
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
 | T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 4 | ⬜ |
 | T-026 | End-to-end validation: install plugin into a fresh Python project | Must | 3 | 4 | ⬜ |
 | T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 4 | ⬜ |
+| T-037 | Create `skills/process-audit/SKILL.md` — step-by-step audit skill for the trainer agent | Must | 5 | 4 | ⬜ |
+| T-038 | Create `commands/audit.md` — `/horse:audit` slash command | Must | 2 | 4 | ⬜ |
+| T-039 | Create `templates/audit_report.md` — structured audit report template | Should | 1 | 4 | ⬜ |
 
-**Phase 1 Total: 78 story points across 3 sprints (+ 9 SP deferred to Sprint 4)**
+**Phase 1 Total: 78 story points across 3 sprints (+ 17 SP deferred to Sprint 4)**
 
 ---
 
@@ -340,6 +343,7 @@ Maps implementation tasks to requirement user stories:
 | T-033s, T-034s, T-035s, T-036s | US-075 (documentation generation) — stretch goal |
 | **Deferred to Sprint 4** | |
 | T-025 | US-051 (TypeScript scaffolding) |
+| T-037, T-038, T-039 | US-083 (trainer process audit skill and command) |
 | T-026, T-027 | US-001, US-002, US-011 (end-to-end validation) |
 | **Sprint 4 (Processes)** | |
 | T-030 | US-025 (trail definitions), US-026 (flow control), US-027 (gates) |
