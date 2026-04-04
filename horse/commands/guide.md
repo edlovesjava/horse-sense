@@ -23,7 +23,8 @@ When this command is invoked:
 3. Ask: *"What are the must-have features for the first release?"*
 4. Ask: *"Do you have any technology preferences or constraints?"*
 5. Ask: *"How would you like to organize requirements — a single document or one file per story?"*
-6. Generate `horse.config.md` in the project root using `${CLAUDE_PLUGIN_ROOT}/templates/horse_config.md`, setting `requirements_format` to `monolith` or `per-story` based on the user's answer.
+6. Ask: *"Do you prefer rebase or merge for integrating feature branches?"*
+7. Generate `horse.config.md` in the project root using `${CLAUDE_PLUGIN_ROOT}/templates/horse_config.md`, setting `requirements_format` and `git_strategy` based on the user's answers.
 7. Based on the config:
    - **monolith**: generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md`.
    - **per-story**: generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_index.md` (index only), then create individual story files using `${CLAUDE_PLUGIN_ROOT}/templates/user_story.md` in the configured `requirements_stories_dir`.

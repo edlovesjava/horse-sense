@@ -47,9 +47,12 @@ The plugin supports a `horse.config.md` file in your project root (scaffolded fr
 |---|---|---|---|
 | `requirements_format` | `monolith` / `per-story` | `monolith` | How user stories are organized |
 | `requirements_stories_dir` | directory path | `docs/requirements/stories` | Where per-story files live |
+| `git_strategy` | `rebase` / `merge` | `rebase` | How feature branches are integrated |
 
 - **monolith** — all stories in a single `requirements_doc.md`
 - **per-story** — a lightweight `requirements_doc.md` index + individual `US-<NNN>-<title>-<status>.md` files
+- **rebase** — rebase feature branches onto target before merging (linear history)
+- **merge** — use merge commits to integrate branches (preserves branch topology)
 
 ### Slash Commands
 

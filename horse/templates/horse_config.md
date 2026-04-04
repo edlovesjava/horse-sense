@@ -24,3 +24,18 @@ requirements_format: monolith
 <!-- Only used when requirements_format is "per-story" -->
 
 requirements_stories_dir: docs/requirements/stories
+
+## Git Strategy
+
+<!-- Choose one: "rebase" or "merge" -->
+
+git_strategy: rebase
+
+### Options
+
+- **rebase** — Prefer rebasing feature branches onto the target branch before merging.
+  Produces a linear commit history. Best for small teams and solo developers.
+
+- **merge** — Prefer merge commits to integrate feature branches.
+  Preserves branch topology and is easier to revert. Best for larger teams or when
+  branch history matters.
