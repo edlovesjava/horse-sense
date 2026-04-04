@@ -1,8 +1,8 @@
 # Architecture Document: horse-sense
 
-> **Document version**: 1.0  
+> **Document version**: 1.1  
 > **Created**: 2026-04-03  
-> **Last updated**: 2026-04-03  
+> **Last updated**: 2026-04-04  
 > **Owner**: Ed Wentworth  
 > **Status**: Draft
 
@@ -12,9 +12,11 @@
 
 ### System Purpose
 
-**horse-sense** is a Claude Code plugin that guides autonomous software development through a structured SDLC methodology. It extends Claude Code with specialized agents, reusable skills, configurable rules, and document templates — turning the AI assistant into a disciplined development partner.
+**horse-sense** is a project that produces a Claude Code plugin named **horse**. The plugin guides autonomous software development through a structured SDLC methodology, extending Claude Code with specialized agents, reusable skills, and document templates — turning the AI assistant into a disciplined development partner.
 
-The plugin is distributed via the official Claude Code plugin system (`.claude-plugin/plugin.json` manifest) and installed into target projects. Once installed, it provides slash commands, agent personas, and contextual rules that adapt to the host project's language, framework, and conventions through a configuration file.
+The plugin lives in the `horse/` subdirectory of the horse-sense repo and is distributed via `claude --plugin-dir ./horse` or Git clone. Once installed, it provides slash commands (`/horse:*`), agent personas, and model-invoked skills that adapt to the host project's language, framework, and conventions through a configuration file.
+
+> **Important architectural constraint (resolved 2026-04-04)**: The official Claude Code plugin spec only auto-discovers these directories: `.claude-plugin/`, `commands/`, `agents/`, `skills/`, `hooks/`, `output-styles/`, `bin/`, and files `.mcp.json`, `.lsp.json`, `settings.json`. Directories like `rules/`, `templates/`, `processes/`, and `scripts/` are **not** recognized plugin components — they exist as supporting files that skills and agents reference by path, but the plugin manager does not auto-load them into context.
 
 ### Target Users
 
@@ -25,10 +27,10 @@ The plugin is distributed via the official Claude Code plugin system (`.claude-p
 
 | # | Quality Attribute | Target |
 |---|---|---|
-| 1 | Extensibility | New skills, rules, and agents added without changing core structure |
+| 1 | Extensibility | New skills and agents added without changing core structure |
 | 2 | Adaptability | Works across Python and TypeScript projects via configuration |
 | 3 | Simplicity | No build step, no runtime dependencies — plain Markdown + shell scripts |
-| 4 | Discoverability | Users find the right skill/agent through clear naming and `/horse-sense:sdlc-start` |
+| 4 | Discoverability | Users find the right skill/agent through clear naming and `/horse:sdlc-start` |
 
 ### Constraints
 
@@ -43,13 +45,13 @@ The plugin is distributed via the official Claude Code plugin system (`.claude-p
 
 ### Architecture Style
 
-**Static plugin with layered content and process orchestration** — horse-sense is not a running service. It is a structured collection of Markdown documents, shell scripts, configuration, and process definitions that Claude Code loads at session start. The architecture has five layers:
+**Static plugin with layered content and process orchestration** — horse-sense is not a running service. It is a structured collection of Markdown documents, shell scripts, configuration, and process definitions that Claude Code loads at session start. The architecture has these layers:
 
-- **Process definitions** specify workflows — step sequences with gates, loops, branches, and human decision points
-- **Orchestrator agents** execute process definitions, dispatching worker agents and enforcing gates
-- **Worker agents** perform focused tasks from a role perspective, composing skills
-- **Skills** are the workhorse — each is a self-contained guide (Markdown) that may include reference documents and executable scripts
-- **Rules** are glob-matched context injected based on file type or directory, tailoring skill behavior to specific languages or standards
+- **Agents** (auto-discovered by plugin manager) — flat `.md` files with YAML frontmatter (`name`, `description`, `model`, `effort`, `maxTurns`, `tools`, `disallowedTools`, etc.) defining specialized subagent personas
+- **Skills** (auto-discovered) — `SKILL.md` files with frontmatter, model-invoked based on task context
+- **Commands** (auto-discovered) — user-invoked slash commands (`/horse:*`) as flat `.md` files
+- **bin/** (auto-discovered) — executables added to Bash tool's PATH
+- **Supporting files** (NOT auto-discovered) — `templates/`, `scripts/`, `rules/`, `processes/` exist within the plugin directory as reference material that agents and skills read via `${CLAUDE_PLUGIN_ROOT}` paths, but the plugin manager does not inject them into context automatically
 - **Configuration** adapts skills to a specific project (language, framework, test runner, paths)
 
 ### High-Level Component Diagram
@@ -128,19 +130,18 @@ graph TD
 
 ### Component Descriptions
 
-| Component | Responsibility | Format |
-|---|---|---|
-| **plugin.json** | Plugin identity, version, author — loaded by Claude Code plugin manager | JSON manifest |
-| **processes/** | Workflow definitions with steps, gates, loops, branches, and human checkpoints | Markdown |
-| **agents/orchestrators/** | Orchestrator agents that execute process definitions and dispatch workers | Markdown |
-| **agents/workers/** | Worker agents — role-based personas that compose skills with focused context | Markdown |
-| **commands/** | User-invoked slash commands (`/horse-sense:plan`, `/horse-sense:arch`, etc.) | Markdown files |
-| **skills/** | Model-invoked capabilities with `SKILL.md` + optional reference docs and scripts | Markdown + shell |
-| **rules/** | Glob-matched context files injected when editing specific file types/directories | Markdown |
-| **templates/** | Scaffolds for requirements, architecture, sprint plans, project plans | Markdown |
-| **scripts/** | Shell automation (env setup, linting, testing, scaffolding) | Bash |
-| **bin/** | Executable scripts added to PATH by Claude Code | Bash/Python/Node |
-| **.claude/config.json** | Project-specific configuration consumed by skills | JSON |
+| Component | Auto-discovered? | Responsibility | Format |
+|---|---|---|---|
+| **plugin.json** | Yes | Plugin identity, version, author — loaded by Claude Code plugin manager | JSON manifest |
+| **commands/** | Yes | User-invoked slash commands (`/horse:plan`, `/horse:arch`, etc.) | Markdown files |
+| **skills/** | Yes | Model-invoked capabilities with `SKILL.md` + optional reference docs | Markdown |
+| **agents/** | Yes | Agent personas with frontmatter — workers (Phase 1) + orchestrators (Phase 2) | Markdown with YAML frontmatter |
+| **bin/** | Yes | Executable scripts added to Bash tool's PATH | Bash/Python/Node |
+| **rules/** | **No** | Coding standards referenced by agent prompts and skill content | Markdown |
+| **templates/** | **No** | Scaffolds for requirements, architecture, sprint plans, project plans | Markdown |
+| **scripts/** | **No** | Shell automation (env setup, linting, testing, scaffolding) | Bash |
+| **processes/** | **No** | Workflow definitions with steps, gates, loops (Phase 2) | Markdown |
+| **.claude/config.json** | N/A (host project) | Project-specific configuration consumed by skills | JSON |
 
 ---
 
@@ -150,12 +151,12 @@ graph TD
 
 horse-sense uses a two-tier configuration model:
 
-**Tier 1: Plugin manifest** (`.claude-plugin/plugin.json`) — static, ships with the plugin:
+**Tier 1: Plugin manifest** (`horse/.claude-plugin/plugin.json`) — static, ships with the plugin:
 
 ```json
 {
-  "name": "horse-sense",
-  "description": "Structured SDLC plugin for Claude Code",
+  "name": "horse",
+  "description": "Structured SDLC plugin for Claude Code — agents, skills, and process orchestration",
   "version": "1.0.0",
   "author": { "name": "Ed Wentworth" }
 }
@@ -276,82 +277,87 @@ erDiagram
 
 ### Official Plugin Spec Mapping
 
+The plugin lives in the `horse/` subdirectory of the horse-sense repo. Only directories and files marked **[auto-discovered]** are recognized by the Claude Code plugin manager. Everything else is supporting material referenced by skills/agents via `${CLAUDE_PLUGIN_ROOT}` paths.
+
 ```
-horse-sense/
-├── .claude-plugin/
-│   └── plugin.json              # Plugin manifest (name, version, author)
-├── commands/                     # User-invoked slash commands
-│   ├── sdlc-start.md           # /horse-sense:sdlc-start
-│   ├── plan.md                  # /horse-sense:plan
-│   ├── arch.md                  # /horse-sense:arch
-│   ├── implement.md             # /horse-sense:implement
-│   ├── review.md                # /horse-sense:review
-│   ├── test.md                  # /horse-sense:test
-│   ├── deploy.md                # /horse-sense:deploy
-│   ├── sprint.md                # /horse-sense:sprint
-│   └── retrospective.md        # /horse-sense:retrospective
-├── skills/                       # Model-invoked agent skills
-│   ├── requirements-analysis/
-│   │   └── SKILL.md
-│   ├── architecture-design/
-│   │   └── SKILL.md
-│   ├── implementation/
-│   │   └── SKILL.md
-│   ├── testing/
-│   │   └── SKILL.md
-│   ├── deployment/
-│   │   └── SKILL.md
-│   └── python-venv/
-│       └── SKILL.md
-├── agents/                       # Agent personas (workers + orchestrators)
-│   ├── workers/
-│   │   ├── planner.md
-│   │   ├── architect.md
-│   │   ├── developer.md
-│   │   ├── tester.md
-│   │   └── reviewer.md
-│   └── orchestrators/
-│       ├── sdlc.md               # End-to-end SDLC orchestrator
-│       ├── sprint.md             # Sprint-level orchestrator
-│       └── monitor.md            # Quality monitor for loops
-├── processes/                    # Workflow definitions
-│   ├── feature_delivery.md       # Full feature lifecycle
-│   ├── sprint_execution.md       # Sprint iteration workflow
-│   ├── bug_fix.md                # Bug triage → fix → verify
-│   └── code_review.md            # Review → feedback → resolve
-├── rules/                        # Glob-matched contextual rules
-│   ├── code_quality.md
-│   ├── testing.md
-│   ├── git_workflow.md
-│   └── documentation.md
-├── templates/                    # Document scaffolds
-│   ├── requirements_doc.md
-│   ├── architecture_doc.md
-│   ├── project_plan.md
-│   └── sprint_plan.md
-├── scripts/                      # Shell automation
-│   ├── setup_env.sh
-│   ├── run_tests.sh
-│   ├── lint.sh
-│   └── new_project.sh
-├── bin/                          # Executables added to PATH
-│   └── hs                       # CLI helper (optional)
-├── CLAUDE.md                     # Plugin documentation
-├── README.md                     # Repository README
+horse-sense/                          # Project repo root
+├── horse/                            # ← THE PLUGIN (--plugin-dir target)
+│   ├── .claude-plugin/
+│   │   └── plugin.json              # Plugin manifest: name="horse" [auto-discovered]
+│   ├── commands/                     # User-invoked slash commands [auto-discovered]
+│   │   ├── sdlc-start.md           # /horse:sdlc-start
+│   │   ├── plan.md                  # /horse:plan
+│   │   ├── arch.md                  # /horse:arch
+│   │   ├── implement.md             # /horse:implement
+│   │   ├── review.md                # /horse:review
+│   │   ├── test.md                  # /horse:test
+│   │   ├── deploy.md                # /horse:deploy
+│   │   ├── sprint.md                # /horse:sprint
+│   │   └── retrospective.md        # /horse:retrospective
+│   ├── skills/                       # Model-invoked agent skills [auto-discovered]
+│   │   ├── requirements-analysis/
+│   │   │   └── SKILL.md
+│   │   ├── architecture-design/
+│   │   │   └── SKILL.md
+│   │   ├── implementation/
+│   │   │   └── SKILL.md
+│   │   ├── testing/
+│   │   │   └── SKILL.md
+│   │   ├── deployment/
+│   │   │   └── SKILL.md
+│   │   └── python-venv/
+│   │       └── SKILL.md
+│   ├── agents/                       # Agent personas — FLAT, with frontmatter [auto-discovered]
+│   │   ├── planner.md               # name: planner, description: ...
+│   │   ├── architect.md             # name: architect, description: ...
+│   │   ├── developer.md            # name: developer, description: ...
+│   │   ├── tester.md                # name: tester, description: ...
+│   │   ├── reviewer.md             # name: reviewer, description: ...
+│   │   ├── sdlc.md                  # SDLC orchestrator (Phase 2)
+│   │   ├── sprint-orchestrator.md   # Sprint orchestrator (Phase 2)
+│   │   └── monitor.md              # Quality monitor (Phase 2)
+│   ├── bin/                          # Executables added to PATH [auto-discovered]
+│   │   └── .gitkeep
+│   ├── templates/                    # Document scaffolds [NOT auto-discovered]
+│   │   ├── requirements_doc.md
+│   │   ├── architecture_doc.md
+│   │   ├── project_plan.md
+│   │   └── sprint_plan.md
+│   ├── scripts/                      # Shell automation [NOT auto-discovered]
+│   │   ├── setup_env.sh
+│   │   ├── run_tests.sh
+│   │   ├── lint.sh
+│   │   └── new_project.sh
+│   ├── rules/                        # Coding standards reference [NOT auto-discovered]
+│   │   ├── code_quality.md          # Referenced by agent prompts and skills
+│   │   ├── testing.md
+│   │   ├── git_workflow.md
+│   │   └── documentation.md
+│   └── processes/                    # Workflow definitions [NOT auto-discovered] (Phase 2)
+│       ├── feature_delivery.md
+│       ├── sprint_execution.md
+│       ├── bug_fix.md
+│       └── code_review.md
+├── docs/                             # Project documentation (NOT part of plugin)
+│   ├── adr/
+│   ├── architecture/
+│   ├── plans/
+│   └── requirements/
+├── CLAUDE.md                         # Project-level instructions
+├── README.md
 └── LICENSE
 ```
 
-### Key Structural Changes from Current Layout
+### Key Structural Changes from Sprint 1 Layout
 
-| Current | New | Reason |
+| Sprint 1 (current) | New Target | Reason |
 |---|---|---|
-| `.claude/settings.json` | `.claude-plugin/plugin.json` | Official plugin manifest format |
-| `.claude/commands/*.md` | `commands/*.md` | Plugin spec puts commands at root |
-| `skills/*/README.md` | `skills/*/SKILL.md` | Plugin spec requires SKILL.md with frontmatter |
-| `agents/*.md` (flat) | `agents/workers/*.md` + `agents/orchestrators/*.md` | Separate worker and orchestrator roles |
-| (none) | `processes/*.md` | Workflow definitions for orchestrator agents |
-| (none) | `bin/` | Plugin spec supports adding executables to PATH |
-| (none) | `.claude/config.json` | Project-level configuration for skill adaptation |
+| Plugin at repo root | Plugin in `horse/` subdirectory | Separates plugin from project; cleaner distribution |
+| `name: "horse-sense"` | `name: "horse"` | Shorter namespace (`/horse:*` vs `/horse-sense:*`) |
+| `agents/workers/*.md` (no frontmatter) | `agents/*.md` (flat, with frontmatter) | Plugin spec requires flat `agents/` with YAML frontmatter |
+| `rules/` assumed auto-loaded | `rules/` as reference files only | Plugin spec does NOT auto-discover `rules/` |
+| `templates/` assumed auto-loaded | `templates/` as reference files only | Plugin spec does NOT auto-discover `templates/` |
+| `agents/orchestrators/` (planned) | Flat in `agents/` (Phase 2) | Plugin spec auto-discovers flat `agents/` only |
 
 ---
 
@@ -580,10 +586,11 @@ The plugin ships a GitHub Actions workflow template in `templates/ci.yml` that p
 
 | # | Question / Risk | Owner | Resolution |
 |---|---|---|---|
-| 1 | Will `rules/` and `templates/` dirs be recognized by plugin manager or need workaround? | Ed | ⬜ Open — test with `claude --plugin-dir` |
-| 2 | SKILL.md frontmatter schema — what fields beyond `name` and `description` are supported? | Ed | ⬜ Open — verify against latest plugin spec |
-| 3 | Can hooks/ be used to auto-inject rules based on file globs, or is that handled by settings? | Ed | ⬜ Open — test hook event model |
+| 1 | Will `rules/` and `templates/` dirs be recognized by plugin manager or need workaround? | Ed | ✅ **Resolved 2026-04-04** — NO. Plugin manager only auto-discovers: `.claude-plugin/`, `commands/`, `agents/`, `skills/`, `hooks/`, `output-styles/`, `bin/`, `.mcp.json`, `.lsp.json`, `settings.json`. Rules and templates must be referenced explicitly by skills/agents via `${CLAUDE_PLUGIN_ROOT}/rules/` paths. |
+| 2 | SKILL.md frontmatter schema — what fields beyond `name` and `description` are supported? | Ed | ✅ **Resolved 2026-04-04** — Skills support `name`, `description`, `disable-model-invocation`. Agents support `name`, `description`, `model`, `effort`, `maxTurns`, `tools`, `disallowedTools`, `skills`, `memory`, `background`, `isolation`. Agents do NOT support `hooks`, `mcpServers`, or `permissionMode`. |
+| 3 | Can hooks/ be used to auto-inject rules based on file globs, or is that handled by settings? | Ed | ✅ **Resolved 2026-04-04** — Hooks respond to lifecycle events (PostToolUse, PreToolUse, etc.) not file globs. The `InstructionsLoaded` and `FileChanged` events exist but are not glob-pattern rule injection. Rules content should be folded into agent system prompts or referenced by skills. |
 | 4 | Should `bin/hs` CLI helper exist or is it unnecessary overhead for personal use? | Ed | ⬜ Open — defer until needed |
-| 5 | How do orchestrators dispatch workers — Agent tool, subagents, or context switching? | Ed | ⬜ Open — test with Claude Code |
-| 6 | Can monitor agents run concurrently with workers or only between iterations? | Ed | ⬜ Open — depends on Claude Code concurrency model |
+| 5 | How do orchestrators dispatch workers — Agent tool, subagents, or context switching? | Ed | ✅ **Resolved 2026-04-04** — Plugin agents appear in `/agents` and can be invoked by Claude via the Agent tool as subagents. They work alongside built-in agents. Orchestrators dispatch workers as subagents. |
+| 6 | Can monitor agents run concurrently with workers or only between iterations? | Ed | ⬜ Open — depends on Claude Code concurrency model (Agent tool supports `run_in_background`) |
 | 7 | Should process definitions support parameters (e.g., max loop iterations configurable per project)? | Ed | ⬜ Open — start without, add if needed |
+| 8 | `agents/` must be flat — how to distinguish workers from orchestrators? | Ed | ✅ **Resolved 2026-04-04** — Use naming convention and `description` frontmatter. Workers: `planner.md`, `developer.md`, etc. Orchestrators: `sdlc.md`, `sprint-orchestrator.md`, `monitor.md`. The `description` field tells Claude when to invoke each. |

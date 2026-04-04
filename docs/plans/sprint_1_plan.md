@@ -1,15 +1,27 @@
 # Sprint 1 Plan: Plugin Structure & Installation
 
-> **Sprint**: 1  
+> **Sprint**: 1 (revised)  
 > **Duration**: 2026-04-03 → 2026-04-10 (1 week)  
 > **Team capacity**: 13 story points  
-> **Sprint goal**: Restructure horse-sense into the official Claude Code plugin format and verify it loads correctly
+> **Sprint goal**: Create the `horse/` plugin module conforming to the official Claude Code plugin spec, with flat agents (YAML frontmatter), proper namespacing (`/horse:*`), and verified loading via `claude --plugin-dir ./horse`
 
 ---
 
 ## Sprint Goal
 
-Transform the current repo layout into a conformant Claude Code plugin with `.claude-plugin/plugin.json`, top-level `commands/`, `SKILL.md` files, and restructured agent directories. By the end of this sprint, `claude --plugin-dir ./horse-sense` should load the plugin with all commands available as `/horse-sense:*`.
+Create the `horse/` plugin module within the horse-sense repo, conforming to the official Claude Code plugin spec. The plugin must have flat `agents/` with YAML frontmatter, properly namespaced commands (`/horse:*`), and supporting files (rules, templates, scripts) referenced via `${CLAUDE_PLUGIN_ROOT}` paths. By the end of this sprint, `claude --plugin-dir ./horse` should load the plugin with all commands and agents discoverable.
+
+### Mid-Sprint Course Correction (2026-04-04)
+
+After reviewing the [official plugin docs](https://code.claude.com/docs/en/plugins), several assumptions from the original Sprint 1 scope proved incorrect:
+
+1. **Plugin location**: Must be a subdirectory (`horse/`), not the repo root — separates plugin from project docs
+2. **Plugin name**: `horse` not `horse-sense` — shorter, cleaner namespace (`/horse:*`)
+3. **`agents/` must be flat** with YAML frontmatter (`name`, `description`, `model`, etc.) — not in subdirectories
+4. **`rules/` and `templates/` are NOT auto-discovered** by the plugin manager — must be referenced explicitly
+5. **`commands/` is legacy** but still functional — kept for user-invoked slash commands
+
+Tasks T-001 through T-007 were completed under the old structure (plugin at root, name `horse-sense`, agents in `agents/workers/`). New tasks T-009 through T-009c address the rework.
 
 ---
 
@@ -17,15 +29,19 @@ Transform the current repo layout into a conformant Claude Code plugin with `.cl
 
 | Story ID | Title | Priority | Points | Status |
 |---|---|---|---|---|
-| T-001 | Create `.claude-plugin/plugin.json` manifest | Must | 1 | ✅ Done |
-| T-002 | Move `.claude/commands/*.md` → `commands/*.md` at plugin root | Must | 2 | ✅ Done |
-| T-003 | Update command content: replace `/user:` refs with `/horse-sense:` | Must | 2 | ✅ Done |
-| T-004 | Rename `skills/*/README.md` → `skills/*/SKILL.md` with frontmatter | Must | 3 | ✅ Done |
-| T-005 | Restructure `agents/` into `agents/workers/` | Must | 1 | ✅ Done |
-| T-006 | Create `bin/` directory (placeholder) | Could | 1 | ✅ Done |
+| T-001 | ~~Create `.claude-plugin/plugin.json` manifest~~ | Must | 1 | ✅ Done (superseded by T-009) |
+| T-002 | ~~Move `.claude/commands/*.md` → `commands/*.md` at plugin root~~ | Must | 2 | ✅ Done (superseded by T-009) |
+| T-003 | ~~Update command content: replace `/user:` refs with `/horse-sense:`~~ | Must | 2 | ✅ Done (superseded by T-009) |
+| T-004 | ~~Rename `skills/*/README.md` → `skills/*/SKILL.md` with frontmatter~~ | Must | 3 | ✅ Done (superseded by T-009) |
+| T-005 | ~~Restructure `agents/` into `agents/workers/`~~ | Must | 1 | ✅ Done (superseded by T-009) |
+| T-006 | ~~Create `bin/` directory (placeholder)~~ | Could | 1 | ✅ Done (superseded by T-009) |
 | T-007 | Remove `.claude/settings.json` (replaced by plugin.json) | Must | 1 | ✅ Done |
-| T-008 | Verify plugin loads via `claude --plugin-dir ./horse-sense` | Must | 2 | ⬜ To Do |
-| **Total** | | | **13** | |
+| T-009 | Create `horse/` plugin module — move all plugin content into `horse/` subdir, rename plugin to `horse`, flatten agents, update all `/horse-sense:` → `/horse:` references | Must | 5 | ⬜ To Do |
+| T-009a | Add YAML frontmatter to all 5 agent files (name, description, model, maxTurns) | Must | 3 | ⬜ To Do |
+| T-009b | Update commands/skills to reference `${CLAUDE_PLUGIN_ROOT}/` paths for rules, templates, scripts | Must | 2 | ⬜ To Do |
+| T-009c | Update CLAUDE.md and README.md for new `horse/` structure and `/horse:*` namespace | Must | 1 | ⬜ To Do |
+| T-008 | Verify plugin loads via `claude --plugin-dir ./horse` smoke test | Must | 2 | ⬜ To Do |
+| **Total (revised)** | | | **13** | |
 
 ### Status Key
 - ⬜ To Do
@@ -38,130 +54,131 @@ Transform the current repo layout into a conformant Claude Code plugin with `.cl
 
 ## Task Details
 
-### T-001: Create `.claude-plugin/plugin.json`
+### T-001 through T-007: Original Sprint 1 Tasks (Completed)
 
-Create the manifest file:
-
-```json
-{
-  "name": "horse-sense",
-  "description": "Structured SDLC plugin for Claude Code — skills, agents, rules, and process orchestration for building high-quality software",
-  "version": "1.0.0",
-  "author": {
-    "name": "Ed Wentworth"
-  }
-}
-```
-
-**Acceptance**: File exists at `.claude-plugin/plugin.json` with valid JSON.
+These tasks were completed under the original plan (plugin at repo root, name `horse-sense`, agents in `agents/workers/`). The work is preserved and will be migrated by T-009.
 
 ---
 
-### T-002: Move commands to plugin root
+### T-009: Create `horse/` plugin module
 
-Move all 9 files from `.claude/commands/` to `commands/`:
+Move all plugin content from the repo root into a `horse/` subdirectory, conforming to the official plugin spec.
 
-| Source | Destination |
-|---|---|
-| `.claude/commands/sdlc-start.md` | `commands/sdlc-start.md` |
-| `.claude/commands/plan.md` | `commands/plan.md` |
-| `.claude/commands/arch.md` | `commands/arch.md` |
-| `.claude/commands/implement.md` | `commands/implement.md` |
-| `.claude/commands/review.md` | `commands/review.md` |
-| `.claude/commands/test.md` | `commands/test.md` |
-| `.claude/commands/deploy.md` | `commands/deploy.md` |
-| `.claude/commands/sprint.md` | `commands/sprint.md` |
-| `.claude/commands/retrospective.md` | `commands/retrospective.md` |
-
-**Acceptance**: All commands in `commands/`. `.claude/commands/` removed. No broken references.
-
----
-
-### T-003: Update `/user:` → `/horse-sense:` references
-
-Search all files for `/user:` command references and replace with `/horse-sense:`. This includes:
-- Command files themselves (cross-references)
-- CLAUDE.md
-- Agent files
-- Skill files
-- README.md
-
-**Acceptance**: `grep -r '/user:' .` returns no results (excluding docs/ history).
-
----
-
-### T-004: Rename README.md → SKILL.md with frontmatter
-
-For each skill directory, rename `README.md` to `SKILL.md` and add YAML frontmatter:
-
-| Skill | Frontmatter |
-|---|---|
-| `skills/requirements_analysis/` | `name: requirements-analysis`<br/>`description: Elicit, analyze, document, and validate project requirements` |
-| `skills/architecture_design/` | `name: architecture-design`<br/>`description: Design system architecture, select technologies, create ADRs` |
-| `skills/implementation/` | `name: implementation`<br/>`description: Implement features using TDD with language-appropriate tooling` |
-| `skills/testing/` | `name: testing`<br/>`description: Create and run tests following the test pyramid strategy` |
-| `skills/deployment/` | `name: deployment`<br/>`description: Prepare deployment artifacts, CI/CD workflows, and runbooks` |
-| `skills/python_venv/` | `name: python-venv`<br/>`description: Set up and manage Python virtual environments with pip` |
-
-**Acceptance**: All skills have `SKILL.md` with valid frontmatter. No `README.md` files in skill dirs.
-
----
-
-### T-005: Restructure agents into workers/
+**Directory structure to create:**
 
 ```
-agents/                →  agents/workers/
-  architect.md              architect.md
-  developer.md              developer.md
-  planner.md                planner.md
-  reviewer.md               reviewer.md
-  tester.md                 tester.md
+horse/
+├── .claude-plugin/
+│   └── plugin.json              # name: "horse"
+├── commands/                     # /horse:* slash commands [auto-discovered]
+│   ├── sdlc-start.md
+│   ├── plan.md
+│   ├── arch.md
+│   ├── implement.md
+│   ├── review.md
+│   ├── test.md
+│   ├── deploy.md
+│   ├── sprint.md
+│   └── retrospective.md
+├── agents/                       # FLAT with YAML frontmatter [auto-discovered]
+│   ├── planner.md
+│   ├── architect.md
+│   ├── developer.md
+│   ├── tester.md
+│   └── reviewer.md
+├── skills/                       # Model-invoked skills [auto-discovered]
+│   ├── requirements-analysis/SKILL.md
+│   ├── architecture-design/SKILL.md
+│   ├── implementation/SKILL.md
+│   ├── testing/SKILL.md
+│   ├── deployment/SKILL.md
+│   └── python-venv/SKILL.md
+├── bin/.gitkeep                  # Executables [auto-discovered]
+├── rules/                        # Reference files [NOT auto-discovered]
+├── templates/                    # Reference files [NOT auto-discovered]
+└── scripts/                      # Reference files [NOT auto-discovered]
 ```
 
-Update any internal references in agent files that point to other agents or skills.
+**Steps:**
+1. Create `horse/` directory with all subdirectories
+2. Create `horse/.claude-plugin/plugin.json` with `name: "horse"`
+3. Copy `commands/*.md` → `horse/commands/*.md`, updating `/horse-sense:` → `/horse:`
+4. Copy `agents/workers/*.md` → `horse/agents/*.md` (flatten)
+5. Copy `skills/*/SKILL.md` → `horse/skills/*/SKILL.md`
+6. Copy `rules/*.md` → `horse/rules/*.md`
+7. Copy `templates/*.md` → `horse/templates/*.md`
+8. Copy `scripts/*.sh` → `horse/scripts/*.sh`
+9. Create `horse/bin/.gitkeep`
 
-**Acceptance**: All 5 agents in `agents/workers/`. `agents/` has only `workers/` subdirectory. No broken references.
+**Acceptance**: All plugin files in `horse/`. `grep -r '/horse-sense:' horse/` returns no results.
 
 ---
 
-### T-006: Create bin/ directory
+### T-009a: Add YAML frontmatter to agent files
 
+Each agent in `horse/agents/` must have YAML frontmatter per the plugin spec:
+
+```yaml
+---
+name: agent-name
+description: When to invoke this agent and what it specializes in
+model: sonnet
+maxTurns: 20
+---
 ```
-bin/
-  .gitkeep
-```
 
-Placeholder for future executables. Verify Claude Code plugin manager adds `bin/` to PATH.
+| Agent | name | description |
+|---|---|---|
+| `planner.md` | `planner` | Project planning specialist — requirements gathering, roadmaps, sprint planning, backlog management, and progress tracking |
+| `architect.md` | `architect` | Software architecture specialist — system design, technology selection, API design, ADRs, and non-functional requirements |
+| `developer.md` | `developer` | Software development specialist — feature implementation, TDD, debugging, refactoring, and code quality |
+| `tester.md` | `tester` | QA and test automation specialist — test strategy, unit/integration/e2e testing, coverage analysis, and security testing |
+| `reviewer.md` | `reviewer` | Code review specialist — correctness, security, performance, and adherence to project standards |
 
-**Acceptance**: Directory exists. Not blocking if PATH injection can't be verified.
+**Acceptance**: All 5 agent files have valid YAML frontmatter. `claude --plugin-dir ./horse` shows agents in `/agents`.
 
 ---
 
-### T-007: Remove .claude/settings.json
+### T-009b: Update path references for plugin context
 
-This file is replaced by `.claude-plugin/plugin.json`. The settings it contained (context includes/excludes, SDLC phases, feature flags) either:
-- Move to plugin.json (if supported)
-- Move to CLAUDE.md (context includes)
-- Are no longer needed (custom config keys)
+Commands and skills currently reference `rules/code_quality.md`, `templates/architecture_doc.md`, `scripts/run_tests.sh`, etc. as bare relative paths. Since `rules/`, `templates/`, and `scripts/` are not auto-discovered, these references should be clear they're plugin-relative.
 
-**Note**: Preserve `.claude/` directory itself — it's where per-project `config.json` will live (Sprint 2).
+**Update pattern in commands/skills:**
+- `rules/code_quality.md` → `Read the code quality rules from ${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`
+- `templates/architecture_doc.md` → `Use the template at ${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md`
+- `scripts/run_tests.sh` → `Run ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh`
+- `agents/workers/reviewer.md` → `agents/reviewer.md` (now flat)
 
-**Acceptance**: `.claude/settings.json` deleted. No functionality lost.
+**Acceptance**: No references to `agents/workers/`. All references to `rules/`, `templates/`, `scripts/` are prefixed with `${CLAUDE_PLUGIN_ROOT}/` or clearly described as plugin-relative paths.
+
+---
+
+### T-009c: Update CLAUDE.md and README.md
+
+Update project-level documentation to reflect:
+- Plugin lives in `horse/` subdirectory
+- Installation: `claude --plugin-dir ./horse`
+- Commands: `/horse:*` namespace
+- Agents are flat with frontmatter
+- `rules/` and `templates/` are supporting files, not auto-discovered
+
+**Acceptance**: CLAUDE.md and README.md are accurate. No references to old structure.
 
 ---
 
 ### T-008: Smoke test plugin loading
 
-Run `claude --plugin-dir ./horse-sense` and verify:
-- [ ] Plugin is recognized (check plugin list)
-- [ ] `/horse-sense:plan` and other commands are available
-- [ ] Agent files are accessible
-- [ ] Rules files are loaded (test with a `.py` file edit)
-- [ ] No errors in plugin loading
+Run `claude --plugin-dir ./horse` and verify:
+- [ ] Plugin is recognized (check plugin list or `/help`)
+- [ ] `/horse:plan` and other commands are available
+- [ ] Agents appear in `/agents` with correct names and descriptions
+- [ ] Skills are listed (check via `/help` or model invocation)
+- [ ] No errors in plugin loading (`claude --debug`)
+- [ ] `${CLAUDE_PLUGIN_ROOT}` resolves correctly in referenced paths
 
 Document any issues found — they inform Sprint 2 work.
 
-**Acceptance**: Plugin loads. Commands resolve. Issues documented.
+**Acceptance**: Plugin loads. Commands resolve. Agents discoverable. Issues documented.
 
 ---
 
@@ -169,16 +186,20 @@ Document any issues found — they inform Sprint 2 work.
 
 | Risk / Blocker | Impact | Action |
 |---|---|---|
-| Plugin spec may not support `rules/` or `templates/` directories | High | Test in T-008. If not loaded, we'll add workaround in Sprint 2 (hooks or CLAUDE.md includes). |
-| `.claude/settings.json` removal may break local dev experience | Med | Keep `.claude/` dir for future config.json. Test that removing settings.json doesn't break Claude Code. |
-| SKILL.md frontmatter schema may have undocumented requirements | Med | Test in T-004/T-008. Adjust frontmatter if needed. |
+| ~~Plugin spec may not support `rules/` or `templates/` directories~~ | ~~High~~ | ✅ **Confirmed** — NOT supported. Mitigated by using `${CLAUDE_PLUGIN_ROOT}/` paths. |
+| ~~SKILL.md frontmatter schema may have undocumented requirements~~ | ~~Med~~ | ✅ **Resolved** — documented in official spec. Skills: `name`, `description`, `disable-model-invocation`. Agents: full frontmatter including `model`, `maxTurns`, etc. |
+| Agent frontmatter not recognized by older Claude Code versions | Med | Test in T-008. If agents don't appear, check Claude Code version. |
+| `${CLAUDE_PLUGIN_ROOT}` may not expand in skill/command Markdown content | Med | Test in T-008. If not, fall back to relative paths with instructions for Claude to look in the plugin directory. |
 
 ---
 
 ## Definition of Done
 
 A story is **Done** when:
-- [ ] File changes are correct and consistent
-- [ ] No broken internal references (grep for old paths)
-- [ ] Plugin structure matches spec layout
+- [ ] All plugin files are in `horse/` subdirectory
+- [ ] No broken internal references (grep for old paths, `/horse-sense:`, `agents/workers/`)
+- [ ] Plugin structure matches official spec (flat agents, YAML frontmatter, auto-discovered dirs correct)
+- [ ] `claude --plugin-dir ./horse` loads without errors
+- [ ] Commands resolve as `/horse:*`
+- [ ] Agents appear in `/agents`
 - [ ] Changes committed with Conventional Commits format
