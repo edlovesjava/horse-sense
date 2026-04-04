@@ -133,7 +133,7 @@ GitHub Actions workflow template for user projects. Should support:
 
 ---
 
-### T-024: Update README.md
+### T-024: Update README.md and clean up plan/docs discrepancies
 
 Update the project README.md with:
 
@@ -144,7 +144,12 @@ Update the project README.md with:
 - Agent descriptions
 - Link to example configs
 
-**Acceptance**: A new user can install and start using the plugin within 5 minutes by following the README.
+Also clean up documentation discrepancies flagged in Sprint 2 PR review:
+
+- **sprint_2_plan.md T-102**: states frontmatter validator uses PyYAML with Bash fallback, but actual implementation uses regex-based parsing. Update plan to reflect reality.
+- **sprint_2_plan.md Part 2 intro**: describes `.claude/config.json` as the only config mechanism, but `horse.config.md` also exists (two-tier config). Clarify the two-tier approach in the plan text.
+
+**Acceptance**: A new user can install and start using the plugin within 5 minutes by following the README. No stale or misleading descriptions in plan documents.
 
 ---
 
