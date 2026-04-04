@@ -9,6 +9,27 @@ description: Implement features using TDD with language-appropriate tooling
 
 Write correct, readable, and maintainable code that satisfies the acceptance criteria and fits the established architecture. This skill covers the day-to-day development workflow from picking up a ticket to opening a pull request.
 
+## Configuration
+
+Before starting, read the project config from `.claude/config.json` (if it exists). If absent, auto-detect:
+
+- **Python project** — `pyproject.toml` or `requirements.txt` present
+- **TypeScript project** — `package.json` present
+
+Use these config values throughout this skill:
+
+| Variable | Python default | TypeScript default |
+|---|---|---|
+| `testRunner` | `pytest` | `vitest` |
+| `linter` | `ruff check` | `eslint` |
+| `typeChecker` | `mypy` | `tsc --noEmit` |
+| `formatter` | `ruff format` | `prettier --write` |
+| `srcDir` | `src` | `src` |
+| `testDir` | `tests` | `tests` |
+| `coverageThreshold` | `80` | `80` |
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full schema.
+
 ## Development Workflow
 
 ```
@@ -42,13 +63,23 @@ git checkout -b chore/<ticket-id>-short-description
 
 ### Step 3: Activate the Environment
 
+For Python projects:
+
 ```bash
 source .venv/bin/activate
 ```
 
+For TypeScript projects:
+
+```bash
+npm install   # if node_modules/ is missing
+```
+
 ### Step 4: Write Tests First (TDD)
 
-Write a failing test that documents the expected behavior:
+Write a failing test that documents the expected behavior.
+
+**Python** (`pytest`):
 
 ```python
 def test_user_can_reset_password():
@@ -61,10 +92,30 @@ def test_user_can_reset_password():
     assert len(token) == 64
 ```
 
+**TypeScript** (`vitest`):
+
+```typescript
+import { describe, it, expect } from 'vitest'
+import { User } from '../src/user'
+
+describe('password reset', () => {
+  it('generates a 64-char token', () => {
+    const user = new User('alice@example.com')
+    const token = user.requestPasswordReset()
+    expect(token).toBeDefined()
+    expect(token).toHaveLength(64)
+  })
+})
+```
+
 Run it to confirm it fails:
 
 ```bash
-python -m pytest tests/unit/test_user.py -x -v
+# Python
+python -m pytest ${testDir}/unit/test_user.py -x -v
+
+# TypeScript
+npx vitest run ${testDir}/unit/user.test.ts
 ```
 
 ### Step 5: Implement the Feature
@@ -107,23 +158,30 @@ class PasswordResetToken:
 ### Step 6: Run All Tests
 
 ```bash
-python -m pytest tests/ -x --tb=short
+# Python
+python -m pytest ${testDir}/ -x --tb=short
+
+# TypeScript
+npx vitest run
 ```
 
 Fix any failures before moving on.
 
 ### Step 7: Check Code Quality
 
+Use the tools from `.claude/config.json` (or defaults):
+
 ```bash
-# Lint and auto-fix
-ruff check . --fix
-ruff format .
-
-# Type checking
-mypy src/
-
-# Security scan
+# Python
+ruff check . --fix && ruff format .
+mypy ${srcDir}/
 pip audit
+
+# TypeScript
+npx eslint ${srcDir}/ --fix
+npx prettier --write ${srcDir}/
+npx tsc --noEmit
+npm audit
 ```
 
 ### Step 8: Commit
@@ -145,7 +203,9 @@ Closes #42"
 - Request review from the Reviewer agent or a team member
 - Don't merge your own PR without review
 
-## Python Project Layout
+## Project Layouts
+
+### Python
 
 ```
 src/
@@ -164,7 +224,25 @@ requirements-dev.txt
 pyproject.toml
 ```
 
+### TypeScript
+
+```
+src/
+├── models/
+├── services/
+├── routes/
+└── index.ts
+tests/
+├── unit/
+├── integration/
+└── setup.ts
+package.json
+tsconfig.json
+```
+
 ## Tooling Reference
+
+### Python
 
 | Tool | Purpose | Command |
 |---|---|---|
@@ -173,3 +251,14 @@ pyproject.toml
 | `pytest` | Test runner | `python -m pytest tests/` |
 | `pytest-cov` | Coverage | `pytest --cov=src --cov-report=term-missing` |
 | `pip audit` | Dependency vulnerabilities | `pip audit` |
+
+### TypeScript
+
+| Tool | Purpose | Command |
+|---|---|---|
+| `eslint` | Linting | `npx eslint src/ --fix` |
+| `prettier` | Formatting | `npx prettier --write src/` |
+| `tsc` | Type checking | `npx tsc --noEmit` |
+| `vitest` | Test runner | `npx vitest run` |
+| `vitest --coverage` | Coverage | `npx vitest run --coverage` |
+| `npm audit` | Dependency vulnerabilities | `npm audit` |

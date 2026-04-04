@@ -1,0 +1,16 @@
+{
+  "language": "typescript",
+  "framework": "express",
+  "testRunner": "vitest",
+  "linter": "eslint",
+  "typeChecker": "tsc --noEmit",
+  "formatter": "prettier --write",
+  "srcDir": "src",
+  "testDir": "tests",
+  "packageManager": "npm",
+  "coverageThreshold": 80,
+  "nodeVersion": "20",
+  "dockerBaseImage": "node:20-slim",
+  "dockerPort": 3000,
+  "healthCheckPath": "/health"
+}

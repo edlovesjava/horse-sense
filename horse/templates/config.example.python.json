@@ -1,0 +1,16 @@
+{
+  "language": "python",
+  "framework": "fastapi",
+  "testRunner": "pytest",
+  "linter": "ruff check",
+  "typeChecker": "mypy",
+  "formatter": "ruff format",
+  "srcDir": "src",
+  "testDir": "tests",
+  "packageManager": "pip",
+  "coverageThreshold": 80,
+  "pythonVersion": "3.11",
+  "dockerBaseImage": "python:3.11-slim",
+  "dockerPort": 8000,
+  "healthCheckPath": "/health"
+}

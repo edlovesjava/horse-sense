@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "horse plugin project configuration",
+  "description": "Per-project configuration read by horse skills to adapt guidance to the host project's language, toolchain, and conventions.",
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "enum": ["python", "typescript"],
+      "description": "Primary language. Auto-detected from pyproject.toml (python) or package.json (typescript) if omitted."
+    },
+    "framework": {
+      "type": "string",
+      "description": "Web or application framework (e.g. fastapi, flask, express, nextjs).",
+      "default": ""
+    },
+    "testRunner": {
+      "type": "string",
+      "description": "Test runner command.",
+      "default": "pytest (python) | vitest (typescript)"
+    },
+    "linter": {
+      "type": "string",
+      "description": "Linter command.",
+      "default": "ruff check (python) | eslint (typescript)"
+    },
+    "typeChecker": {
+      "type": "string",
+      "description": "Type checker command.",
+      "default": "mypy (python) | tsc --noEmit (typescript)"
+    },
+    "formatter": {
+      "type": "string",
+      "description": "Formatter command.",
+      "default": "ruff format (python) | prettier (typescript)"
+    },
+    "srcDir": {
+      "type": "string",
+      "description": "Source directory relative to project root.",
+      "default": "src"
+    },
+    "testDir": {
+      "type": "string",
+      "description": "Test directory relative to project root.",
+      "default": "tests"
+    },
+    "packageManager": {
+      "type": "string",
+      "description": "Package manager command.",
+      "default": "pip (python) | npm (typescript)"
+    },
+    "coverageThreshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Minimum test coverage percentage required.",
+      "default": 80
+    },
+    "pythonVersion": {
+      "type": "string",
+      "description": "Python version (e.g. 3.11, 3.12). Only used when language is python.",
+      "default": "3.11"
+    },
+    "nodeVersion": {
+      "type": "string",
+      "description": "Node.js version (e.g. 20, 22). Only used when language is typescript.",
+      "default": "20"
+    },
+    "dockerBaseImage": {
+      "type": "string",
+      "description": "Base Docker image for deployment.",
+      "default": "python:3.11-slim (python) | node:20-slim (typescript)"
+    },
+    "dockerPort": {
+      "type": "integer",
+      "description": "Port exposed in Docker container.",
+      "default": 8000
+    },
+    "healthCheckPath": {
+      "type": "string",
+      "description": "Health check endpoint path.",
+      "default": "/health"
+    }
+  },
+  "additionalProperties": true
+}

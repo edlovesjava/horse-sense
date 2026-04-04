@@ -22,23 +22,23 @@ Two objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-100 | Create Makefile with `check` and `fix` targets (orchestrates all checks) | US-078 | 2 | ⬜ To Do |
-| T-101 | Create plugin structure validation script (`scripts/validate-plugin.sh`) | US-070 | 3 | ⬜ To Do |
-| T-102 | Add frontmatter validation for agents, commands, skills, rules | US-074 | 3 | ⬜ To Do |
-| T-103 | Add markdownlint configuration (`.markdownlint.json`) and integrate into Makefile | US-071 | 2 | ⬜ To Do |
-| T-104 | Add shellcheck integration for `scripts/` and `bin/` | US-072 | 1 | ⬜ To Do |
-| T-105 | Create GitHub Actions CI workflow (`.github/workflows/ci.yml`) | US-077 | 3 | ⬜ To Do |
+| T-100 | Create Makefile with `check` and `fix` targets (orchestrates all checks) | US-078 | 2 | ✅ Done |
+| T-101 | Create plugin structure validation script (`scripts/validate-plugin.sh`) | US-070 | 3 | ✅ Done |
+| T-102 | Add frontmatter validation for agents, commands, skills, rules | US-074 | 3 | ✅ Done |
+| T-103 | Add markdownlint configuration (`.markdownlint.json`) and integrate into Makefile | US-071 | 2 | ✅ Done |
+| T-104 | Add shellcheck integration for `scripts/` and `bin/` | US-072 | 1 | ✅ Done |
+| T-105 | Create GitHub Actions CI workflow (`.github/workflows/ci.yml`) | US-077 | 3 | ✅ Done |
 | | **Part 1 subtotal** | | **14** | |
 
 ### Part 2: Skills, Agents & Configuration (existing tasks from Epic 2)
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-010 | Define `.claude/config.json` schema with defaults and auto-detection | US-002, US-013 | 3 | ⬜ To Do |
-| T-011 | Update all 6 skills to read config variables (language, testRunner, srcDir, etc.) | US-010, US-013 | 5 | ⬜ To Do |
-| T-012 | Update agent system prompts to incorporate rules content and reference `${CLAUDE_PLUGIN_ROOT}/rules/` | US-020, US-021 | 3 | ⬜ To Do |
-| T-013 | Fold key rules into agent prompts (rules/ not auto-discovered) | US-030, US-031 | 3 | ⬜ To Do |
-| T-014 | Update CLAUDE.md for plugin context (trail naming, new structure, config) | — | 2 | ⬜ To Do |
+| T-010 | Define `.claude/config.json` schema with defaults and auto-detection | US-002, US-013 | 3 | ✅ Done |
+| T-011 | Update all 6 skills to read config variables (language, testRunner, srcDir, etc.) | US-010, US-013 | 5 | ✅ Done |
+| T-012 | Update agent system prompts to incorporate rules content and reference `${CLAUDE_PLUGIN_ROOT}/rules/` | US-020, US-021 | 3 | ✅ Done |
+| T-013 | Fold key rules into agent prompts (rules/ not auto-discovered) | US-030, US-031 | 3 | ✅ Done |
+| T-014 | Update CLAUDE.md for plugin context (trail naming, new structure, config) | — | 2 | ✅ Done |
 | | **Part 2 subtotal** | | **16** | |
 
 | | **Sprint 2 Total** | | **30** | |

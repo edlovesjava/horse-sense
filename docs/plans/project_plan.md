@@ -58,8 +58,8 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | M0: Planning complete | Requirements, architecture, ADRs, project plan | 2026-04-03 | ✅ Done |
 | M0.5: Spec review | Review official plugin docs, resolve open questions, update plans | 2026-04-04 | ✅ Done |
 | M1: Plugin structure | `horse/` module with `.claude-plugin/plugin.json`, `commands/`, flat `agents/` with frontmatter | Sprint 1 | ✅ Done |
-| M1.5: Plugin toolchain | Validation, linting, `make check`, GitHub Actions CI | Sprint 2 | ⬜ |
-| M2: Skills & agents migrated | config.json support, rules folded into agent prompts | Sprint 2 | ⬜ |
+| M1.5: Plugin toolchain | Validation, linting, `make check`, GitHub Actions CI | Sprint 2 | ✅ Done |
+| M2: Skills & agents migrated | config.json support, rules folded into agent prompts | Sprint 2 | ✅ Done |
 | M3: Dual toolchain + CI | TypeScript support, documentation, end-to-end validation | Sprint 3 | ⬜ |
 | M4: Phase 1 complete — usable plugin | End-to-end `claude --plugin-dir ./horse` → use in a real project | Sprint 3 | ⬜ |
 | M5: Trail definitions & orchestrators | Trail docs, orchestrator agents, monitor agent | Sprint 4 | ⬜ |
@@ -101,12 +101,12 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-100 | Create Makefile with `check` and `fix` targets | Must | 2 | 2 | ⬜ |
-| T-101 | Create plugin structure validation script | Must | 3 | 2 | ⬜ |
-| T-102 | Add frontmatter validation for agents, commands, skills, rules | Must | 3 | 2 | ⬜ |
-| T-103 | Add markdownlint configuration and Makefile integration | Must | 2 | 2 | ⬜ |
-| T-104 | Add shellcheck integration for scripts/ and bin/ | Must | 1 | 2 | ⬜ |
-| T-105 | Create GitHub Actions CI workflow | Must | 3 | 2 | ⬜ |
+| T-100 | Create Makefile with `check` and `fix` targets | Must | 2 | 2 | ✅ Done |
+| T-101 | Create plugin structure validation script | Must | 3 | 2 | ✅ Done |
+| T-102 | Add frontmatter validation for agents, commands, skills, rules | Must | 3 | 2 | ✅ Done |
+| T-103 | Add markdownlint configuration and Makefile integration | Must | 2 | 2 | ✅ Done |
+| T-104 | Add shellcheck integration for scripts/ and bin/ | Must | 1 | 2 | ✅ Done |
+| T-105 | Create GitHub Actions CI workflow | Must | 3 | 2 | ✅ Done |
 | | **Epic 1.5 Total** | | **14** | | |
 
 #### Epic 2: Skills, Agents & Configuration (Sprint 2, Part 2)
@@ -115,11 +115,11 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-010 | Define `.claude/config.json` schema with defaults and auto-detection | Must | 3 | 2 | ⬜ |
-| T-011 | Update all 6 skills to read config variables (language, testRunner, srcDir, etc.) | Must | 5 | 2 | ⬜ |
-| T-012 | Update agent system prompts to incorporate rules content and reference `${CLAUDE_PLUGIN_ROOT}/rules/` | Must | 3 | 2 | ⬜ |
-| T-013 | ~~Add glob frontmatter to all 4 rule files~~ → Fold key rules into agent prompts (rules/ not auto-discovered) | Must | 3 | 2 | ⬜ |
-| T-014 | Update CLAUDE.md for plugin context (new structure, new commands, config) | Must | 2 | 2 | ⬜ |
+| T-010 | Define `.claude/config.json` schema with defaults and auto-detection | Must | 3 | 2 | ✅ Done |
+| T-011 | Update all 6 skills to read config variables (language, testRunner, srcDir, etc.) | Must | 5 | 2 | ✅ Done |
+| T-012 | Update agent system prompts to incorporate rules content and reference `${CLAUDE_PLUGIN_ROOT}/rules/` | Must | 3 | 2 | ✅ Done |
+| T-013 | ~~Add glob frontmatter to all 4 rule files~~ → Fold key rules into agent prompts (rules/ not auto-discovered) | Must | 3 | 2 | ✅ Done |
+| T-014 | Update CLAUDE.md for plugin context (new structure, new commands, config) | Must | 2 | 2 | ✅ Done |
 | | **Sprint 2 Total** | | **16** | | |
 
 #### Epic 3: Dual Toolchain, CI & Documentation (Sprint 3)

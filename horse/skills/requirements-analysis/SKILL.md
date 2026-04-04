@@ -9,6 +9,12 @@ description: Elicit, analyze, document, and validate project requirements
 
 Systematically gather, document, and validate what the software must do — before any design or code is written. Well-written requirements reduce rework, prevent scope creep, and create a shared understanding between stakeholders and the development team.
 
+## Configuration
+
+This skill reads `horse.config.md` in the project root for the `requirements_format` setting. It also reads `.claude/config.json` for project-level settings (language, framework) to tailor requirement templates.
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full config schema.
+
 ## The Requirements Process
 
 ```

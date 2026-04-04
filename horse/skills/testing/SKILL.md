@@ -21,6 +21,24 @@ Validate that the software behaves correctly, reliably, and securely at every le
   /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\
 ```
 
+## Configuration
+
+Before starting, read the project config from `.claude/config.json` (if it exists). If absent, auto-detect:
+
+- **Python project** — `pyproject.toml` or `requirements.txt` present
+- **TypeScript project** — `package.json` present
+
+Use these config values throughout this skill:
+
+| Variable | Python default | TypeScript default |
+|---|---|---|
+| `testRunner` | `pytest` | `vitest` |
+| `srcDir` | `src` | `src` |
+| `testDir` | `tests` | `tests` |
+| `coverageThreshold` | `80` | `80` |
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full schema.
+
 ## Unit Testing
 
 ### Goal
@@ -29,9 +47,17 @@ Verify individual functions, methods, or classes in complete isolation.
 
 ### Setup
 
+**Python:**
+
 ```bash
 source .venv/bin/activate
 pip install pytest pytest-cov
+```
+
+**TypeScript:**
+
+```bash
+npm install --save-dev vitest @vitest/coverage-v8
 ```
 
 ### Writing a Unit Test
@@ -63,10 +89,19 @@ class TestCalculator:
 
 ### Running Unit Tests
 
+**Python:**
+
 ```bash
 python -m pytest tests/unit/ -v
 python -m pytest tests/unit/ -v --tb=short   # shorter tracebacks
 python -m pytest tests/unit/ -x              # stop on first failure
+```
+
+**TypeScript:**
+
+```bash
+npx vitest run tests/unit/
+npx vitest run tests/unit/ --reporter=verbose
 ```
 
 ## Integration Testing
@@ -98,8 +133,16 @@ def db_session(db_engine):
 
 ### Running Integration Tests
 
+**Python:**
+
 ```bash
 python -m pytest tests/integration/ -v
+```
+
+**TypeScript:**
+
+```bash
+npx vitest run tests/integration/
 ```
 
 ## End-to-End Testing
@@ -137,17 +180,25 @@ def test_user_registration_and_login():
 
 ## Coverage
 
-```bash
-# Run with coverage report
-python -m pytest tests/ --cov=src --cov-report=term-missing --cov-report=html
+**Python:**
 
-# Open HTML report
+```bash
+python -m pytest tests/ --cov=src --cov-report=term-missing --cov-report=html
 open htmlcov/index.html
+```
+
+**TypeScript:**
+
+```bash
+npx vitest run --coverage
+open coverage/index.html
 ```
 
 ### Coverage Targets
 
-- New business logic: ≥ 80% line coverage
+Use `coverageThreshold` from `.claude/config.json` (default: 80).
+
+- New business logic: ≥ coverageThreshold% line coverage
 - Critical paths (auth, payments, data integrity): ≥ 90%
 - Auto-generated or trivial code: exempt
 
@@ -180,23 +231,38 @@ def test_email_validation(email, valid):
 
 ## Security Testing
 
-```bash
-# Check for known vulnerabilities in dependencies
-pip audit
+**Python:**
 
-# Static analysis for common security issues
-pip install bandit
+```bash
+pip audit
 bandit -r src/ -ll
+```
+
+**TypeScript:**
+
+```bash
+npm audit
 ```
 
 ## Continuous Integration
 
 Add this to your CI workflow:
 
+**Python:**
+
 ```yaml
 - name: Run tests
   run: |
     source .venv/bin/activate
-    python -m pytest tests/ --cov=src --cov-fail-under=80
+    python -m pytest tests/ --cov=src --cov-fail-under=${coverageThreshold}
     pip audit
+```
+
+**TypeScript:**
+
+```yaml
+- name: Run tests
+  run: |
+    npx vitest run --coverage --coverage.thresholds.lines=${coverageThreshold}
+    npm audit
 ```

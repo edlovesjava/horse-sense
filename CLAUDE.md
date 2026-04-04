@@ -17,6 +17,7 @@ horse-sense/
 │   ├── agents/                ← Specialized role agents [auto-discovered]
 │   ├── skills/                ← Model-invoked SKILL.md guides [auto-discovered]
 │   ├── bin/                   ← Executables added to PATH [auto-discovered]
+│   ├── schemas/               ← JSON schemas (supporting files)
 │   ├── rules/                 ← Coding standards (supporting files)
 │   ├── templates/             ← Document scaffolds (supporting files)
 │   └── scripts/               ← Shell automation (supporting files)
@@ -41,7 +42,11 @@ claude --plugin-dir ./horse
 
 ### Project Configuration
 
-The plugin supports a `horse.config.md` file in your project root (scaffolded from `templates/horse_config.md`). Key settings:
+The plugin uses two configuration layers:
+
+#### 1. `horse.config.md` (SDLC workflow settings)
+
+Scaffolded from `templates/horse_config.md`. Controls how the horse plugin organizes your project:
 
 | Setting | Values | Default | Description |
 |---|---|---|---|
@@ -53,6 +58,24 @@ The plugin supports a `horse.config.md` file in your project root (scaffolded fr
 - **per-story** — a lightweight `requirements_doc.md` index + individual `US-<NNN>-<title>-<status>.md` files
 - **rebase** — rebase feature branches onto target before merging (linear history)
 - **merge** — use merge commits to integrate branches (preserves branch topology)
+
+#### 2. `.claude/config.json` (toolchain settings)
+
+Per-project toolchain configuration read by skills and agents. Auto-detected from `pyproject.toml` (Python) or `package.json` (TypeScript) if absent.
+
+| Setting | Python default | TypeScript default |
+|---|---|---|
+| `language` | `python` | `typescript` |
+| `framework` | (none) | (none) |
+| `testRunner` | `pytest` | `vitest` |
+| `linter` | `ruff check` | `eslint` |
+| `typeChecker` | `mypy` | `tsc --noEmit` |
+| `formatter` | `ruff format` | `prettier --write` |
+| `srcDir` | `src` | `src` |
+| `testDir` | `tests` | `tests` |
+| `coverageThreshold` | `80` | `80` |
+
+Full schema: `horse/schemas/config.schema.json`. Example configs: `horse/templates/config.example.python.json`, `horse/templates/config.example.typescript.json`.
 
 ### Slash Commands
 
@@ -86,6 +109,7 @@ Agents are auto-discovered by the plugin manager and appear in `/agents`:
 | `agents/` | Yes | Agent personas with YAML frontmatter |
 | `skills/` | Yes | Model-invoked capability guides |
 | `bin/` | Yes | Executables added to PATH |
+| `schemas/` | No | JSON schemas (config validation) |
 | `rules/` | No | Coding standards referenced by agents/skills |
 | `templates/` | No | Document scaffolds referenced by commands |
 | `scripts/` | No | Shell automation referenced by commands |

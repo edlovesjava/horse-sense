@@ -9,13 +9,26 @@ description: Prepare deployment artifacts, CI/CD workflows, and runbooks
 
 Package, configure, and ship software to its target environment reliably and repeatably. A good deployment process is automated, auditable, and reversible.
 
+## Configuration
+
+Before starting, read the project config from `.claude/config.json` (if it exists). Key variables for deployment:
+
+| Variable | Python default | TypeScript default |
+|---|---|---|
+| `dockerBaseImage` | `python:3.11-slim` | `node:20-slim` |
+| `dockerPort` | `8000` | `3000` |
+| `healthCheckPath` | `/health` | `/health` |
+| `coverageThreshold` | `80` | `80` |
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full schema.
+
 ## Deployment Checklist
 
 Before any deployment:
 
 - [ ] All tests pass in CI
-- [ ] Coverage meets the project threshold
-- [ ] No known security vulnerabilities (`pip audit`)
+- [ ] Coverage meets the project threshold (`coverageThreshold` in config, default 80%)
+- [ ] No known security vulnerabilities (`pip audit` / `npm audit`)
 - [ ] `CHANGELOG.md` updated
 - [ ] Version bumped (`pyproject.toml` or `setup.cfg`)
 - [ ] Database migration scripts reviewed and tested
@@ -57,6 +70,8 @@ python3 -c "import secrets; print(secrets.token_hex(32))"
 
 ## Containerization with Docker
 
+Use `dockerBaseImage` and `dockerPort` from config. Examples below use defaults.
+
 ### Dockerfile (Python)
 
 ```dockerfile
@@ -64,19 +79,35 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install dependencies first (layer caching)
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy source code
 COPY src/ ./src/
 
-# Run as non-root user
 RUN adduser --disabled-password --gecos "" appuser
 USER appuser
 
 EXPOSE 8000
 CMD ["python", "-m", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+### Dockerfile (TypeScript)
+
+```dockerfile
+FROM node:20-slim
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --omit=dev
+
+COPY dist/ ./dist/
+
+RUN adduser --disabled-password --gecos "" appuser
+USER appuser
+
+EXPOSE 3000
+CMD ["node", "dist/index.js"]
 ```
 
 ### Docker Compose (local dev)

@@ -9,9 +9,20 @@ description: Set up and manage Python virtual environments with pip
 
 Establish a clean, reproducible Python environment for every project using `venv`. This skill ensures all contributors use the same dependencies and avoids conflicts with system Python packages.
 
+## Configuration
+
+Read `.claude/config.json` (if it exists) for:
+
+- `pythonVersion` — target Python version (default: `3.11`)
+- `packageManager` — should be `pip` for this skill
+
+This skill only applies to Python projects. For TypeScript projects, use `npm install` directly.
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full schema.
+
 ## Prerequisites
 
-- Python ≥ 3.11 installed and available as `python3`
+- Python ≥ `pythonVersion` (default 3.11) installed and available as `python3`
 - `pip` ≥ 23.0
 - Git repository initialized at the project root
 

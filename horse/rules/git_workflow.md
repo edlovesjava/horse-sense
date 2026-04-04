@@ -136,6 +136,7 @@ Check `horse.config.md` for the `git_strategy` setting:
 - **merge** — Use **Merge Commit** to preserve branch topology.
 
 In both cases:
+
 - Delete the branch after merging
 - Use **Merge Commit** for release branches regardless of strategy (preserve release history)
 

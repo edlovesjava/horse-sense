@@ -25,14 +25,14 @@ When this command is invoked:
 5. Ask: *"How would you like to organize requirements — a single document or one file per story?"*
 6. Ask: *"Do you prefer rebase or merge for integrating feature branches?"*
 7. Generate `horse.config.md` in the project root using `${CLAUDE_PLUGIN_ROOT}/templates/horse_config.md`, setting `requirements_format` and `git_strategy` based on the user's answers.
-7. Based on the config:
+8. Based on the config:
    - **monolith**: generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md`.
    - **per-story**: generate a draft `requirements_doc.md` using `${CLAUDE_PLUGIN_ROOT}/templates/requirements_index.md` (index only), then create individual story files using `${CLAUDE_PLUGIN_ROOT}/templates/user_story.md` in the configured `requirements_stories_dir`.
-6. Propose a high-level architecture with two or three options and trade-offs.
-7. Once the user selects an architecture, generate a draft `architecture_doc.md`.
-8. Break the requirements into a sprint backlog and generate a `sprint_plan.md`.
-9. Run `${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh` or guide the user to do so.
-10. Confirm the user is ready to begin implementation and point them to `${CLAUDE_PLUGIN_ROOT}/agents/developer.md`.
+9. Propose a high-level architecture with two or three options and trade-offs.
+10. Once the user selects an architecture, generate a draft `architecture_doc.md`.
+11. Break the requirements into a sprint backlog and generate a `sprint_plan.md`.
+12. Run `${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh` or guide the user to do so.
+13. Confirm the user is ready to begin implementation and point them to `${CLAUDE_PLUGIN_ROOT}/agents/developer.md`.
 
 ## Guiding Principles
 
