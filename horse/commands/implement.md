@@ -14,16 +14,20 @@ Begin implementing a user story or task.
 When this command is invoked:
 
 1. Ask: *"Which story or task are you implementing? (provide story ID or description)"*
-2. Confirm the acceptance criteria are clear — if not, clarify before writing code.
-3. Identify the files that need to change.
-4. Write a failing test first (TDD):
+2. Look up the story:
+   - Check `horse.config.md` for `requirements_format`.
+   - **monolith**: find the story in `requirements_doc.md`.
+   - **per-story**: find the story file in the configured `requirements_stories_dir` (default: `docs/requirements/stories/`) matching the given ID.
+3. Confirm the acceptance criteria are clear — if not, clarify before writing code.
+4. Identify the files that need to change.
+5. Write a failing test first (TDD):
    - Place in `tests/unit/` or `tests/integration/` as appropriate
    - Use the naming convention `test_<what>_<condition>_<expected_result>`
-5. Implement the minimum code to make the test pass.
-6. Refactor for clarity and adherence to `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`.
-7. Run the full test suite: `bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh --unit`
-8. Run the linter: `bash ${CLAUDE_PLUGIN_ROOT}/scripts/lint.sh`
-9. Prepare a conventional commit message for the user to review.
+6. Implement the minimum code to make the test pass.
+7. Refactor for clarity and adherence to `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`.
+8. Run the full test suite: `bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh --unit`
+9. Run the linter: `bash ${CLAUDE_PLUGIN_ROOT}/scripts/lint.sh`
+10. Prepare a conventional commit message for the user to review.
 
 ## Commit Message Format
 

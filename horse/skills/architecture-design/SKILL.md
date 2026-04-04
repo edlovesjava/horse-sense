@@ -9,6 +9,17 @@ description: Design system architecture, select technologies, create ADRs
 
 Translate requirements into a coherent, scalable system design before implementation begins. Good architecture reduces technical debt, enables independent team work, and makes the system easier to evolve.
 
+## Configuration
+
+Read `.claude/config.json` (if it exists) for project context. Key variables for architecture decisions:
+
+- `language` — primary language (python / typescript)
+- `framework` — application framework (fastapi, express, etc.)
+
+These inform technology selection, component design, and deployment patterns.
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full schema.
+
 ## Architecture Process
 
 ```

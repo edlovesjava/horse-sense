@@ -58,8 +58,8 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | M0: Planning complete | Requirements, architecture, ADRs, project plan | 2026-04-03 | ✅ Done |
 | M0.5: Spec review | Review official plugin docs, resolve open questions, update plans | 2026-04-04 | ✅ Done |
 | M1: Plugin structure | `horse/` module with `.claude-plugin/plugin.json`, `commands/`, flat `agents/` with frontmatter | Sprint 1 | ✅ Done |
-| M1.5: Plugin toolchain | Validation, linting, `make check`, GitHub Actions CI | Sprint 2 | ⬜ |
-| M2: Skills & agents migrated | config.json support, rules folded into agent prompts | Sprint 2 | ⬜ |
+| M1.5: Plugin toolchain | Validation, linting, `make check`, GitHub Actions CI | Sprint 2 | ✅ Done |
+| M2: Skills & agents migrated | config.json support, rules folded into agent prompts | Sprint 2 | ✅ Done |
 | M3: Dual toolchain + CI | TypeScript support, documentation, end-to-end validation | Sprint 3 | ⬜ |
 | M4: Phase 1 complete — usable plugin | End-to-end `claude --plugin-dir ./horse` → use in a real project | Sprint 3 | ⬜ |
 | M5: Trail definitions & orchestrators | Trail docs, orchestrator agents, monitor agent | Sprint 4 | ⬜ |
@@ -101,12 +101,12 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-100 | Create Makefile with `check` and `fix` targets | Must | 2 | 2 | ⬜ |
-| T-101 | Create plugin structure validation script | Must | 3 | 2 | ⬜ |
-| T-102 | Add frontmatter validation for agents, commands, skills, rules | Must | 3 | 2 | ⬜ |
-| T-103 | Add markdownlint configuration and Makefile integration | Must | 2 | 2 | ⬜ |
-| T-104 | Add shellcheck integration for scripts/ and bin/ | Must | 1 | 2 | ⬜ |
-| T-105 | Create GitHub Actions CI workflow | Must | 3 | 2 | ⬜ |
+| T-100 | Create Makefile with `check` and `fix` targets | Must | 2 | 2 | ✅ Done |
+| T-101 | Create plugin structure validation script | Must | 3 | 2 | ✅ Done |
+| T-102 | Add frontmatter validation for agents, commands, skills, rules | Must | 3 | 2 | ✅ Done |
+| T-103 | Add markdownlint configuration and Makefile integration | Must | 2 | 2 | ✅ Done |
+| T-104 | Add shellcheck integration for scripts/ and bin/ | Must | 1 | 2 | ✅ Done |
+| T-105 | Create GitHub Actions CI workflow | Must | 3 | 2 | ✅ Done |
 | | **Epic 1.5 Total** | | **14** | | |
 
 #### Epic 2: Skills, Agents & Configuration (Sprint 2, Part 2)
@@ -115,30 +115,44 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-010 | Define `.claude/config.json` schema with defaults and auto-detection | Must | 3 | 2 | ⬜ |
-| T-011 | Update all 6 skills to read config variables (language, testRunner, srcDir, etc.) | Must | 5 | 2 | ⬜ |
-| T-012 | Update agent system prompts to incorporate rules content and reference `${CLAUDE_PLUGIN_ROOT}/rules/` | Must | 3 | 2 | ⬜ |
-| T-013 | ~~Add glob frontmatter to all 4 rule files~~ → Fold key rules into agent prompts (rules/ not auto-discovered) | Must | 3 | 2 | ⬜ |
-| T-014 | Update CLAUDE.md for plugin context (new structure, new commands, config) | Must | 2 | 2 | ⬜ |
+| T-010 | Define `.claude/config.json` schema with defaults and auto-detection | Must | 3 | 2 | ✅ Done |
+| T-011 | Update all 6 skills to read config variables (language, testRunner, srcDir, etc.) | Must | 5 | 2 | ✅ Done |
+| T-012 | Update agent system prompts to incorporate rules content and reference `${CLAUDE_PLUGIN_ROOT}/rules/` | Must | 3 | 2 | ✅ Done |
+| T-013 | ~~Add glob frontmatter to all 4 rule files~~ → Fold key rules into agent prompts (rules/ not auto-discovered) | Must | 3 | 2 | ✅ Done |
+| T-014 | Update CLAUDE.md for plugin context (new structure, new commands, config) | Must | 2 | 2 | ✅ Done |
 | | **Sprint 2 Total** | | **16** | | |
 
-#### Epic 3: Dual Toolchain, CI & Documentation (Sprint 3)
+#### Epic 3: Dual Toolchain, PR Skills, Scout & Documentation (Sprint 3)
 >
-> Add TypeScript support, GitHub Actions template, update all documentation for v1.0 release.
+> Complete TypeScript support, add PR review/fix skills, introduce scout agent/skill, update documentation.
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc) | Must | 5 | 3 | ⬜ |
-| T-021 | Create `rules/typescript_quality.md` with glob `**/*.ts,**/*.tsx` | Must | 3 | 3 | ⬜ |
+| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc) | Must | 3 | 3 | ⬜ |
+| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific rules | Must | 3 | 3 | ⬜ |
 | T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | Must | 5 | 3 | ⬜ |
 | T-023 | Create `templates/ci.yml` GitHub Actions workflow (Python + TS matrix) | Should | 3 | 3 | ⬜ |
 | T-024 | Update README.md for plugin installation, configuration, and usage | Must | 2 | 3 | ⬜ |
-| T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 3 | ⬜ |
-| T-026 | End-to-end validation: install plugin into a fresh Python project, run full SDLC manually | Must | 3 | 3 | ⬜ |
-| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 3 | ⬜ |
-| | **Sprint 3 Total** | | **27** | | |
+| T-028 | Create `skills/pr-review/SKILL.md` — PR review with gh CLI | Must | 5 | 3 | ⬜ |
+| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply | Must | 5 | 3 | ⬜ |
+| T-030s | Create `agents/scout.md` — research and investigation agent | Must | 3 | 3 | ⬜ |
+| T-031s | Create `skills/scout/SKILL.md` — spike research skill | Must | 3 | 3 | ⬜ |
+| T-032s | Create `templates/spike_report.md` — spike report scaffold | Must | 1 | 3 | ✅ Done |
+| T-033s | Create `mkdocs.yml` with Material theme and nav structure | Should | 2 | 3 | ⬜ |
+| T-034s | Organize content — map horse/ and docs/ into nav hierarchy | Should | 2 | 3 | ⬜ |
+| T-035s | Add `make docs` target and build script | Should | 1 | 3 | ⬜ |
+| T-036s | Add docs build to CI and GitHub Pages deployment | Should | 3 | 3 | ⬜ |
+| | **Sprint 3 Total (with stretch)** | | **41** | | |
 
-**Phase 1 Total: 69 story points across 3 sprints**
+#### Deferred to Sprint 4 (from original Sprint 3)
+
+| Story ID | Title | Priority | Points | Sprint | Status |
+|---|---|---|---|---|---|
+| T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 4 | ⬜ |
+| T-026 | End-to-end validation: install plugin into a fresh Python project | Must | 3 | 4 | ⬜ |
+| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 4 | ⬜ |
+
+**Phase 1 Total: 78 story points across 3 sprints (+ 9 SP deferred to Sprint 4)**
 
 ---
 
@@ -316,10 +330,16 @@ Maps implementation tasks to requirement user stories:
 | T-011 | US-010 (skill as guide), US-013 (config variables) |
 | T-012 | US-020 (worker personas), US-021 (agents compose skills) |
 | T-013 | US-030 (glob-matched rules), US-031 (rules customize skills) |
-| **Sprint 3 (Toolchain & Docs)** | |
+| **Sprint 3 (Toolchain, PR Skills, Scout)** | |
 | T-020, T-021 | US-051 (TypeScript toolchain) |
 | T-022 | US-050 (Python toolchain), US-051 (TypeScript toolchain) |
 | T-023 | US-060 (GitHub Actions) |
+| T-028 | US-080 (PR review skill) |
+| T-029 | US-081 (PR fix skill) |
+| T-030s, T-031s, T-032s | US-082 (scout research and investigation skill) |
+| T-033s, T-034s, T-035s, T-036s | US-075 (documentation generation) — stretch goal |
+| **Deferred to Sprint 4** | |
+| T-025 | US-051 (TypeScript scaffolding) |
 | T-026, T-027 | US-001, US-002, US-011 (end-to-end validation) |
 | **Sprint 4 (Processes)** | |
 | T-030 | US-025 (trail definitions), US-026 (flow control), US-027 (gates) |

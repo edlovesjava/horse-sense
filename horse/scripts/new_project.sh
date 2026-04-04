@@ -23,7 +23,7 @@ if [ -z "${PROJECT}" ]; then
 fi
 
 # Sanitize name (lowercase, hyphens to underscores for the Python package)
-PKG_NAME="${PROJECT//-/_}"
+PKG_NAME="$(echo "${PROJECT//-/_}" | tr '[:upper:]' '[:lower:]')"
 
 info "Scaffolding project: ${PROJECT} (package: ${PKG_NAME})"
 
@@ -187,7 +187,7 @@ jobs:
       - name: Security scan
         run: |
           source .venv/bin/activate
-          pip audit
+          pip-audit
 CI
 
 info "Created .github/workflows/ci.yml"
@@ -213,7 +213,7 @@ info "Project '${PROJECT}' scaffolded successfully!"
 echo ""
 echo "  Next steps:"
 echo "    1. cd into your project directory (if not already there)"
-echo "    2. bash scripts/setup_env.sh"
+echo "    2. bash \${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh   # provided by the horse plugin"
 echo "    3. Fill out templates/requirements_doc.md"
-echo "    4. Run bash scripts/run_tests.sh"
+echo "    4. bash \${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh   # provided by the horse plugin"
 echo ""

@@ -130,9 +130,15 @@ Closes #<ticket-number>
 
 ### Merging
 
-- Use **Squash and Merge** for feature branches (clean history on `main`)
-- Use **Merge Commit** only for release branches (preserve branch history)
+Check `horse.config.md` for the `git_strategy` setting:
+
+- **rebase** (default) — Rebase the feature branch onto the target branch before merging. Use **Squash and Merge** or **Rebase and Merge** for a linear history on `main`.
+- **merge** — Use **Merge Commit** to preserve branch topology.
+
+In both cases:
+
 - Delete the branch after merging
+- Use **Merge Commit** for release branches regardless of strategy (preserve release history)
 
 ## Tags and Releases
 

@@ -9,6 +9,12 @@ description: Elicit, analyze, document, and validate project requirements
 
 Systematically gather, document, and validate what the software must do — before any design or code is written. Well-written requirements reduce rework, prevent scope creep, and create a shared understanding between stakeholders and the development team.
 
+## Configuration
+
+This skill reads `horse.config.md` in the project root for the `requirements_format` setting. It also reads `.claude/config.json` for project-level settings (language, framework) to tailor requirement templates.
+
+See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full config schema.
+
 ## The Requirements Process
 
 ```
@@ -100,7 +106,10 @@ Once approved:
 
 ## Output
 
-Fill out `templates/requirements_doc.md` with the elicited requirements.
+Check the project's `horse.config.md` for the `requirements_format` setting:
+
+- **monolith** (default): Fill out `templates/requirements_doc.md` with all user stories inline.
+- **per-story**: Fill out `templates/requirements_index.md` for background, stakeholders, NFRs, and a story index table. Create each user story as a separate file using `templates/user_story.md`, saved to the directory specified by `requirements_stories_dir` (default: `docs/requirements/stories/`). Name files as `US-<NNN>-<kebab-title>-<status>.md`.
 
 ## Common Anti-Patterns to Avoid
 

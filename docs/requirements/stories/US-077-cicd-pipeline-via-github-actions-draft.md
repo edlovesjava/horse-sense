@@ -9,7 +9,7 @@ section: "3.9 Plugin Toolchain & CI/CD"
 
 # US-077 — CI/CD pipeline via GitHub Actions
 
-> As a **plugin author**, I want to **a GitHub Actions workflow that validates every PR and release** so that **the plugin is always in a known-good state**.
+> As a **plugin author**, I want **a GitHub Actions workflow that validates every PR and release** so that **the plugin is always in a known-good state**.
 
 ## Acceptance Criteria
 
