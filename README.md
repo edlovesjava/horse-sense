@@ -59,7 +59,7 @@ horse-sense/
 │   │   ├── tester.md
 │   │   └── reviewer.md
 │   ├── skills/                      ← Model-invoked SKILL.md guides [auto-discovered]
-│   │   ��── python-venv/SKILL.md
+│   │   ├── python-venv/SKILL.md
 │   │   ├── requirements-analysis/SKILL.md
 │   │   ├── architecture-design/SKILL.md
 │   │   ├── implementation/SKILL.md

@@ -72,11 +72,11 @@ graph TD
         end
 
         subgraph "Orchestration Layer"
-            Orchestrators["agents/orchestrators/<br/>SDLC Orchestrator<br/>Sprint Orchestrator<br/>Monitor"]
+            Orchestrators["agents/<br/>orchestrator-sdlc · orchestrator-sprint<br/>monitor"]
         end
 
         subgraph "Worker Agent Layer"
-            Workers["agents/workers/<br/>Planner · Architect · Developer<br/>Tester · Reviewer"]
+            Workers["agents/<br/>planner · architect · developer<br/>tester · reviewer"]
         end
 
         subgraph "Skills Layer"
@@ -112,7 +112,7 @@ graph TD
     PM --> Workers
     PM --> Rules
 
-    Orchestrators --> Processes
+    Orchestrators --> Trails
     Orchestrators --> Workers
     Orchestrators -->|"human checkpoints"| CC
     Workers --> AgentSkills
