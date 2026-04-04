@@ -1,6 +1,6 @@
 # Project Plan: horse-sense v1.0
 
-> **Document version**: 1.1  
+> **Document version**: 1.2  
 > **Created**: 2026-04-03  
 > **Last updated**: 2026-04-04  
 > **Owner**: Ed Wentworth  
@@ -20,14 +20,15 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 1. **Phase 1 — Plugin Packaging**: Create the `horse/` plugin module conforming to the official Claude Code plugin spec, with all content properly structured for auto-discovery
 2. **Phase 2 — Process Orchestration**: Add configurable process definitions and orchestrator agents to enable structured, gate-enforced SDLC workflows
+3. **Phase 3 — Containerized Subagent Execution**: Enable the orchestrator to spawn sandboxed `claude` CLI subagents (via `-p`, `--output-format json`) inside Docker containers for one-shot task execution
 
 ### Non-Goals (Out of Scope)
 
 - Marketplace publishing (Git clone / `--plugin-dir` distribution only)
 - Languages beyond Python and TypeScript
 - Enterprise features (org policies, audit trails, private registry)
-- Dynamic agent spawning (OS-level processes)
 - Cross-session state persistence
+- Long-running daemon-style subagents (subagents are one-shot only)
 
 ### Success Metrics
 
@@ -38,6 +39,7 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | Agents have proper frontmatter and appear in `/agents` | Flat markdown, no frontmatter | All agents discoverable with name, description, model | End of Phase 1 |
 | Skills adapt to Python and TypeScript projects | Python only | Both via `.claude/config.json` | End of Phase 1 |
 | Orchestrator executes feature-delivery process | No orchestration | Full SDLC flow with gates and human checkpoints | End of Phase 2 |
+| Orchestrator dispatches containerized subagents | Manual agent invocation only | One-shot tasks run in Docker sandbox, results collected as JSON | End of Phase 3 |
 
 ---
 
@@ -61,6 +63,8 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | M4: Phase 1 complete — usable plugin | End-to-end `claude --plugin-dir ./horse` → use in a real project | Sprint 3 | ⬜ |
 | M5: Process definitions & orchestrators | Process docs, orchestrator agents, monitor agent | Sprint 4 | ⬜ |
 | M6: Phase 2 complete — orchestrated SDLC | Feature-delivery workflow running end-to-end | Sprint 5 | ⬜ |
+| M7: Subagent dispatch infrastructure | `bin/claude-sandbox` runner, Dockerfile, dispatch skill working | Sprint 6 | ⬜ |
+| M8: Phase 3 complete — containerized subagents | Orchestrator can dispatch one-shot Claude tasks in Docker, collect JSON results | Sprint 7 | ⬜ |
 
 ---
 
@@ -151,6 +155,40 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 ---
 
+### Phase 3: Containerized Subagent Execution
+
+#### Epic 6: Subagent Dispatch Infrastructure (Sprint 6)
+> Build the scaffolding for spawning `claude` CLI instances in Docker containers as one-shot subagents. The orchestrator invokes `claude -p "<prompt>" --output-format json` inside a sandboxed container and collects structured results.
+
+**Rationale**: The orchestrator/subagent model is explicitly part of Claude Code's design. The `claude` CLI supports non-interactive use (`-p`, `--output-format json`, `--input-file`), and Anthropic's multi-agent patterns describe orchestrators spawning subagents. The SKILL.md layer encodes _when_ and _how_ to dispatch as reusable instruction.
+
+| Story ID | Title | Priority | Points | Sprint | Status |
+|---|---|---|---|---|---|
+| T-050 | Create `Dockerfile.claude-sandbox` — minimal image with `claude` CLI, Node.js, Python, git | Must | 5 | 6 | ⬜ |
+| T-051 | Create `bin/claude-sandbox` — shell wrapper that runs `docker run` with volume mounts, env passthrough, and timeout | Must | 5 | 6 | ⬜ |
+| T-052 | Create `skills/subagent-dispatch/SKILL.md` — when and how to spawn a containerized subagent (prompt construction, JSON parsing, error handling) | Must | 3 | 6 | ⬜ |
+| T-053 | Define subagent invocation contract: input (prompt + context files), output (JSON with `result`, `exit_code`, `stderr`), timeout, resource limits | Must | 3 | 6 | ⬜ |
+| T-054 | Create `templates/subagent_prompt.md` — template for constructing well-formed one-shot prompts with task description, constraints, and output format | Should | 2 | 6 | ⬜ |
+| T-055 | Smoke test: orchestrator dispatches a trivial task ("list files in /src") to containerized subagent, parses JSON result | Must | 3 | 6 | ⬜ |
+| | **Sprint 6 Total** | | **21** | | |
+
+#### Epic 7: Orchestrator Integration & Patterns (Sprint 7)
+> Wire subagent dispatch into the orchestrator agents from Phase 2. Define reusable patterns for common one-shot tasks (code generation, test execution, linting, security scanning).
+
+| Story ID | Title | Priority | Points | Sprint | Status |
+|---|---|---|---|---|---|
+| T-060 | Update `agents/sdlc.md` orchestrator to dispatch implementation subtasks as containerized subagents | Must | 5 | 7 | ⬜ |
+| T-061 | Create fan-out pattern: orchestrator dispatches N parallel subagents (e.g., lint + test + security scan), aggregates results | Must | 5 | 7 | ⬜ |
+| T-062 | Create `skills/subagent-patterns/SKILL.md` — catalog of one-shot task patterns (code-gen, test-run, lint, review, file-transform) with prompt templates | Should | 3 | 7 | ⬜ |
+| T-063 | Add subagent result validation — orchestrator checks exit code, parses JSON, retries on transient failure (max 1 retry) | Must | 3 | 7 | ⬜ |
+| T-064 | Security: ensure containers run as non-root, no network by default (`--network none`), read-only root FS, tmpfs for `/tmp` | Must | 3 | 7 | ⬜ |
+| T-065 | End-to-end validation: run feature-delivery process with at least 2 steps delegated to containerized subagents | Must | 5 | 7 | ⬜ |
+| | **Sprint 7 Total** | | **24** | | |
+
+**Phase 3 Total: 45 story points across 2 sprints**
+
+---
+
 ### Backlog (Future)
 
 | Story ID | Title | Priority | Points | Notes |
@@ -159,6 +197,9 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-101 | `bin/hs` CLI helper for common operations | Could | 3 | Defer unless needed |
 | T-102 | Plugin marketplace publishing | Won't | 5 | Out of scope for v1 |
 | T-103 | Additional language support (Go, Rust, Java) | Won't | 8 | Future version |
+| T-104 | Warm container pool — pre-built images cached for faster subagent startup | Could | 5 | Depends on Phase 3 perf findings |
+| T-105 | Subagent cost/usage tracking — log token usage per dispatch for budgeting | Could | 3 | Depends on Claude CLI output |
+| T-106 | `--input-file` support — pass large context via mounted file instead of prompt string | Could | 3 | Depends on T-053 contract |
 
 ---
 
@@ -171,6 +212,7 @@ Details in [docs/architecture/architecture_doc.md](../architecture/architecture_
 - **Configuration**: Two-tier — plugin.json + `.claude/config.json` ([ADR-0002](../adr/0002-two-tier-configuration.md))
 - **Toolchains**: Python (venv/pytest/ruff) + TypeScript (npm/vitest/eslint) ([ADR-0003](../adr/0003-dual-toolchain-support.md))
 - **Orchestration**: Process definitions + orchestrator/worker/monitor agents ([ADR-0004](../adr/0004-process-orchestration-model.md))
+- **Subagent Execution**: Containerized one-shot `claude -p` invocations in Docker for sandboxed task delegation ([ADR-0005](../adr/0005-containerized-subagent-execution.md)). Orchestrator constructs prompt, mounts workspace, collects JSON result. Degrades to local CLI when Docker unavailable.
 - **CI/CD**: GitHub Actions workflow template shipped with the plugin
 
 ### Migration Map (Phase 1)
@@ -203,6 +245,10 @@ bin/                             → horse/bin/ (auto-discovered, added to PATH)
 | Long processes exceed context limits | Low | High | Keep process steps small. Orchestrators summarize between steps. |
 | TypeScript scripts more complex than expected | Low | Med | Start with detection + thin wrappers. Enhance iteratively. |
 | Agent frontmatter schema changes in future Claude Code updates | Low | Med | Pin to known-working fields. Monitor release notes. |
+| Docker not available in all environments (CI, Codespaces, restricted hosts) | Med | High | `bin/claude-sandbox` should degrade gracefully to local `claude -p` when Docker unavailable. Document requirement. |
+| Subagent API key / auth passthrough into container | Med | Med | Pass `ANTHROPIC_API_KEY` via `--env` flag. Never bake into image. Document in T-053 contract. |
+| Container cold-start latency makes subagent dispatch slow | Med | Med | Start with pre-pulled images. Backlog T-104 (warm pool) if latency > 10s. |
+| Subagent prompt size exceeds CLI limits | Low | Med | Use `--input-file` with mounted volume (backlog T-106). Define max prompt size in T-053 contract. |
 
 ---
 
@@ -215,6 +261,8 @@ bin/                             → horse/bin/ (auto-discovered, added to PATH)
 | Claude Code Agent tool (for orchestrator dispatch) | External | Anthropic | ⬜ Needs testing |
 | Python >= 3.11 | External | User | ✅ Available |
 | Node.js >= 20 | External | User | ✅ Available |
+| Docker Engine (for Phase 3 containerized subagents) | External | User | ⬜ Required for Phase 3 |
+| Claude CLI non-interactive mode (`-p`, `--output-format json`) | External | Anthropic | ⬜ Needs testing |
 
 ---
 
@@ -258,6 +306,16 @@ Maps implementation tasks to requirement user stories:
 | T-040 through T-042 | US-023 (orchestrator), US-024 (monitor), US-028 (human-in-loop) |
 | T-043, T-044 | US-040 (SDLC flow), US-041 (quality gates) |
 | T-045 | US-029 (process tracking), US-040, US-041 |
+| **Sprint 6 (Subagent Infra)** | |
+| T-050, T-051 | Containerized sandbox environment and CLI wrapper |
+| T-052, T-053 | Subagent dispatch skill and invocation contract |
+| T-054, T-055 | Prompt template and smoke test |
+| **Sprint 7 (Orchestrator Integration)** | |
+| T-060 | US-023 (orchestrator dispatches subagents) |
+| T-061 | Fan-out parallel dispatch pattern |
+| T-062, T-063 | Subagent patterns catalog and result validation |
+| T-064 | Security hardening for containers |
+| T-065 | End-to-end validation with subagent delegation |
 
 ---
 
@@ -267,3 +325,4 @@ Maps implementation tasks to requirement user stories:
 |---|---|---|
 | 2026-04-03 | Ed Wentworth | Initial draft — Phase 1 + Phase 2 plan based on requirements v1.0, architecture v1.0, ADR-0001 through ADR-0004 |
 | 2026-04-04 | Ed Wentworth | v1.1 — Reviewed official plugin docs. Plugin renamed to `horse` in `horse/` subdir. `rules/`/`templates/` confirmed not auto-discovered. Agents must be flat with YAML frontmatter. Sprint 1 stories revised (T-009 series added). Open questions 1-3, 5, 8 resolved. Risks updated. |
+| 2026-04-04 | Ed Wentworth | v1.2 — Added Phase 3: Containerized Subagent Execution. Removed "Dynamic agent spawning" from Non-Goals. Added Epic 6 (Sprint 6: subagent infra) and Epic 7 (Sprint 7: orchestrator integration). New milestones M7, M8. Docker and Claude CLI non-interactive mode added as dependencies. |

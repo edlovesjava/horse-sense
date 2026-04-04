@@ -36,11 +36,11 @@ Tasks T-001 through T-007 were completed under the old structure (plugin at root
 | T-005 | ~~Restructure `agents/` into `agents/workers/`~~ | Must | 1 | ✅ Done (superseded by T-009) |
 | T-006 | ~~Create `bin/` directory (placeholder)~~ | Could | 1 | ✅ Done (superseded by T-009) |
 | T-007 | Remove `.claude/settings.json` (replaced by plugin.json) | Must | 1 | ✅ Done |
-| T-009 | Create `horse/` plugin module — move all plugin content into `horse/` subdir, rename plugin to `horse`, flatten agents, update all `/horse-sense:` → `/horse:` references | Must | 5 | ⬜ To Do |
-| T-009a | Add YAML frontmatter to all 5 agent files (name, description, model, maxTurns) | Must | 3 | ⬜ To Do |
-| T-009b | Update commands/skills to reference `${CLAUDE_PLUGIN_ROOT}/` paths for rules, templates, scripts | Must | 2 | ⬜ To Do |
-| T-009c | Update CLAUDE.md and README.md for new `horse/` structure and `/horse:*` namespace | Must | 1 | ⬜ To Do |
-| T-008 | Verify plugin loads via `claude --plugin-dir ./horse` smoke test | Must | 2 | ⬜ To Do |
+| T-009 | Create `horse/` plugin module — move all plugin content into `horse/` subdir, rename plugin to `horse`, flatten agents, update all `/horse-sense:` → `/horse:` references | Must | 5 | ✅ Done |
+| T-009a | Add YAML frontmatter to all 5 agent files (name, description, model, maxTurns) | Must | 3 | ✅ Done |
+| T-009b | Update commands/skills to reference `${CLAUDE_PLUGIN_ROOT}/` paths for rules, templates, scripts | Must | 2 | ✅ Done |
+| T-009c | Update CLAUDE.md and README.md for new `horse/` structure and `/horse:*` namespace | Must | 1 | ✅ Done |
+| T-008 | Verify plugin loads via `claude --plugin-dir ./horse` smoke test | Must | 2 | ✅ Done |
 | **Total (revised)** | | | **13** | |
 
 ### Status Key
