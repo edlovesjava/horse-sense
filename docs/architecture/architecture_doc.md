@@ -112,7 +112,7 @@ graph TD
     PM --> Workers
     PM --> Rules
 
-    Orchestrators --> Processes
+    Orchestrators --> Trails
     Orchestrators --> Workers
     Orchestrators -->|"human checkpoints"| CC
     Workers --> AgentSkills
