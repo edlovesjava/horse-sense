@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# setup_env.sh — Bootstrap the Python virtual environment
+# setup_env.sh — Bootstrap the project development environment
+# Detects language (Python or TypeScript) and sets up the appropriate toolchain.
 # Usage: bash scripts/setup_env.sh [python_executable]
 # Example: bash scripts/setup_env.sh python3.11
 
@@ -20,61 +21,121 @@ info()    { echo -e "${GREEN}[setup]${NC} $*"; }
 warn()    { echo -e "${YELLOW}[setup]${NC} $*"; }
 error()   { echo -e "${RED}[setup]${NC} $*" >&2; }
 
-# ── Prerequisite check ────────────────────────────────────────────────────────
-if ! command -v "${PYTHON}" &>/dev/null; then
-    error "'${PYTHON}' not found. Install Python 3.11+ and retry."
-    exit 1
-fi
+# ── Language detection ────────────────────────────────────────────────────────
+detect_language() {
+    if [ -f "package.json" ]; then
+        echo "typescript"
+    elif [ -f "pyproject.toml" ] || [ -f "requirements.txt" ] || [ -f "setup.py" ]; then
+        echo "python"
+    else
+        echo "unknown"
+    fi
+}
 
-PYTHON_VERSION=$("${PYTHON}" --version 2>&1)
-info "Using ${PYTHON_VERSION}"
+LANG=$(detect_language)
+info "Detected project language: ${LANG}"
 
-# ── Create virtual environment ────────────────────────────────────────────────
-if [ -d "${VENV_DIR}" ]; then
-    warn "Virtual environment '${VENV_DIR}' already exists — skipping creation."
-else
-    info "Creating virtual environment in '${VENV_DIR}'..."
-    "${PYTHON}" -m venv "${VENV_DIR}"
-fi
+# ── Python setup ──────────────────────────────────────────────────────────────
+setup_python() {
+    if ! command -v "${PYTHON}" &>/dev/null; then
+        error "'${PYTHON}' not found. Install Python 3.11+ and retry."
+        exit 1
+    fi
 
-# ── Activate ──────────────────────────────────────────────────────────────────
-# shellcheck source=/dev/null
-source "${VENV_DIR}/bin/activate"
-info "Activated ${VENV_DIR}"
+    PYTHON_VERSION=$("${PYTHON}" --version 2>&1)
+    info "Using ${PYTHON_VERSION}"
 
-# ── Upgrade pip ───────────────────────────────────────────────────────────────
-info "Upgrading pip..."
-pip install --quiet --upgrade pip
+    if [ -d "${VENV_DIR}" ]; then
+        warn "Virtual environment '${VENV_DIR}' already exists — skipping creation."
+    else
+        info "Creating virtual environment in '${VENV_DIR}'..."
+        "${PYTHON}" -m venv "${VENV_DIR}"
+    fi
 
-# ── Install production dependencies ──────────────────────────────────────────
-if [ -f "${REQ_FILE}" ]; then
-    info "Installing production dependencies from ${REQ_FILE}..."
-    pip install --quiet -r "${REQ_FILE}"
-else
-    warn "${REQ_FILE} not found — skipping production dependencies."
-fi
+    # shellcheck source=/dev/null
+    source "${VENV_DIR}/bin/activate"
+    info "Activated ${VENV_DIR}"
 
-# ── Install dev/test dependencies ─────────────────────────────────────────────
-if [ -f "${REQ_DEV_FILE}" ]; then
-    info "Installing dev/test dependencies from ${REQ_DEV_FILE}..."
-    pip install --quiet -r "${REQ_DEV_FILE}"
-else
-    warn "${REQ_DEV_FILE} not found — skipping dev dependencies."
-fi
+    info "Upgrading pip..."
+    pip install --quiet --upgrade pip
 
-# ── Copy .env.example if .env is missing ─────────────────────────────────────
+    if [ -f "${REQ_FILE}" ]; then
+        info "Installing production dependencies from ${REQ_FILE}..."
+        pip install --quiet -r "${REQ_FILE}"
+    else
+        warn "${REQ_FILE} not found — skipping production dependencies."
+    fi
+
+    if [ -f "${REQ_DEV_FILE}" ]; then
+        info "Installing dev/test dependencies from ${REQ_DEV_FILE}..."
+        pip install --quiet -r "${REQ_DEV_FILE}"
+    else
+        warn "${REQ_DEV_FILE} not found — skipping dev dependencies."
+    fi
+
+    echo ""
+    info "Python environment ready! Activate it with:"
+    echo ""
+    echo "    source ${VENV_DIR}/bin/activate"
+    echo ""
+    info "Run tests with:"
+    echo ""
+    echo "    python -m pytest tests/ -x --tb=short"
+    echo ""
+}
+
+# ── TypeScript setup ──────────────────────────────────────────────────────────
+setup_typescript() {
+    if ! command -v node &>/dev/null; then
+        error "Node.js not found. Install Node.js 20+ and retry."
+        exit 1
+    fi
+
+    NODE_VERSION=$(node --version 2>&1)
+    info "Using Node.js ${NODE_VERSION}"
+
+    if [ -d "node_modules" ]; then
+        warn "node_modules/ already exists — running npm install to sync."
+    fi
+
+    if [ -f "package-lock.json" ]; then
+        info "Installing dependencies with npm ci (reproducible)..."
+        npm ci --loglevel=warn
+    else
+        info "Installing dependencies with npm install..."
+        npm install --loglevel=warn
+    fi
+
+    echo ""
+    info "TypeScript environment ready!"
+    echo ""
+    info "Run tests with:"
+    echo ""
+    echo "    npx vitest run"
+    echo ""
+    info "Type-check with:"
+    echo ""
+    echo "    npx tsc --noEmit"
+    echo ""
+}
+
+# ── .env copy (both languages) ───────────────────────────────────────────────
 if [ ! -f ".env" ] && [ -f ".env.example" ]; then
     cp .env.example .env
     warn "Copied .env.example → .env. Edit .env with your local values."
 fi
 
-# ── Summary ───────────────────────────────────────────────────────────────────
-echo ""
-info "Environment ready! Activate it with:"
-echo ""
-echo "    source ${VENV_DIR}/bin/activate"
-echo ""
-info "Run tests with:"
-echo ""
-echo "    python -m pytest tests/ -x --tb=short"
-echo ""
+# ── Dispatch ──────────────────────────────────────────────────────────────────
+case "${LANG}" in
+    python)
+        setup_python
+        ;;
+    typescript)
+        setup_typescript
+        ;;
+    *)
+        warn "Could not auto-detect language. No package.json, pyproject.toml, or requirements.txt found."
+        warn "Create one of these files and re-run, or set up your environment manually."
+        exit 1
+        ;;
+esac

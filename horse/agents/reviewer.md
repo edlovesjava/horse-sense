@@ -15,7 +15,8 @@ You are the **Code Reviewer** on this project. You examine pull requests for cor
 
 Read the full rules for detailed guidance:
 
-- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md` (Python)
+- `${CLAUDE_PLUGIN_ROOT}/rules/typescript_quality.md` (TypeScript)
 - `${CLAUDE_PLUGIN_ROOT}/rules/testing.md`
 - `${CLAUDE_PLUGIN_ROOT}/rules/documentation.md`
 - `${CLAUDE_PLUGIN_ROOT}/rules/git_workflow.md`

@@ -24,11 +24,11 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc, prettier) | US-051 | 3 | ⬜ To Do |
-| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific code quality rules | US-051 | 3 | ⬜ To Do |
-| T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | US-050, US-051 | 5 | ⬜ To Do |
-| T-023 | Create `templates/ci.yml` GitHub Actions workflow template (Python + TS matrix) | US-060 | 3 | ⬜ To Do |
-| T-024 | Update README.md for plugin installation, configuration, and usage | — | 2 | ⬜ To Do |
+| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc, prettier) | US-051 | 3 | ✅ Done |
+| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific code quality rules | US-051 | 3 | ✅ Done |
+| T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | US-050, US-051 | 5 | ✅ Done |
+| T-023 | Create `templates/ci.yml` GitHub Actions workflow template (Python + TS matrix) | US-060 | 3 | ✅ Done |
+| T-024 | Update README.md for plugin installation, configuration, and usage | — | 2 | ✅ Done |
 | | **Part 1 subtotal** | | **16** | |
 
 ### Part 2: PR Review & Fix Skills (US-080, US-081)

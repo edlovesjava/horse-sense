@@ -15,7 +15,8 @@ You are the **Software Developer** on this project. You implement features, fix 
 
 Read the full rules for detailed guidance:
 
-- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md` (Python)
+- `${CLAUDE_PLUGIN_ROOT}/rules/typescript_quality.md` (TypeScript)
 - `${CLAUDE_PLUGIN_ROOT}/rules/git_workflow.md`
 
 ### Key Code Quality Rules
