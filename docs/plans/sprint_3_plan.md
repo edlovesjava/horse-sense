@@ -48,7 +48,19 @@ Three objectives, in priority order:
 | T-032s | Create `templates/spike_report.md` — spike report scaffold | US-082 | 1 | ⬜ To Do |
 | | **Part 3 subtotal** | | **7** | |
 
-| | **Sprint 3 Total** | | **33** | |
+| | **Parts 1–3 subtotal** | | **33** | |
+
+### Part 4: MkDocs Documentation Site (Stretch Goal — US-075)
+
+| Task ID | Title | Req | Points | Status |
+|---|---|---|---|---|
+| T-033s | Create `mkdocs.yml` with Material theme and nav structure | US-075 | 2 | ⬜ To Do |
+| T-034s | Organize content — map `horse/` and `docs/` into nav hierarchy | US-075 | 2 | ⬜ To Do |
+| T-035s | Add `make docs` target and build script | US-075 | 1 | ⬜ To Do |
+| T-036s | Add docs build to CI and GitHub Pages deployment | US-075, US-077 | 3 | ⬜ To Do |
+| | **Part 4 subtotal (stretch)** | | **8** | |
+
+| | **Sprint 3 Total (with stretch)** | | **41** | |
 
 ### Status Key
 
@@ -212,6 +224,52 @@ Spike report template with sections for:
 - Question, approach, findings, trade-off matrix, recommendation, open questions, next steps
 
 **Acceptance**: Template is scaffolded and referenced by scout skill. *(Note: already created as part of sprint planning.)*
+
+---
+
+### T-033s: Create `mkdocs.yml` with Material theme
+
+Create `mkdocs.yml` at repo root with:
+
+- `mkdocs-material` theme with search, dark mode
+- `nav:` structure covering: Getting Started, Configuration, Commands, Agents, Skills, Rules, Templates, ADRs, Spikes
+- Markdown extensions: admonitions, code highlighting, tables, tabs
+
+Add `mkdocs` and `mkdocs-material` to `requirements-dev.txt` (or a dedicated `docs/requirements.txt`).
+
+**Acceptance**: `mkdocs serve` renders the full documentation site locally.
+
+---
+
+### T-034s: Organize content into nav hierarchy
+
+Map existing markdown into the MkDocs nav. This may require:
+
+- An `index.md` for each nav section (can be thin wrappers that include/link existing files)
+- Symlinking or copying `horse/` content into a `docs/` structure MkDocs can read (or using `mkdocs-include-markdown-plugin`)
+- Ensuring relative links between docs still work
+
+**Acceptance**: All plugin docs, rules, templates, ADRs, and spike reports are navigable in the site.
+
+---
+
+### T-035s: Add `make docs` target and build script
+
+- `make docs` — build the static site to `site/`
+- `make docs-serve` — run local dev server (`mkdocs serve`)
+- Add `site/` to `.gitignore`
+
+**Acceptance**: `make docs` builds clean. `make docs-serve` runs locally.
+
+---
+
+### T-036s: Add docs build to CI and GitHub Pages deployment
+
+- Add `mkdocs build --strict` step to CI workflow (fails on broken links/warnings)
+- Add a deploy job that runs `mkdocs gh-deploy` on merge to `main`
+- Configure GitHub Pages to serve from `gh-pages` branch
+
+**Acceptance**: CI validates docs build. Merges to main auto-deploy to GitHub Pages.
 
 ---
 

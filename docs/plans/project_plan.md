@@ -138,7 +138,11 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-030s | Create `agents/scout.md` — research and investigation agent | Must | 3 | 3 | ⬜ |
 | T-031s | Create `skills/scout/SKILL.md` — spike research skill | Must | 3 | 3 | ⬜ |
 | T-032s | Create `templates/spike_report.md` — spike report scaffold | Must | 1 | 3 | ✅ Done |
-| | **Sprint 3 Total** | | **33** | | |
+| T-033s | Create `mkdocs.yml` with Material theme and nav structure | Should | 2 | 3 | ⬜ |
+| T-034s | Organize content — map horse/ and docs/ into nav hierarchy | Should | 2 | 3 | ⬜ |
+| T-035s | Add `make docs` target and build script | Should | 1 | 3 | ⬜ |
+| T-036s | Add docs build to CI and GitHub Pages deployment | Should | 3 | 3 | ⬜ |
+| | **Sprint 3 Total (with stretch)** | | **41** | | |
 
 #### Deferred to Sprint 4 (from original Sprint 3)
 
@@ -333,6 +337,7 @@ Maps implementation tasks to requirement user stories:
 | T-028 | US-080 (PR review skill) |
 | T-029 | US-081 (PR fix skill) |
 | T-030s, T-031s, T-032s | US-082 (scout research and investigation skill) |
+| T-033s, T-034s, T-035s, T-036s | US-075 (documentation generation) — stretch goal |
 | **Deferred to Sprint 4** | |
 | T-025 | US-051 (TypeScript scaffolding) |
 | T-026, T-027 | US-001, US-002, US-011 (end-to-end validation) |
