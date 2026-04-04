@@ -122,23 +122,33 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-014 | Update CLAUDE.md for plugin context (new structure, new commands, config) | Must | 2 | 2 | ✅ Done |
 | | **Sprint 2 Total** | | **16** | | |
 
-#### Epic 3: Dual Toolchain, CI & Documentation (Sprint 3)
+#### Epic 3: Dual Toolchain, PR Skills, Scout & Documentation (Sprint 3)
 >
-> Add TypeScript support, GitHub Actions template, update all documentation for v1.0 release.
+> Complete TypeScript support, add PR review/fix skills, introduce scout agent/skill, update documentation.
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc) | Must | 5 | 3 | ⬜ |
-| T-021 | Create `rules/typescript_quality.md` with glob `**/*.ts,**/*.tsx` | Must | 3 | 3 | ⬜ |
+| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc) | Must | 3 | 3 | ⬜ |
+| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific rules | Must | 3 | 3 | ⬜ |
 | T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | Must | 5 | 3 | ⬜ |
 | T-023 | Create `templates/ci.yml` GitHub Actions workflow (Python + TS matrix) | Should | 3 | 3 | ⬜ |
 | T-024 | Update README.md for plugin installation, configuration, and usage | Must | 2 | 3 | ⬜ |
-| T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 3 | ⬜ |
-| T-026 | End-to-end validation: install plugin into a fresh Python project, run full SDLC manually | Must | 3 | 3 | ⬜ |
-| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 3 | ⬜ |
-| | **Sprint 3 Total** | | **27** | | |
+| T-028 | Create `skills/pr-review/SKILL.md` — PR review with gh CLI | Must | 5 | 3 | ⬜ |
+| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply | Must | 5 | 3 | ⬜ |
+| T-030s | Create `agents/scout.md` — research and investigation agent | Must | 3 | 3 | ⬜ |
+| T-031s | Create `skills/scout/SKILL.md` — spike research skill | Must | 3 | 3 | ⬜ |
+| T-032s | Create `templates/spike_report.md` — spike report scaffold | Must | 1 | 3 | ✅ Done |
+| | **Sprint 3 Total** | | **33** | | |
 
-**Phase 1 Total: 69 story points across 3 sprints**
+#### Deferred to Sprint 4 (from original Sprint 3)
+
+| Story ID | Title | Priority | Points | Sprint | Status |
+|---|---|---|---|---|---|
+| T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 4 | ⬜ |
+| T-026 | End-to-end validation: install plugin into a fresh Python project | Must | 3 | 4 | ⬜ |
+| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 4 | ⬜ |
+
+**Phase 1 Total: 78 story points across 3 sprints (+ 9 SP deferred to Sprint 4)**
 
 ---
 
@@ -316,10 +326,15 @@ Maps implementation tasks to requirement user stories:
 | T-011 | US-010 (skill as guide), US-013 (config variables) |
 | T-012 | US-020 (worker personas), US-021 (agents compose skills) |
 | T-013 | US-030 (glob-matched rules), US-031 (rules customize skills) |
-| **Sprint 3 (Toolchain & Docs)** | |
+| **Sprint 3 (Toolchain, PR Skills, Scout)** | |
 | T-020, T-021 | US-051 (TypeScript toolchain) |
 | T-022 | US-050 (Python toolchain), US-051 (TypeScript toolchain) |
 | T-023 | US-060 (GitHub Actions) |
+| T-028 | US-080 (PR review skill) |
+| T-029 | US-081 (PR fix skill) |
+| T-030s, T-031s, T-032s | US-082 (scout research and investigation skill) |
+| **Deferred to Sprint 4** | |
+| T-025 | US-051 (TypeScript scaffolding) |
 | T-026, T-027 | US-001, US-002, US-011 (end-to-end validation) |
 | **Sprint 4 (Processes)** | |
 | T-030 | US-025 (trail definitions), US-026 (flow control), US-027 (gates) |

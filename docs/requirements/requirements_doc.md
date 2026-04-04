@@ -123,13 +123,19 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 | [US-080](stories/US-080-pr-review-skill-draft.md) | PR review skill | Must Have | 8 | Draft |
 | [US-081](stories/US-081-pr-fix-skill-draft.md) | PR fix skill | Must Have | 8 | Draft |
 
+### 3.11 Scout — Research & Spikes
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-082](stories/US-082-scout-research-skill-draft.md) | Scout research and investigation skill | Must Have | 8 | Draft |
+
 ### Summary
 
 | Priority | Count | Total SP |
 |---|---|---|
-| Must Have | 27 | 136 |
+| Must Have | 28 | 144 |
 | Should Have | 9 | 29 |
-| **Total** | **36** | **165** |
+| **Total** | **37** | **173** |
 
 ---
 
