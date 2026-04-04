@@ -1,0 +1,8 @@
+{
+  "name": "horse",
+  "description": "Structured SDLC plugin for Claude Code — agents, skills, and process orchestration for building high-quality software",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ed Wentworth"
+  }
+}
