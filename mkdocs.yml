@@ -95,9 +95,9 @@ nav:
       - requirements/index.md
   - Plans:
       - plans/index.md
-      - Sprint 1: plans/sprint_1_plan.md
-      - Sprint 2: plans/sprint_2_plan.md
-      - Sprint 3: plans/sprint_3_plan.md
+      - Sprint 1: plans/sprints/sprint_1_plan.md
+      - Sprint 2: plans/sprints/sprint_2_plan.md
+      - Sprint 3: plans/sprints/sprint_3_plan.md
 
 not_in_nav: |
   /architecture/architecture_doc.md
