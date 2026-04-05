@@ -90,6 +90,7 @@ nav:
           - ADR-0003 Dual Toolchain Support: adr/0003-dual-toolchain-support.md
           - ADR-0004 Process Orchestration Model: adr/0004-process-orchestration-model.md
           - ADR-0005 Containerized Subagent Execution: adr/0005-containerized-subagent-execution.md
+          - ADR-0006 Build and Docs Toolchain: adr/0006-build-and-docs-toolchain.md
   - Requirements:
       - requirements/index.md
   - Plans:
