@@ -135,7 +135,7 @@ If the user requests it, generate follow-up artifacts from the spike findings:
 
 #### Draft User Stories
 
-Use `${CLAUDE_PLUGIN_ROOT}/templates/user_story.md`. Save to the configured `requirements_stories_dir` (default: `docs/requirements/stories/`). Name as `US-<NNN>-<kebab-title>-draft.md`.
+Use `${CLAUDE_PLUGIN_ROOT}/templates/user_story.md`. Save to the configured `requirements_stories_dir` (default: `docs/requirements/stories/`). Name as `US-<NNN>-<kebab-title>.md`. Set `status: draft` in the YAML frontmatter.
 
 Each story should:
 
