@@ -75,7 +75,7 @@ Auto-increment the spike number based on existing files in `docs/spikes/`.
 From spike findings, optionally generate:
 
 - **Draft user stories** — using `${CLAUDE_PLUGIN_ROOT}/templates/user_story.md`, saved to the configured `requirements_stories_dir`
-- **Draft ADRs** — in `docs/adr/NNNN-title.md` with context, options, decision, consequences
+- **Draft ADRs** — in `docs/architecture/adr/NNNN-title.md` with context, options, decision, consequences
 
 ## Decision Principles
 

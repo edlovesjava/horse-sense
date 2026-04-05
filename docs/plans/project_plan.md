@@ -247,11 +247,11 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 Details in [docs/architecture/architecture_doc.md](../architecture/architecture_doc.md) and ADRs:
 
 - **Format**: Static plugin — Markdown + shell scripts, no build step, no runtime deps
-- **Plugin spec**: `.claude-plugin/plugin.json` manifest ([ADR-0001](../adr/0001-adopt-official-plugin-format.md))
-- **Configuration**: Two-tier — plugin.json + `.claude/config.json` ([ADR-0002](../adr/0002-two-tier-configuration.md))
-- **Toolchains**: Python (venv/pytest/ruff) + TypeScript (npm/vitest/eslint) ([ADR-0003](../adr/0003-dual-toolchain-support.md))
-- **Orchestration**: Trail definitions + orchestrator/worker/monitor agents ([ADR-0004](../adr/0004-process-orchestration-model.md))
-- **Subagent Execution**: Containerized one-shot `claude -p` invocations in Docker for sandboxed task delegation ([ADR-0005](../adr/0005-containerized-subagent-execution.md)). Orchestrator constructs prompt, mounts workspace, collects JSON result. Degrades to local CLI when Docker unavailable.
+- **Plugin spec**: `.claude-plugin/plugin.json` manifest ([ADR-0001](../architecture/adr/0001-adopt-official-plugin-format.md))
+- **Configuration**: Two-tier — plugin.json + `.claude/config.json` ([ADR-0002](../architecture/adr/0002-two-tier-configuration.md))
+- **Toolchains**: Python (venv/pytest/ruff) + TypeScript (npm/vitest/eslint) ([ADR-0003](../architecture/adr/0003-dual-toolchain-support.md))
+- **Orchestration**: Trail definitions + orchestrator/worker/monitor agents ([ADR-0004](../architecture/adr/0004-process-orchestration-model.md))
+- **Subagent Execution**: Containerized one-shot `claude -p` invocations in Docker for sandboxed task delegation ([ADR-0005](../architecture/adr/0005-containerized-subagent-execution.md)). Orchestrator constructs prompt, mounts workspace, collects JSON result. Degrades to local CLI when Docker unavailable.
 - **CI/CD**: GitHub Actions workflow template shipped with the plugin
 
 ### Migration Map (Phase 1)

@@ -98,7 +98,7 @@ Design for:
 
 Create `templates/architecture_doc.md` and write an ADR for each significant decision.
 
-**ADR format** (`docs/adr/NNNN-title.md`):
+**ADR format** (`docs/architecture/adr/NNNN-title.md`):
 
 ```markdown
 # ADR-0001: Use PostgreSQL for Primary Storage

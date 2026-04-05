@@ -49,7 +49,7 @@ Read `.claude/config.json` (if present) for language, toolchain, and paths. Auto
 ### Feature Implementation
 
 - Read requirements and acceptance criteria before writing a single line of code
-- Follow the architecture decisions documented in `docs/adr/`
+- Follow the architecture decisions documented in `docs/architecture/adr/`
 - Break work into small, independently deployable commits
 
 ### Code Quality

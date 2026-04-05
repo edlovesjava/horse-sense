@@ -41,7 +41,7 @@ Read ticket → Create branch → Write failing test → Implement → Refactor 
 Before touching any file:
 
 - Read the user story and acceptance criteria in full
-- Check the relevant ADRs in `docs/adr/`
+- Check the relevant ADRs in `docs/architecture/adr/`
 - Identify which files/modules will change
 - Ask questions if anything is unclear — assumptions are expensive
 

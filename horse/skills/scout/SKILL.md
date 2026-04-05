@@ -11,7 +11,7 @@ Conduct a structured research spike to answer a specific question or evaluate op
 
 ## Configuration
 
-Read `.claude/config.json` (if present) for project context (language, framework). Read existing requirements (`docs/requirements/`) and architecture docs (`docs/architecture/`, `docs/adr/`) to avoid duplicating known information.
+Read `.claude/config.json` (if present) for project context (language, framework). Read existing requirements (`docs/requirements/`) and architecture docs (`docs/architecture/`, `docs/architecture/adr/`) to avoid duplicating known information.
 
 See `${CLAUDE_PLUGIN_ROOT}/schemas/config.schema.json` for the full schema.
 
@@ -145,7 +145,7 @@ Each story should:
 
 #### Draft ADRs
 
-Save to `docs/adr/NNNN-title.md`. Each ADR should:
+Save to `docs/architecture/adr/NNNN-title.md`. Each ADR should:
 
 - Reference the spike report as context
 - Include all options from the trade-off matrix
