@@ -184,7 +184,29 @@ npx tsc --noEmit
 npm audit
 ```
 
-### Step 8: Commit
+### Step 8: Update Sprint Plan Status
+
+Before committing, update the active sprint plan so its status reflects the work you just completed:
+
+1. Locate the current sprint plan. Default path: `docs/plans/sprints/sprint_<N>_plan.md`. If your project stores plans elsewhere, check `horse.config.md` or ask the user.
+2. Find the task row(s) for the work you completed (match by task ID or title).
+3. Change the status cell to `✅ Done`.
+4. If the task was in progress and is now blocked, use `🚫 Blocked` instead and add a note under Risks & Blockers.
+5. Stage the sprint plan edit alongside your code so the status update lands in the **same commit** as the work.
+
+Status conventions (from the sprint plan template):
+
+| Symbol | Meaning |
+|---|---|
+| `⬜` | To Do |
+| `🔵` | In Progress |
+| `🔍` | In Review |
+| `✅` | Done |
+| `🚫` | Blocked |
+
+A task with green tests but a stale sprint plan is **not** done.
+
+### Step 9: Commit
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
@@ -193,10 +215,11 @@ git add .
 git commit -m "feat(auth): add password reset token generation
 
 Implements PasswordResetToken with 64-char hex value and 24-hour TTL.
+Marks T-042 as Done in sprint_3_plan.md.
 Closes #42"
 ```
 
-### Step 9: Open a Pull Request
+### Step 10: Open a Pull Request
 
 - Fill out the PR template completely
 - Link the ticket

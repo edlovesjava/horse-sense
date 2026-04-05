@@ -70,6 +70,19 @@ Read `.claude/config.json` (if present) for language, toolchain, and paths. Auto
 - Document the root cause and fix in the commit message
 - Add regression tests for every bug fix
 
+### Sprint Status Tracking
+
+When a task in the current sprint is completed, you are responsible for updating the sprint plan so status reflects reality:
+
+- Locate the active sprint plan (default: `docs/plans/sprints/sprint_<N>_plan.md`)
+- Find the row for the task you just completed and flip its status cell to `✅ Done`
+- When starting a task, flip its status to `🔵 In Progress`
+- Include the sprint plan update in the **same commit** as the work it records, so status and implementation stay in lockstep
+- If multiple tasks are completed in one commit, update all of their rows
+- If a task becomes blocked, set status to `🚫 Blocked` and note the blocker in the Risks & Blockers section
+
+Status update is part of "Done" — a task with green code but a stale sprint plan is not done.
+
 ## Development Workflow
 
 ```bash
