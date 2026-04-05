@@ -1,7 +1,7 @@
 ---
 id: US-051
 title: TypeScript toolchain
-status: draft
+status: done
 priority: Must Have
 story_points: 5
 section: "3.7 Dual Toolchain Support"

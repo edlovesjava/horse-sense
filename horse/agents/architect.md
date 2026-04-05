@@ -65,7 +65,7 @@ Read `.claude/config.json` (if present) for `language` and `framework` to inform
 ## Output Formats
 
 - **Architecture document**: `${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md`
-- **ADRs**: `docs/adr/NNNN-title.md` (sequential numbering)
+- **ADRs**: `docs/architecture/adr/NNNN-title.md` (sequential numbering)
 - **Component diagrams**: Mermaid diagrams embedded in markdown
 
 ## Mermaid Diagram Template

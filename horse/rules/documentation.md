@@ -42,10 +42,12 @@ Longer-form documentation lives here:
 
 ```
 docs/
-├── adr/           ← Architecture Decision Records
-├── api/           ← API reference (OpenAPI / auto-generated)
-├── runbooks/      ← Operational runbooks
-└── retros/        ← Sprint retrospective notes
+├── architecture/
+│   ├── architecture_doc.md   ← System architecture overview
+│   └── adr/                  ← Architecture Decision Records
+├── api/                      ← API reference (OpenAPI / auto-generated)
+├── runbooks/                 ← Operational runbooks
+└── retros/                   ← Sprint retrospective notes
 ```
 
 ### 4. Code-Level Documentation

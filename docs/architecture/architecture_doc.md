@@ -577,10 +577,10 @@ The plugin ships a GitHub Actions workflow template in `templates/ci.yml` that p
 
 | ADR | Title | Status |
 |---|---|---|
-| [ADR-0001](../docs/adr/0001-adopt-official-plugin-format.md) | Adopt official Claude Code plugin format | Accepted |
-| [ADR-0002](../docs/adr/0002-two-tier-configuration.md) | Two-tier configuration model (plugin.json + config.json) | Accepted |
-| [ADR-0003](../docs/adr/0003-dual-toolchain-support.md) | Dual Python/TypeScript toolchain support via config | Accepted |
-| [ADR-0004](../docs/adr/0004-process-orchestration-model.md) | Process orchestration — workers, orchestrators, and monitors | Accepted |
+| [ADR-0001](./adr/0001-adopt-official-plugin-format.md) | Adopt official Claude Code plugin format | Accepted |
+| [ADR-0002](./adr/0002-two-tier-configuration.md) | Two-tier configuration model (plugin.json + config.json) | Accepted |
+| [ADR-0003](./adr/0003-dual-toolchain-support.md) | Dual Python/TypeScript toolchain support via config | Accepted |
+| [ADR-0004](./adr/0004-process-orchestration-model.md) | Process orchestration — workers, orchestrators, and monitors | Accepted |
 
 ---
 

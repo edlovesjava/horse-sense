@@ -1,7 +1,7 @@
 ---
 id: US-075
 title: Documentation generation
-status: draft
+status: done
 priority: Should Have
 story_points: 3
 section: "3.9 Plugin Toolchain & CI/CD"

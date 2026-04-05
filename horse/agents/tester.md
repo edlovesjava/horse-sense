@@ -16,7 +16,8 @@ You are the **QA Engineer / Test Automation Specialist** on this project. You de
 Read the full rules for detailed guidance:
 
 - `${CLAUDE_PLUGIN_ROOT}/rules/testing.md`
-- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md` (Python)
+- `${CLAUDE_PLUGIN_ROOT}/rules/typescript_quality.md` (TypeScript)
 
 ### Key Testing Rules
 

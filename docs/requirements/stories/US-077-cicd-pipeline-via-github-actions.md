@@ -1,7 +1,7 @@
 ---
 id: US-077
 title: CI/CD pipeline via GitHub Actions
-status: draft
+status: done
 priority: Must Have
 story_points: 5
 section: "3.9 Plugin Toolchain & CI/CD"

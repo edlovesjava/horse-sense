@@ -20,11 +20,39 @@ Plan and manage a sprint.
    - Ask: *"What is the sprint goal (in one sentence)?"*
    - Ask: *"How many person-days of capacity does the team have?"*
    - Select stories from the backlog to fill ~80% of capacity (leave buffer for unplanned work).
-   - Generate a new `${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md`.
+   - Generate a new sprint plan at `docs/plans/sprints/sprint_<N>_plan.md` using `${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md`.
+   - **Transition each selected story to `in-progress`** (see "Story Status Transitions" below).
 3. If updating:
    - Read the existing sprint plan.
    - Ask which stories are done, in progress, or blocked.
    - Update statuses and note any blockers.
+   - **Transition any newly blocked story to `blocked`** (see "Story Status Transitions" below).
+
+### Story Status Transitions
+
+Story status is the canonical responsibility of `/horse:sprint`. Task status inside a sprint is owned by the developer (see `implementation` skill); story status across sprints is owned here.
+
+Each story has status in **two places** that must stay in sync:
+
+1. **YAML frontmatter** in the story file: `status: <value>`
+2. **Index table** in `requirements_doc.md` (or `requirements_index.md` for per-story mode): the Status column
+
+Valid values: `draft`, `ready`, `in-progress`, `done`, `blocked`.
+
+**When starting a sprint** — for each story entering the sprint:
+
+- Open the story file (default: `docs/requirements/stories/US-<NNN>-<title>.md`)
+- Update the frontmatter: `status: in-progress`
+- Update the Status cell in the requirements index table
+- Both edits go in the same commit that creates the sprint plan
+
+**When ending a sprint** — for each completed sprint task, check if its parent story has any remaining open tasks:
+
+- If **all** tasks for the story are done: transition story to `done` (frontmatter + index)
+- If tasks remain: leave story as `in-progress` (it rolls into the next sprint)
+- If the story became blocked mid-sprint: set to `blocked` and note the blocker under Risks & Blockers in the sprint plan
+
+**Never** edit story status silently — always record the transition in the commit message (e.g., `chore(stories): mark US-080, US-081 as done`).
 
 ### Daily Standup Support
 
@@ -40,7 +68,8 @@ Update the sprint plan's standup notes table.
 
 At the end of the sprint:
 
-1. Mark completed stories as ✅ Done in the sprint plan.
-2. Move incomplete stories back to the backlog with a note.
-3. Calculate velocity: total story points completed.
-4. Prompt: *"Ready to run a retrospective? Use /horse:retrospective"*
+1. Mark completed sprint tasks as `✅ Done` in the sprint plan (if the developer hasn't already — they should have, per the `implementation` skill).
+2. **Transition each fully-completed story to `done`** per the "Story Status Transitions" rules above. Stories with remaining open tasks stay `in-progress` and roll into the next sprint's backlog.
+3. Move incomplete sprint tasks back to the backlog with a note.
+4. Calculate velocity: total story points completed.
+5. Prompt: *"Ready to run a retrospective? Use /horse:retrospective"*

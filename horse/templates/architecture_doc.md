@@ -196,7 +196,7 @@ graph LR
 
 | ADR | Title | Status |
 |---|---|---|
-| [ADR-0001](../docs/adr/0001-example.md) | [Title] | Accepted |
+| [ADR-0001](./adr/0001-example.md) | [Title] | Accepted |
 
 ---
 

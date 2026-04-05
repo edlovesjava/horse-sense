@@ -12,7 +12,7 @@ Two objectives, in priority order:
 
 1. **Toolchain first** — set up validation, linting, and a `make check` workflow so that every future change to the plugin is automatically verified. This gives us a safety net before we start modifying skills and agents.
 
-2. **Config & skills** — define the `.claude/config.json` schema, update skills to read config variables, and fold rules content into agent prompts so the plugin actually adapts to host projects.
+2. **Config & skills** — define the two-tier configuration model (`horse.config.md` for SDLC workflow settings, `.claude/config.json` for toolchain settings), update skills to read config variables, and fold rules content into agent prompts so the plugin actually adapts to host projects.
 
 ---
 
@@ -99,7 +99,7 @@ Extend validation to check YAML frontmatter in all Markdown components:
 | `skills/*/SKILL.md` | `name` (string), `description` (string) |
 | `rules/*.md` | (validated as non-empty) |
 
-**Tool**: Python script (`scripts/validate-frontmatter.py`) using PyYAML — simple and portable. Falls back to a grep-based Bash check if Python unavailable.
+**Tool**: Python script (`scripts/validate-frontmatter.py`) using a regex-based frontmatter parser (stdlib only — no PyYAML dependency). This keeps the validator dependency-free.
 
 **Acceptance**: Validates all frontmatter. Reports missing/invalid fields with file path and field name.
 

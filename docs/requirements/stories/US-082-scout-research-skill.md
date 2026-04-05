@@ -1,7 +1,7 @@
 ---
 id: US-082
 title: Scout research and investigation skill
-status: draft
+status: done
 priority: Must Have
 story_points: 8
 section: "3.11 Scout — Research & Spikes"
@@ -35,7 +35,7 @@ And   each story follows the US-NNN template with acceptance criteria
 
 Given a spike report with findings
 When  the user requests draft architecture decisions
-Then  the scout produces draft ADR files in docs/adr/
+Then  the scout produces draft ADR files in docs/architecture/adr/
 And   each ADR includes context, options considered, decision, and consequences
 
 Given a research topic with a timebox

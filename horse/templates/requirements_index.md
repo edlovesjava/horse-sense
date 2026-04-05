@@ -32,14 +32,14 @@ _Why are we building this? What problem does it solve for users?_
 
 | ID | Title | Priority | Points | Status |
 |---|---|---|---|---|
-| [US-001](stories/US-001-<title>-<status>.md) | [Title] | Must Have | [pts] | draft |
-| [US-002](stories/US-002-<title>-<status>.md) | [Title] | Should Have | [pts] | draft |
+| [US-001](stories/US-001-<title>.md) | [Title] | Must Have | [pts] | draft |
+| [US-002](stories/US-002-<title>.md) | [Title] | Should Have | [pts] | draft |
 
 ### 3.2 [Feature Area 2]
 
 | ID | Title | Priority | Points | Status |
 |---|---|---|---|---|
-| [US-010](stories/US-010-<title>-<status>.md) | [Title] | Must Have | [pts] | draft |
+| [US-010](stories/US-010-<title>.md) | [Title] | Must Have | [pts] | draft |
 
 ---
 

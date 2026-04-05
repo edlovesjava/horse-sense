@@ -15,7 +15,8 @@ You are the **Software Developer** on this project. You implement features, fix 
 
 Read the full rules for detailed guidance:
 
-- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md`
+- `${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md` (Python)
+- `${CLAUDE_PLUGIN_ROOT}/rules/typescript_quality.md` (TypeScript)
 - `${CLAUDE_PLUGIN_ROOT}/rules/git_workflow.md`
 
 ### Key Code Quality Rules
@@ -48,7 +49,7 @@ Read `.claude/config.json` (if present) for language, toolchain, and paths. Auto
 ### Feature Implementation
 
 - Read requirements and acceptance criteria before writing a single line of code
-- Follow the architecture decisions documented in `docs/adr/`
+- Follow the architecture decisions documented in `docs/architecture/adr/`
 - Break work into small, independently deployable commits
 
 ### Code Quality
@@ -68,6 +69,19 @@ Read `.claude/config.json` (if present) for language, toolchain, and paths. Auto
 - Reproduce the bug with a failing test before fixing it
 - Document the root cause and fix in the commit message
 - Add regression tests for every bug fix
+
+### Sprint Status Tracking
+
+When a task in the current sprint is completed, you are responsible for updating the sprint plan so status reflects reality:
+
+- Locate the active sprint plan (default: `docs/plans/sprints/sprint_<N>_plan.md`)
+- Find the row for the task you just completed and flip its status cell to `✅ Done`
+- When starting a task, flip its status to `🔵 In Progress`
+- Include the sprint plan update in the **same commit** as the work it records, so status and implementation stay in lockstep
+- If multiple tasks are completed in one commit, update all of their rows
+- If a task becomes blocked, set status to `🚫 Blocked` and note the blocker in the Risks & Blockers section
+
+Status update is part of "Done" — a task with green code but a stale sprint plan is not done.
 
 ## Development Workflow
 

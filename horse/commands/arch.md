@@ -7,7 +7,7 @@ Design or update the system architecture.
 - Gathers context about the project's requirements and constraints
 - Proposes architectural options with trade-offs
 - Creates or updates `${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md`
-- Creates Architecture Decision Records (ADRs) in `docs/adr/`
+- Creates Architecture Decision Records (ADRs) in `docs/architecture/adr/`
 
 ## Instructions for Claude
 
@@ -28,14 +28,14 @@ When this command is invoked:
    - Design the data model (ER diagram in Mermaid)
    - Identify cross-cutting concerns (auth, logging, observability)
 5. Write the architecture to `${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md`.
-6. Create an ADR for each significant decision in `docs/adr/NNNN-title.md`.
+6. Create an ADR for each significant decision in `docs/architecture/adr/NNNN-title.md`.
 
 ## ADR Numbering
 
 ADRs are numbered sequentially: `0001`, `0002`, etc.
-Check `docs/adr/` for the highest existing number before creating a new one.
+Check `docs/architecture/adr/` for the highest existing number before creating a new one.
 
 ## Output
 
 - Updated `${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md`
-- One or more new `docs/adr/NNNN-title.md` files
+- One or more new `docs/architecture/adr/NNNN-title.md` files

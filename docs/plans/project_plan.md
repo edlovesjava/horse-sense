@@ -144,15 +144,18 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | T-036s | Add docs build to CI and GitHub Pages deployment | Should | 3 | 3 | ⬜ |
 | | **Sprint 3 Total (with stretch)** | | **41** | | |
 
-#### Deferred to Sprint 4 (from original Sprint 3)
+#### Deferred to Sprint 4 (from original Sprint 3 + new work)
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
 | T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 4 | ⬜ |
 | T-026 | End-to-end validation: install plugin into a fresh Python project | Must | 3 | 4 | ⬜ |
 | T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 4 | ⬜ |
+| T-037 | Create `skills/process-audit/SKILL.md` — step-by-step audit skill for the trainer agent | Must | 5 | 4 | ⬜ |
+| T-038 | Create `commands/audit.md` — `/horse:audit` slash command | Must | 2 | 4 | ⬜ |
+| T-039 | Create `templates/audit_report.md` — structured audit report template | Should | 1 | 4 | ⬜ |
 
-**Phase 1 Total: 78 story points across 3 sprints (+ 9 SP deferred to Sprint 4)**
+**Phase 1 Total: 78 story points across 3 sprints (+ 17 SP deferred to Sprint 4)**
 
 ---
 
@@ -244,11 +247,11 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 Details in [docs/architecture/architecture_doc.md](../architecture/architecture_doc.md) and ADRs:
 
 - **Format**: Static plugin — Markdown + shell scripts, no build step, no runtime deps
-- **Plugin spec**: `.claude-plugin/plugin.json` manifest ([ADR-0001](../adr/0001-adopt-official-plugin-format.md))
-- **Configuration**: Two-tier — plugin.json + `.claude/config.json` ([ADR-0002](../adr/0002-two-tier-configuration.md))
-- **Toolchains**: Python (venv/pytest/ruff) + TypeScript (npm/vitest/eslint) ([ADR-0003](../adr/0003-dual-toolchain-support.md))
-- **Orchestration**: Trail definitions + orchestrator/worker/monitor agents ([ADR-0004](../adr/0004-process-orchestration-model.md))
-- **Subagent Execution**: Containerized one-shot `claude -p` invocations in Docker for sandboxed task delegation ([ADR-0005](../adr/0005-containerized-subagent-execution.md)). Orchestrator constructs prompt, mounts workspace, collects JSON result. Degrades to local CLI when Docker unavailable.
+- **Plugin spec**: `.claude-plugin/plugin.json` manifest ([ADR-0001](../architecture/adr/0001-adopt-official-plugin-format.md))
+- **Configuration**: Two-tier — plugin.json + `.claude/config.json` ([ADR-0002](../architecture/adr/0002-two-tier-configuration.md))
+- **Toolchains**: Python (venv/pytest/ruff) + TypeScript (npm/vitest/eslint) ([ADR-0003](../architecture/adr/0003-dual-toolchain-support.md))
+- **Orchestration**: Trail definitions + orchestrator/worker/monitor agents ([ADR-0004](../architecture/adr/0004-process-orchestration-model.md))
+- **Subagent Execution**: Containerized one-shot `claude -p` invocations in Docker for sandboxed task delegation ([ADR-0005](../architecture/adr/0005-containerized-subagent-execution.md)). Orchestrator constructs prompt, mounts workspace, collects JSON result. Degrades to local CLI when Docker unavailable.
 - **CI/CD**: GitHub Actions workflow template shipped with the plugin
 
 ### Migration Map (Phase 1)
@@ -340,6 +343,7 @@ Maps implementation tasks to requirement user stories:
 | T-033s, T-034s, T-035s, T-036s | US-075 (documentation generation) — stretch goal |
 | **Deferred to Sprint 4** | |
 | T-025 | US-051 (TypeScript scaffolding) |
+| T-037, T-038, T-039 | US-083 (trainer process audit skill and command) |
 | T-026, T-027 | US-001, US-002, US-011 (end-to-end validation) |
 | **Sprint 4 (Processes)** | |
 | T-030 | US-025 (trail definitions), US-026 (flow control), US-027 (gates) |

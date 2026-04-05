@@ -33,7 +33,7 @@ mkdir -p \
     "tests/unit" \
     "tests/integration" \
     "tests/e2e" \
-    "docs/adr" \
+    "docs/architecture/adr" \
     "docs/runbooks" \
     "docs/retros" \
     ".github/workflows"

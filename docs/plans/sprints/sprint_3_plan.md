@@ -24,28 +24,28 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc, prettier) | US-051 | 3 | ⬜ To Do |
-| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific code quality rules | US-051 | 3 | ⬜ To Do |
-| T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | US-050, US-051 | 5 | ⬜ To Do |
-| T-023 | Create `templates/ci.yml` GitHub Actions workflow template (Python + TS matrix) | US-060 | 3 | ⬜ To Do |
-| T-024 | Update README.md for plugin installation, configuration, and usage | — | 2 | ⬜ To Do |
+| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc, prettier) | US-051 | 3 | ✅ Done |
+| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific code quality rules | US-051 | 3 | ✅ Done |
+| T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | US-050, US-051 | 5 | ✅ Done |
+| T-023 | Create `templates/ci.yml` GitHub Actions workflow template (Python + TS matrix) | US-060 | 3 | ✅ Done |
+| T-024 | Update README.md for plugin installation, configuration, and usage | — | 2 | ✅ Done |
 | | **Part 1 subtotal** | | **16** | |
 
 ### Part 2: PR Review & Fix Skills (US-080, US-081)
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-028 | Create `skills/pr-review/SKILL.md` — PR review skill with gh CLI integration | US-080 | 5 | ⬜ To Do |
-| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply skill | US-081 | 5 | ⬜ To Do |
+| T-028 | Create `skills/pr-review/SKILL.md` — PR review skill with gh CLI integration | US-080 | 5 | ✅ Done |
+| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply skill | US-081 | 5 | ✅ Done |
 | | **Part 2 subtotal** | | **10** | |
 
 ### Part 3: Scout Agent & Skill (US-082)
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-030s | Create `agents/scout.md` — research and investigation agent persona | US-082 | 3 | ⬜ To Do |
-| T-031s | Create `skills/scout/SKILL.md` — spike research skill with report template | US-082 | 3 | ⬜ To Do |
-| T-032s | Create `templates/spike_report.md` — spike report scaffold | US-082 | 1 | ⬜ To Do |
+| T-030s | Create `agents/scout.md` — research and investigation agent persona | US-082 | 3 | ✅ Done |
+| T-031s | Create `skills/scout/SKILL.md` — spike research skill with report template | US-082 | 3 | ✅ Done |
+| T-032s | Create `templates/spike_report.md` — spike report scaffold | US-082 | 1 | ✅ Done |
 | | **Part 3 subtotal** | | **7** | |
 
 | | **Parts 1–3 subtotal** | | **33** | |
@@ -54,17 +54,17 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-033s | Create `mkdocs.yml` with Material theme and nav structure | US-075 | 2 | ⬜ To Do |
-| T-034s | Organize content — map `horse/` and `docs/` into nav hierarchy | US-075 | 2 | ⬜ To Do |
-| T-035s | Add `make docs` target and build script | US-075 | 1 | ⬜ To Do |
-| T-036s | Add docs build to CI and GitHub Pages deployment | US-075, US-077 | 3 | ⬜ To Do |
+| T-033s | Create `mkdocs.yml` with Material theme and nav structure | US-075 | 2 | ✅ Done |
+| T-034s | Organize content — map `horse/` and `docs/` into nav hierarchy | US-075 | 2 | ✅ Done |
+| T-035s | Add `make docs` target and build script | US-075 | 1 | ✅ Done |
+| T-036s | Add docs build to CI and GitHub Pages deployment | US-075, US-077 | 3 | ✅ Done |
 | | **Part 4 subtotal (stretch)** | | **8** | |
 
 | | **Sprint 3 Total (with stretch)** | | **41** | |
 
 ### Status Key
 
-- ⬜ To Do
+- ✅ Done
 - 🔵 In Progress
 - 🔍 In Review
 - ✅ Done
@@ -309,3 +309,48 @@ A task is **Done** when:
 - [ ] New agents have valid YAML frontmatter
 - [ ] New skills have valid frontmatter and are config-aware
 - [ ] Changes committed with Conventional Commits format
+
+---
+
+## Retrospective Notes
+
+**Sprint goal achieved**: Yes — all three objectives (TypeScript toolchain, PR review/fix skills, scout agent/skill) delivered, plus the MkDocs stretch goal.
+**Velocity**: 41 SP (33 planned + 8 stretch; 100% completion).
+**Bonus work landed outside the plan**: trainer agent (`85252f6`), sprint-status ownership refactor (`1208f01`, `7b08075`).
+**Known drift flagged at close-out**: sprint 3 stories (US-050, US-051, US-060, US-075, US-077, US-080, US-081, US-082) were never transitioned out of `draft` in their frontmatter or in `requirements_doc.md` — addressed by the sprint-status refactor but the back-transition is still outstanding.
+
+### Start 🟢
+
+Adopt a readiness-gate ladder enforced by the **trainer** agent plus CI hooks. Each transition has an automated check (trainer/CI) and, where noted, a human sign-off:
+
+1. **Ready for sprint** — story meets Definition of Ready; context, acceptance criteria, and dependencies captured
+2. **Ready for commit** — all unit tests pass locally
+3. **Ready for push** — integration and end-to-end tests pass
+4. **Ready for review** — doc synchronization verified (story status, plan docs, README consistent with code)
+5. **Ready for merge** — human review and approval complete
+
+The trainer owns the automated portion of every gate; humans own the review gate.
+
+### Stop 🔴
+
+- Starting work on a stale branch — always `git fetch` / `git pull` before committing
+- Opening multiple PRs in flight unless explicitly authorized
+- Working on more than one branch at a time — one branch, one focus
+
+### Continue 🟡
+
+- Splitting sprints into independent parts (Part 1/2/3/stretch) — made it easy to defer or reorder scope
+- Marking stretch goals explicitly so scope stays honest
+- Conventional commits with clear task-ID references — made this retro trivial to reconstruct from git history
+
+### Action items
+
+Trainer's charter: improve the process by proposing trails, skills, rules, agents, commands, and tools as needed to land each item.
+
+| Action | Owner | Due |
+|---|---|---|
+| Define the 5-gate readiness policy in a process doc (e.g. `docs/process/readiness_gates.md` or ADR-0007) | trainer | end of sprint 4 |
+| Implement CI hooks enforcing commit/push/merge gates (unit → integration/e2e → review/doc-sync) | trainer | end of sprint 4 |
+| Add doc-synchronization check to the "Ready for review" gate (story status ↔ index table ↔ code) | trainer | end of sprint 4 |
+| Document "fresh branch + single branch + single PR" workflow rules in same process doc; propose supporting skills/commands/hooks | trainer | end of sprint 4 |
+| Back-transition sprint 3 stories (US-050, US-051, US-060, US-075, US-077, US-080, US-081, US-082) from `draft` to `done` in frontmatter + `requirements_doc.md` index | trainer | start of sprint 4 |
