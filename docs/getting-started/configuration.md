@@ -13,7 +13,7 @@ Place in your project root. Scaffolded from `templates/horse_config.md`. Control
 | `git_strategy` | `rebase` / `merge` | `rebase` | How feature branches are integrated |
 
 - **monolith** — all stories in a single `requirements_doc.md`
-- **per-story** — lightweight `requirements_doc.md` index + individual `US-<NNN>-<title>-<status>.md` files
+- **per-story** — lightweight `requirements_doc.md` index + individual `US-<NNN>-<title>.md` files; story status is stored in YAML frontmatter and the index table
 - **rebase** — rebase feature branches onto target before merging (linear history)
 - **merge** — use merge commits to integrate branches (preserves branch topology)
 

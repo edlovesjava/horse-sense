@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # run_tests.sh — Run the full test suite with coverage
 # Detects language (Python or TypeScript) and runs the appropriate test runner.
-# Usage: bash scripts/run_tests.sh [--unit | --integration | --e2e | --all]
+# Usage: bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh [--unit | --integration | --e2e | --all]
 
 set -euo pipefail
 
@@ -35,7 +35,7 @@ MODE="${1:---all}"
 run_python_tests() {
     VENV_DIR=".venv"
     if [ ! -d "${VENV_DIR}" ]; then
-        error "Virtual environment not found. Run 'bash scripts/setup_env.sh' first."
+        error "Virtual environment not found. Run 'bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh' first."
         exit 1
     fi
     # shellcheck source=/dev/null
@@ -82,7 +82,7 @@ run_python_tests() {
 # ── TypeScript tests ──────────────────────────────────────────────────────────
 run_typescript_tests() {
     if [ ! -d "node_modules" ]; then
-        error "node_modules/ not found. Run 'bash scripts/setup_env.sh' first."
+        error "node_modules/ not found. Run 'bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh' first."
         exit 1
     fi
 

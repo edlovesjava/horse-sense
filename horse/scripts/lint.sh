@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # lint.sh — Run all linters and type checkers
 # Detects language (Python or TypeScript) and runs the appropriate tools.
-# Usage: bash scripts/lint.sh [--fix]
+# Usage: bash ${CLAUDE_PLUGIN_ROOT}/scripts/lint.sh [--fix]
 
 set -euo pipefail
 
@@ -37,7 +37,7 @@ EXIT_CODE=0
 lint_python() {
     VENV_DIR=".venv"
     if [ ! -d "${VENV_DIR}" ]; then
-        error "Virtual environment not found. Run 'bash scripts/setup_env.sh' first."
+        error "Virtual environment not found. Run 'bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh' first."
         exit 1
     fi
     # shellcheck source=/dev/null
@@ -81,7 +81,7 @@ lint_python() {
 # ── TypeScript linting ────────────────────────────────────────────────────────
 lint_typescript() {
     if [ ! -d "node_modules" ]; then
-        error "node_modules/ not found. Run 'bash scripts/setup_env.sh' first."
+        error "node_modules/ not found. Run 'bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh' first."
         exit 1
     fi
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # setup_env.sh — Bootstrap the project development environment
 # Detects language (Python or TypeScript) and sets up the appropriate toolchain.
-# Usage: bash scripts/setup_env.sh [python_executable]
-# Example: bash scripts/setup_env.sh python3.11
+# Usage: bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh [python_executable]
+# Example: bash ${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh python3.11
 
 set -euo pipefail
 
