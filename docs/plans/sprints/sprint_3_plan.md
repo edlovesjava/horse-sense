@@ -309,3 +309,48 @@ A task is **Done** when:
 - [ ] New agents have valid YAML frontmatter
 - [ ] New skills have valid frontmatter and are config-aware
 - [ ] Changes committed with Conventional Commits format
+
+---
+
+## Retrospective Notes
+
+**Sprint goal achieved**: Yes — all three objectives (TypeScript toolchain, PR review/fix skills, scout agent/skill) delivered, plus the MkDocs stretch goal.
+**Velocity**: 41 SP (33 planned + 8 stretch; 100% completion).
+**Bonus work landed outside the plan**: trainer agent (`85252f6`), sprint-status ownership refactor (`1208f01`, `7b08075`).
+**Known drift flagged at close-out**: sprint 3 stories (US-050, US-051, US-060, US-075, US-077, US-080, US-081, US-082) were never transitioned out of `draft` in their frontmatter or in `requirements_doc.md` — addressed by the sprint-status refactor but the back-transition is still outstanding.
+
+### Start 🟢
+
+Adopt a readiness-gate ladder enforced by the **trainer** agent plus CI hooks. Each transition has an automated check (trainer/CI) and, where noted, a human sign-off:
+
+1. **Ready for sprint** — story meets Definition of Ready; context, acceptance criteria, and dependencies captured
+2. **Ready for commit** — all unit tests pass locally
+3. **Ready for push** — integration and end-to-end tests pass
+4. **Ready for review** — doc synchronization verified (story status, plan docs, README consistent with code)
+5. **Ready for merge** — human review and approval complete
+
+The trainer owns the automated portion of every gate; humans own the review gate.
+
+### Stop 🔴
+
+- Starting work on a stale branch — always `git fetch` / `git pull` before committing
+- Opening multiple PRs in flight unless explicitly authorized
+- Working on more than one branch at a time — one branch, one focus
+
+### Continue 🟡
+
+- Splitting sprints into independent parts (Part 1/2/3/stretch) — made it easy to defer or reorder scope
+- Marking stretch goals explicitly so scope stays honest
+- Conventional commits with clear task-ID references — made this retro trivial to reconstruct from git history
+
+### Action items
+
+Trainer's charter: improve the process by proposing trails, skills, rules, agents, commands, and tools as needed to land each item.
+
+| Action | Owner | Due |
+|---|---|---|
+| Define the 5-gate readiness policy in a process doc (e.g. `docs/process/readiness_gates.md` or ADR-0007) | trainer | end of sprint 4 |
+| Implement CI hooks enforcing commit/push/merge gates (unit → integration/e2e → review/doc-sync) | trainer | end of sprint 4 |
+| Add doc-synchronization check to the "Ready for review" gate (story status ↔ index table ↔ code) | trainer | end of sprint 4 |
+| Document "fresh branch + single branch + single PR" workflow rules in same process doc; propose supporting skills/commands/hooks | trainer | end of sprint 4 |
+| Back-transition sprint 3 stories (US-050, US-051, US-060, US-075, US-077, US-080, US-081, US-082) from `draft` to `done` in frontmatter + `requirements_doc.md` index | trainer | start of sprint 4 |
