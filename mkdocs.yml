@@ -1,0 +1,105 @@
+site_name: horse-sense
+site_description: Claude Code plugin for SDLC-driven autonomous development
+site_url: https://edlovesjava.github.io/horse-sense/
+repo_url: https://github.com/edlovesjava/horse-sense
+repo_name: edlovesjava/horse-sense
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - include-markdown
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.twemoji
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - getting-started/index.md
+      - Installation: getting-started/installation.md
+      - Configuration: getting-started/configuration.md
+  - Commands: commands.md
+  - Agents: agents.md
+  - Skills: skills.md
+  - Rules: rules.md
+  - Templates: templates.md
+  - Architecture:
+      - architecture/index.md
+      - ADRs:
+          - ADR-0001 Adopt Official Plugin Format: adr/0001-adopt-official-plugin-format.md
+          - ADR-0002 Two-Tier Configuration: adr/0002-two-tier-configuration.md
+          - ADR-0003 Dual Toolchain Support: adr/0003-dual-toolchain-support.md
+          - ADR-0004 Process Orchestration Model: adr/0004-process-orchestration-model.md
+          - ADR-0005 Containerized Subagent Execution: adr/0005-containerized-subagent-execution.md
+  - Requirements:
+      - requirements/index.md
+  - Plans:
+      - plans/index.md
+      - Sprint 1: plans/sprint_1_plan.md
+      - Sprint 2: plans/sprint_2_plan.md
+      - Sprint 3: plans/sprint_3_plan.md
+
+not_in_nav: |
+  /architecture/architecture_doc.md
+  /requirements/requirements_doc.md
+  /requirements/stories/*.md
+  /plans/project_plan.md

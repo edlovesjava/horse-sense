@@ -54,17 +54,17 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-033s | Create `mkdocs.yml` with Material theme and nav structure | US-075 | 2 | ⬜ To Do |
-| T-034s | Organize content — map `horse/` and `docs/` into nav hierarchy | US-075 | 2 | ⬜ To Do |
-| T-035s | Add `make docs` target and build script | US-075 | 1 | ⬜ To Do |
-| T-036s | Add docs build to CI and GitHub Pages deployment | US-075, US-077 | 3 | ⬜ To Do |
+| T-033s | Create `mkdocs.yml` with Material theme and nav structure | US-075 | 2 | ✅ Done |
+| T-034s | Organize content — map `horse/` and `docs/` into nav hierarchy | US-075 | 2 | ✅ Done |
+| T-035s | Add `make docs` target and build script | US-075 | 1 | ✅ Done |
+| T-036s | Add docs build to CI and GitHub Pages deployment | US-075, US-077 | 3 | ✅ Done |
 | | **Part 4 subtotal (stretch)** | | **8** | |
 
 | | **Sprint 3 Total (with stretch)** | | **41** | |
 
 ### Status Key
 
-- ⬜ To Do
+- ✅ Done
 - 🔵 In Progress
 - 🔍 In Review
 - ✅ Done
