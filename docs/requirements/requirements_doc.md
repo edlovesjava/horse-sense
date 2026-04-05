@@ -93,14 +93,14 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-050](stories/US-050-python-toolchain.md) | Python toolchain | Must Have | 3 | Draft |
-| [US-051](stories/US-051-typescript-toolchain.md) | TypeScript toolchain | Must Have | 5 | Draft |
+| [US-050](stories/US-050-python-toolchain.md) | Python toolchain | Must Have | 3 | Done |
+| [US-051](stories/US-051-typescript-toolchain.md) | TypeScript toolchain | Must Have | 5 | Done |
 
 ### 3.8 CI/CD Integration (User Projects)
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-060](stories/US-060-github-actions-workflow.md) | GitHub Actions workflow | Should Have | 5 | Draft |
+| [US-060](stories/US-060-github-actions-workflow.md) | GitHub Actions workflow | Should Have | 5 | Done |
 
 ### 3.9 Plugin Toolchain & CI/CD
 
@@ -111,23 +111,23 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 | [US-072](stories/US-072-shell-script-linting.md) | Shell script linting | Must Have | 2 | Draft |
 | [US-073](stories/US-073-json-schema-validation.md) | JSON schema validation | Should Have | 2 | Draft |
 | [US-074](stories/US-074-frontmatter-schema-validation.md) | Frontmatter schema validation | Must Have | 3 | Draft |
-| [US-075](stories/US-075-documentation-generation.md) | Documentation generation | Should Have | 3 | Draft |
+| [US-075](stories/US-075-documentation-generation.md) | Documentation generation | Should Have | 3 | Done |
 | [US-076](stories/US-076-distribution-via-git-releases.md) | Distribution via Git releases | Should Have | 3 | Draft |
-| [US-077](stories/US-077-cicd-pipeline-via-github-actions.md) | CI/CD pipeline via GitHub Actions | Must Have | 5 | Draft |
+| [US-077](stories/US-077-cicd-pipeline-via-github-actions.md) | CI/CD pipeline via GitHub Actions | Must Have | 5 | Done |
 | [US-078](stories/US-078-local-developer-workflow.md) | Local developer workflow | Must Have | 3 | Draft |
 
 ### 3.10 PR Review & Fix Skills
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-080](stories/US-080-pr-review-skill.md) | PR review skill | Must Have | 8 | Draft |
-| [US-081](stories/US-081-pr-fix-skill.md) | PR fix skill | Must Have | 8 | Draft |
+| [US-080](stories/US-080-pr-review-skill.md) | PR review skill | Must Have | 8 | Done |
+| [US-081](stories/US-081-pr-fix-skill.md) | PR fix skill | Must Have | 8 | Done |
 
 ### 3.11 Scout — Research & Spikes
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-082](stories/US-082-scout-research-skill.md) | Scout research and investigation skill | Must Have | 8 | Draft |
+| [US-082](stories/US-082-scout-research-skill.md) | Scout research and investigation skill | Must Have | 8 | Done |
 
 ### 3.12 Trainer — Process Quality Auditing
 

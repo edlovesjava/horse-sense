@@ -1,7 +1,7 @@
 ---
 id: US-082
 title: Scout research and investigation skill
-status: draft
+status: done
 priority: Must Have
 story_points: 8
 section: "3.11 Scout — Research & Spikes"

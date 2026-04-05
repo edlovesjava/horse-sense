@@ -1,7 +1,7 @@
 ---
 id: US-081
 title: PR fix skill
-status: draft
+status: done
 priority: Must Have
 story_points: 8
 section: "3.10 PR Review & Fix Skills"

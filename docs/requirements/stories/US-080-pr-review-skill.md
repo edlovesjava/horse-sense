@@ -1,7 +1,7 @@
 ---
 id: US-080
 title: PR review skill
-status: draft
+status: done
 priority: Must Have
 story_points: 8
 section: "3.10 PR Review & Fix Skills"

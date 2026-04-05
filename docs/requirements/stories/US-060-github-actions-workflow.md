@@ -1,7 +1,7 @@
 ---
 id: US-060
 title: GitHub Actions workflow
-status: draft
+status: done
 priority: Should Have
 story_points: 5
 section: "3.8 CI/CD Integration"
