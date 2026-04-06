@@ -56,8 +56,8 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-030 | Define trail document format (frontmatter, steps, gates, flow control) | US-025, US-026, US-027 | 5 | ⬜ To Do |
-| T-031 | Create `trails/feature_delivery.md` (full SDLC lifecycle) | US-025, US-040 | 5 | ⬜ To Do |
+| T-030 | Define trail document format (frontmatter, steps, gates, flow control) | US-025, US-026, US-027 | 5 | ✅ Done |
+| T-031 | Create `trails/feature_delivery.md` (full SDLC lifecycle) | US-025, US-040 | 5 | ✅ Done |
 | | **Part 4 subtotal (stretch)** | | **10** | |
 
 | | **Sprint 4 Total (with stretch)** | | **41** | |
