@@ -96,11 +96,13 @@ If any item fails, fix it before proceeding.
 1. Commit all close-out changes (sprint plan updates, story transitions) with a clear message (e.g., `chore(sprint-4): close out sprint — 41 SP delivered`).
 2. Push the sprint branch to remote.
 
-#### Step 4: Human Review & Merge
+#### Step 4: Review & Merge
 
 1. Create a PR for the sprint branch (or update the existing one).
-2. Request human review — the reviewer should verify the close-out gate items.
-3. Merge after approval.
+2. Request Copilot review: `gh pr edit <number> --add-reviewer @me` (triggers GitHub Copilot code review automatically).
+3. Address any Copilot findings before requesting human review.
+4. Request human review — the reviewer should verify the close-out gate items.
+5. Merge after both Copilot and human approval.
 
 #### Step 5: Clean Up
 
