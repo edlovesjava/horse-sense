@@ -47,7 +47,7 @@ Three objectives, in priority order:
 | T-131 | CI hooks enforcing commit/push/merge gates (unit → integration/e2e → review/doc-sync) in `horse/templates/ci.yml` | US-077 | 5 | ✅ Done |
 | T-132 | Doc-sync check for "ready-for-review" gate (story status ↔ index table ↔ code references) | — | 3 | ✅ Done |
 | T-133 | Branch/PR workflow doc: "fresh branch + single branch + single PR" rules; propose supporting skills/commands/hooks | — | 2 | ✅ Done |
-| T-134 | Housekeeping: back-transition any Sprint 3 story drift (frontmatter ↔ index parity audit) | — | 1 | ⬜ To Do |
+| T-134 | Housekeeping: back-transition any Sprint 3 story drift (frontmatter ↔ index parity audit) | — | 1 | ✅ Done |
 | | **Part 3 subtotal** | | **14** | |
 
 | | **Parts 1–3 subtotal (core)** | | **31** | |
