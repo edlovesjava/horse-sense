@@ -85,7 +85,7 @@ Run the close-out checklist before committing. All items must pass:
 
 - [ ] All sprint tasks are `✅ Done` or explicitly deferred with rationale
 - [ ] `make doc-sync` passes (story frontmatter ↔ index table parity)
-- [ ] `make check` passes (structure, frontmatter, markdown, shellcheck)
+- [ ] `make can-review` passes (structure, frontmatter, markdown, shellcheck, doc-sync)
 - [ ] Story statuses transitioned in both frontmatter and index
 - [ ] Sprint review section filled in (velocity, what was delivered, what was not)
 

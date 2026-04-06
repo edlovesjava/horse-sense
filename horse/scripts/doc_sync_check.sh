@@ -98,6 +98,12 @@ for story_file in "${STORIES_DIR}"/US-*.md; do
 
   if [[ -n "${fm_id}" && -n "${fm_status}" ]]; then
     frontmatter_status["${fm_id}"]="${fm_status}"
+  elif [[ -n "${fm_id}" && -z "${fm_status}" ]]; then
+    warn "PARSE: ${fm_id} — file found but missing 'status' in frontmatter (${story_file})"
+    ((drift_count++))
+  elif [[ -z "${fm_id}" ]]; then
+    warn "PARSE: missing 'id' in frontmatter (${story_file})"
+    ((drift_count++))
   fi
 done
 

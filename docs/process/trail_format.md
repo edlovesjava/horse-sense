@@ -65,6 +65,36 @@ A checklist at the top of the trail defining preconditions:
 
 The orchestrator checks each item before starting. If any item fails, the trail is blocked and the orchestrator reports what is missing.
 
+#### Exit Gate
+
+A checklist at the end of the trail defining what must be true when the trail completes:
+
+```markdown
+## Exit Gate
+
+- [ ] All steps completed or explicitly skipped with rationale
+- [ ] All output artifacts exist and are up to date
+- [ ] CI is green on the target branch
+```
+
+The orchestrator verifies the exit gate after the final step. If any item fails, the trail is not considered complete.
+
+#### Artifacts
+
+A table listing the artifacts the trail consumes and produces:
+
+```markdown
+## Artifacts
+
+| Artifact | Direction | Description |
+|---|---|---|
+| `requirements_doc.md` | Input | Feature request or user stories |
+| `architecture_doc.md` | Output | System design and ADRs |
+| `sprint_plan.md` | Output | Sprint backlog and capacity plan |
+```
+
+This makes dependencies between trails explicit and helps the orchestrator verify that inputs exist before starting and outputs exist before finishing.
+
 #### Steps
 
 Each step is a level-3 heading (`###`) with a structured body:

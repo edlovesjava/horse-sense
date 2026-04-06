@@ -2,8 +2,8 @@
 
 > **Date**: {{date}}
 > **Auditor**: Trainer agent
-> **Scope**: {{scope — full / requirements / design / plan / trail}}
-> **Project phase**: {{phase — e.g., Sprint 3, pre-release, early exploration}}
+> **Scope**: {{scope}} _(full / requirements / design / plan / trail)_
+> **Project phase**: {{phase}} _(e.g., Sprint 3, pre-release, early exploration)_
 
 ---
 
@@ -25,7 +25,7 @@
 | Design | ADRs | `docs/architecture/adr/` | ☐ |
 | Plan | Project plan | `docs/plans/project_plan.md` | ☐ |
 | Plan | Sprint plans | `docs/plans/sprints/` | ☐ |
-| Trail | Process trails | `trails/` | ☐ |
+| Trail | Process trails | `horse/trails/` | ☐ |
 
 ---
 

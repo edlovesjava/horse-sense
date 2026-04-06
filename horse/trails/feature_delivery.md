@@ -16,6 +16,26 @@ Full SDLC lifecycle for delivering a feature: requirements gathering, architectu
 - [ ] CI pipeline is green on the main branch
 - [ ] `horse.config.md` exists with `requirements_format` and `git_strategy` set
 
+## Exit Gate
+
+- [ ] All steps completed or explicitly skipped with rationale
+- [ ] All output artifacts exist and are up to date
+- [ ] CI is green on the main branch
+- [ ] PR merged and sprint branch cleaned up
+
+## Artifacts
+
+| Artifact | Direction | Description |
+|---|---|---|
+| Feature request / user story | Input | Problem statement or requirements to implement |
+| `.claude/config.json` | Input | Project toolchain configuration |
+| `requirements_doc.md` | Output | Updated requirements with user stories |
+| `architecture_doc.md` | Output | System design and ADRs |
+| `sprint_plan.md` | Output | Sprint backlog with tasks and capacity |
+| Source code + tests | Output | Working implementation with passing tests |
+| PR with review | Output | Reviewed and approved pull request |
+| Deployment artifacts | Output | Build artifacts, runbook, updated CHANGELOG |
+
 ### Step 1: Requirements
 
 - **Agent**: planner
@@ -56,7 +76,7 @@ Full SDLC lifecycle for delivering a feature: requirements gathering, architectu
 - **Loop exit**: All unit tests pass, linter clean, type checker clean
 - **Loop limit**: 10
 - **Fail**: Loop exceeds 10 iterations without convergence → HUMAN DECISION
-- **Completion**: All sprint tasks implemented, unit tests passing, `make gate-commit` green
+- **Completion**: All sprint tasks implemented, unit tests passing, `make can-commit` green
 
 ### Step 5: Testing
 
@@ -68,7 +88,7 @@ Full SDLC lifecycle for delivering a feature: requirements gathering, architectu
 - **Loop exit**: Coverage meets threshold, all test categories pass
 - **Loop limit**: 5
 - **Fail**: Coverage cannot reach threshold after 5 iterations → HUMAN DECISION
-- **Completion**: `make gate-push` green, coverage ≥ configured threshold
+- **Completion**: Integration and e2e tests pass, coverage ≥ configured threshold
 
 ### Step 6: Review
 
@@ -77,7 +97,7 @@ Full SDLC lifecycle for delivering a feature: requirements gathering, architectu
 - **Input**: PR with implementation and tests
 - **Output**: Review feedback, approved PR
 - **Branch**: If blocking issues found → GOTO Step 4 (Implementation)
-- **Completion**: No blocking review comments, `make gate-review` green, PR approved
+- **Completion**: No blocking review comments, `make can-review` green, PR approved
 - **Gate**: HUMAN APPROVAL — final review sign-off before merge
 
 ### Step 7: Deployment

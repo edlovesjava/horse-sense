@@ -49,7 +49,7 @@ Adopt a five-gate readiness ladder. Each gate defines: what is checked, who owns
 
 **On failure**: Commit blocked (if hook) or developer fixes before committing.
 **Bypass**: `--no-verify` with a comment in the commit message explaining why.
-**Local command**: `make gate-commit`
+**Local command**: `make can-commit`
 
 ### Gate 3: Ready for Push
 
@@ -62,7 +62,7 @@ Adopt a five-gate readiness ladder. Each gate defines: what is checked, who owns
 
 **On failure**: Push blocked (if hook) or CI marks the branch as failing.
 **Bypass**: `--no-verify` with justification; CI failure is visible to reviewers.
-**Local command**: `make gate-push`
+**Local command**: `make can-push`
 
 ### Gate 4: Ready for Review
 
@@ -70,14 +70,16 @@ Adopt a five-gate readiness ladder. Each gate defines: what is checked, who owns
 
 | Check | Owner | Automation |
 |---|---|---|
-| Doc-sync check passes (story frontmatter ↔ index table ↔ sprint plan) | Trainer / CI | `scripts/doc_sync_check.sh` |
+| Doc-sync check passes (story frontmatter ↔ index table status) | Trainer / CI | `horse/scripts/doc_sync_check.sh` |
 | Markdown lint passes | CI | `markdownlint-cli2` |
-| Frontmatter validation passes | CI | `scripts/validate_plugin.sh` |
-| Plugin structure validation passes | CI | `scripts/validate_plugin.sh` |
+| Frontmatter validation passes | CI | `scripts/validate-plugin.sh` |
+| Plugin structure validation passes | CI | `scripts/validate-plugin.sh` |
+| Sprint review section filled in (if closing a sprint) | Sprint owner | Manual review |
+| All sprint tasks ✅ Done or explicitly deferred (if closing a sprint) | Sprint owner | Manual review |
 
 **On failure**: PR is not reviewable; author fixes doc-sync or lint issues first.
 **Bypass**: Reviewer can approve with documented exceptions for non-material doc drift.
-**Local command**: `make gate-review`
+**Local command**: `make can-review`
 
 ### Gate 5: Ready for Merge
 
@@ -106,10 +108,10 @@ Gates run in order. A downstream gate assumes all upstream gates have passed. CI
 Developers can run any gate locally:
 
 ```bash
-make gate-commit   # unit tests + lint + typecheck
-make gate-push     # full test suite
-make gate-review   # doc-sync + markdown lint + frontmatter + structure
-make check         # all gates (equivalent to gate-review)
+make can-commit    # validate + lint (fast local check)
+make can-push      # validate + lint (same as can-commit; expand when integration tests exist)
+make can-review    # validate + lint + doc-sync
+make check         # validate + lint (CI baseline)
 ```
 
 ## Consequences

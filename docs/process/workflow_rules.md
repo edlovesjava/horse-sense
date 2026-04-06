@@ -96,8 +96,8 @@ These rules complement the readiness gates (ADR-0007) at the commit level:
 
 | Rule | Gate | Check |
 |---|---|---|
-| Fresh branch | Gate 3 (push) | CI fails if branch can't rebase cleanly |
+| Fresh branch | Gate 3 (push) | Developer discipline; proposed: CI freshness check (not yet implemented) |
 | Single branch | Gate 1 (sprint) | Sprint planning assigns one story at a time |
 | Single PR | Gate 5 (merge) | Reviewer checks for other open PRs by author |
 | Conventional commits | Gate 2 (commit) | Commit message lint (optional hook) |
-| Doc-sync | Gate 4 (review) | `scripts/doc_sync_check.sh` verifies parity |
+| Doc-sync | Gate 4 (review) | `horse/scripts/doc_sync_check.sh` verifies parity |
