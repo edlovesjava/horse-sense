@@ -1,7 +1,7 @@
 ---
 id: US-083
 title: Trainer agent with process audit skill and command
-status: draft
+status: in-progress
 priority: Must Have
 story_points: 8
 section: "3.12 Trainer — Process Quality Auditing"
