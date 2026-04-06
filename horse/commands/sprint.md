@@ -15,6 +15,11 @@ Plan and manage a sprint.
 
 1. Ask: *"Is this a new sprint or an update to an in-progress sprint?"*
 2. If new sprint:
+   - **Pre-flight check**: Verify the previous sprint is fully closed out before starting a new one. Check:
+     - The previous sprint plan's Sprint Review section is filled in (not placeholder text)
+     - The previous sprint's PR has been merged (check `gh pr list --state merged`)
+     - The previous sprint's branch has been deleted (check `git branch -r`)
+     - If any of these are incomplete, prompt: *"Sprint N is not fully closed out yet. Please complete the close-out sequence first."*
    - Read the current `${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md` to find unfinished stories.
    - Check `horse.config.md` for `requirements_format`. If **per-story**, also scan `requirements_stories_dir` for story files to cross-reference status and details.
    - Ask: *"What is the sprint goal (in one sentence)?"*
@@ -97,7 +102,15 @@ If any item fails, fix it before proceeding.
 2. Request human review — the reviewer should verify the close-out gate items.
 3. Merge after approval.
 
-#### Step 5: Velocity & Retrospective
+#### Step 5: Clean Up
+
+After the PR is merged:
+
+1. Delete the remote sprint branch: `git push origin --delete sprint-<N>`
+2. Delete the local sprint branch: `git checkout main && git pull && git branch -d sprint-<N>`
+3. Verify clean state: no stale sprint branches remain (`git branch -a | grep sprint`)
+
+#### Step 6: Velocity & Retrospective
 
 1. Calculate velocity: total story points completed.
 2. Prompt: *"Ready to run a retrospective? Use /horse:retrospective"*
