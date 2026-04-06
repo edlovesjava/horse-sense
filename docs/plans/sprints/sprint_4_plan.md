@@ -26,8 +26,8 @@ Three objectives, in priority order:
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
 | T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | US-051 | 3 | ✅ Done |
-| T-026 | End-to-end validation: install plugin into a fresh Python project | US-001, US-002 | 3 | ⬜ To Do |
-| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | US-001, US-051 | 3 | ⬜ To Do |
+| T-026 | End-to-end validation: install plugin into a fresh Python project | US-001, US-002 | 3 | ✅ Done |
+| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | US-001, US-051 | 3 | 🔵 In Progress |
 | | **Part 1 subtotal** | | **9** | |
 
 ### Part 2: Trainer Audit Skill & Command (US-083)
