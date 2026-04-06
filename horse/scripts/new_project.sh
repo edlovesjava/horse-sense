@@ -273,6 +273,16 @@ cat > "package.json" << PKG
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "typescript": "^5.5",
+    "vitest": "^2.0",
+    "@vitest/coverage-v8": "^2.0",
+    "eslint": "^9.0",
+    "@eslint/js": "^9.0",
+    "typescript-eslint": "^8.0",
+    "prettier": "^3.3",
+    "tsx": "^4.16"
   }
 }
 PKG
