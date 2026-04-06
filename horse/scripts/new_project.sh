@@ -447,13 +447,21 @@ CHANGELOG
 
 info "Created CHANGELOG.md"
 
+# ── Resolve plugin root for next-steps output ────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
 # ── Done ──────────────────────────────────────────────────────────────────────
 echo ""
 info "Project '${PROJECT}' scaffolded successfully!"
 echo ""
 echo "  Next steps:"
 echo "    1. cd into your project directory (if not already there)"
-echo "    2. bash \${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh   # provided by the horse plugin"
-echo "    3. Fill out templates/requirements_doc.md"
-echo "    4. bash \${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh   # provided by the horse plugin"
+if [[ "${LANGUAGE}" == "python" ]]; then
+echo "    2. python -m venv .venv && source .venv/bin/activate && pip install -r requirements-dev.txt"
+else
+echo "    2. npm install"
+fi
+echo "    3. Start Claude Code with the plugin: claude --plugin-dir ${PLUGIN_ROOT}"
+echo "    4. Run /horse:guide to begin the SDLC workflow"
 echo ""
