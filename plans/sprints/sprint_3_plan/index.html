@@ -1,0 +1,2362 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Claude Code plugin for SDLC-driven autonomous development">
+      
+      
+      
+        <link rel="canonical" href="https://edlovesjava.github.io/horse-sense/plans/sprints/sprint_3_plan/">
+      
+      
+        <link rel="prev" href="../sprint_2_plan/">
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Sprint 3 - horse-sense</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sprint-3-plan-dual-toolchain-pr-skills-scout" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="horse-sense" class="md-header__button md-logo" aria-label="horse-sense" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            horse-sense
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sprint 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/edlovesjava/horse-sense" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    edlovesjava/horse-sense
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../getting-started/" class="md-tabs__link">
+          
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../commands/" class="md-tabs__link">
+        
+  
+    
+  
+  Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../agents/" class="md-tabs__link">
+        
+  
+    
+  
+  Agents
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../skills/" class="md-tabs__link">
+        
+  
+    
+  
+  Skills
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../rules/" class="md-tabs__link">
+        
+  
+    
+  
+  Rules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../templates/" class="md-tabs__link">
+        
+  
+    
+  
+  Templates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../architecture/" class="md-tabs__link">
+          
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../requirements/" class="md-tabs__link">
+          
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  Plans
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="horse-sense" class="md-nav__button md-logo" aria-label="horse-sense" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    horse-sense
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/edlovesjava/horse-sense" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    edlovesjava/horse-sense
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../skills/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skills
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../rules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../architecture/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ADRs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            ADRs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adr/0001-adopt-official-plugin-format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0001 Adopt Official Plugin Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adr/0002-two-tier-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0002 Two-Tier Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adr/0003-dual-toolchain-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0003 Dual Toolchain Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adr/0004-process-orchestration-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0004 Process Orchestration Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adr/0005-containerized-subagent-execution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0005 Containerized Subagent Execution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/adr/0006-build-and-docs-toolchain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0006 Build and Docs Toolchain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../requirements/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Plans
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Plans
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprint_1_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprint_2_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Sprint 3
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 3
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprint Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprint Backlog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sprint Backlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-typescript-toolchain-completion-us-050-us-051-us-060" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: TypeScript Toolchain Completion (US-050, US-051, US-060)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-pr-review-fix-skills-us-080-us-081" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: PR Review &amp; Fix Skills (US-080, US-081)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-3-scout-agent-skill-us-082" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Scout Agent &amp; Skill (US-082)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-4-mkdocs-documentation-site-stretch-goal-us-075" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: MkDocs Documentation Site (Stretch Goal — US-075)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status Key
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t-020-create-skillstypescript-setupskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-020: Create skills/typescript-setup/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-021-create-rulestypescript_qualitymd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-021: Create rules/typescript_quality.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-022-update-scripts-for-typescript-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-022: Update scripts for TypeScript detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-023-create-templatesciyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-023: Create templates/ci.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-024-update-readmemd-and-clean-up-plandocs-discrepancies" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-024: Update README.md and clean up plan/docs discrepancies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-028-create-skillspr-reviewskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-028: Create skills/pr-review/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-029-create-skillspr-fixskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-029: Create skills/pr-fix/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-030s-create-agentsscoutmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-030s: Create agents/scout.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-031s-create-skillsscoutskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-031s: Create skills/scout/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-032s-create-templatesspike_reportmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-032s: Create templates/spike_report.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-033s-create-mkdocsyml-with-material-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-033s: Create mkdocs.yml with Material theme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-034s-organize-content-into-nav-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-034s: Organize content into nav hierarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-035s-add-make-docs-target-and-build-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-035s: Add make docs target and build script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-036s-add-docs-build-to-ci-and-github-pages-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-036s: Add docs build to CI and GitHub Pages deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deferred-to-sprint-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deferred to Sprint 4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-blockers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Risks &amp; Blockers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definition-of-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition of Done
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrospective-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrospective Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrospective Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start 🟢
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop 🔴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continue 🟡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action items
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprint Goal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprint Backlog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sprint Backlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-1-typescript-toolchain-completion-us-050-us-051-us-060" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 1: TypeScript Toolchain Completion (US-050, US-051, US-060)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-2-pr-review-fix-skills-us-080-us-081" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 2: PR Review &amp; Fix Skills (US-080, US-081)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-3-scout-agent-skill-us-082" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 3: Scout Agent &amp; Skill (US-082)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-4-mkdocs-documentation-site-stretch-goal-us-075" class="md-nav__link">
+    <span class="md-ellipsis">
+      Part 4: MkDocs Documentation Site (Stretch Goal — US-075)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#status-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      Status Key
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#task-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Task Details
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Task Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t-020-create-skillstypescript-setupskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-020: Create skills/typescript-setup/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-021-create-rulestypescript_qualitymd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-021: Create rules/typescript_quality.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-022-update-scripts-for-typescript-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-022: Update scripts for TypeScript detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-023-create-templatesciyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-023: Create templates/ci.yml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-024-update-readmemd-and-clean-up-plandocs-discrepancies" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-024: Update README.md and clean up plan/docs discrepancies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-028-create-skillspr-reviewskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-028: Create skills/pr-review/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-029-create-skillspr-fixskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-029: Create skills/pr-fix/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-030s-create-agentsscoutmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-030s: Create agents/scout.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-031s-create-skillsscoutskillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-031s: Create skills/scout/SKILL.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-032s-create-templatesspike_reportmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-032s: Create templates/spike_report.md
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-033s-create-mkdocsyml-with-material-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-033s: Create mkdocs.yml with Material theme
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-034s-organize-content-into-nav-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-034s: Organize content into nav hierarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-035s-add-make-docs-target-and-build-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-035s: Add make docs target and build script
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t-036s-add-docs-build-to-ci-and-github-pages-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      T-036s: Add docs build to CI and GitHub Pages deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deferred-to-sprint-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deferred to Sprint 4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-blockers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Risks &amp; Blockers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#definition-of-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition of Done
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrospective-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Retrospective Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Retrospective Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start 🟢
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stop 🔴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continue 🟡
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action items
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="sprint-3-plan-dual-toolchain-pr-skills-scout">Sprint 3 Plan: Dual Toolchain, PR Skills &amp; Scout<a class="headerlink" href="#sprint-3-plan-dual-toolchain-pr-skills-scout" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Sprint</strong>: 3
+<strong>Duration</strong>: 2026-04-11 → 2026-04-18 (1 week)
+<strong>Sprint goal</strong>: Complete TypeScript toolchain support, add PR review/fix skills for daily workflow, and introduce the scout agent/skill for research spikes.</p>
+</blockquote>
+<hr />
+<h2 id="sprint-goal">Sprint Goal<a class="headerlink" href="#sprint-goal" title="Permanent link">&para;</a></h2>
+<p>Three objectives, in priority order:</p>
+<ol>
+<li>
+<p><strong>TypeScript toolchain</strong> — complete the dual-language story with a dedicated TypeScript setup skill, TypeScript quality rules, and language-aware scripts. Sprint 2 laid the groundwork (config schema, dual-language skill sections); this sprint finishes the job.</p>
+</li>
+<li>
+<p><strong>PR review &amp; fix skills</strong> — add high-value workflow skills that review PRs and address review comments using <code>gh</code> CLI. These are the most immediately useful features for daily development.</p>
+</li>
+<li>
+<p><strong>Scout agent &amp; skill</strong> — introduce a research/investigation persona that produces spike reports and optional draft stories/ADRs. This fills a gap in the SDLC: structured discovery before committing to requirements or designs.</p>
+</li>
+</ol>
+<hr />
+<h2 id="sprint-backlog">Sprint Backlog<a class="headerlink" href="#sprint-backlog" title="Permanent link">&para;</a></h2>
+<h3 id="part-1-typescript-toolchain-completion-us-050-us-051-us-060">Part 1: TypeScript Toolchain Completion (US-050, US-051, US-060)<a class="headerlink" href="#part-1-typescript-toolchain-completion-us-050-us-051-us-060" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task ID</th>
+<th>Title</th>
+<th>Req</th>
+<th>Points</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-020</td>
+<td>Create <code>skills/typescript-setup/SKILL.md</code> (npm, vitest, eslint, tsc, prettier)</td>
+<td>US-051</td>
+<td>3</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-021</td>
+<td>Create <code>rules/typescript_quality.md</code> with TypeScript-specific code quality rules</td>
+<td>US-051</td>
+<td>3</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-022</td>
+<td>Update scripts (setup_env, run_tests, lint) to detect and support TypeScript</td>
+<td>US-050, US-051</td>
+<td>5</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-023</td>
+<td>Create <code>templates/ci.yml</code> GitHub Actions workflow template (Python + TS matrix)</td>
+<td>US-060</td>
+<td>3</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-024</td>
+<td>Update README.md for plugin installation, configuration, and usage</td>
+<td>—</td>
+<td>2</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Part 1 subtotal</strong></td>
+<td></td>
+<td><strong>16</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="part-2-pr-review-fix-skills-us-080-us-081">Part 2: PR Review &amp; Fix Skills (US-080, US-081)<a class="headerlink" href="#part-2-pr-review-fix-skills-us-080-us-081" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task ID</th>
+<th>Title</th>
+<th>Req</th>
+<th>Points</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-028</td>
+<td>Create <code>skills/pr-review/SKILL.md</code> — PR review skill with gh CLI integration</td>
+<td>US-080</td>
+<td>5</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-029</td>
+<td>Create <code>skills/pr-fix/SKILL.md</code> — PR fix/triage/reply skill</td>
+<td>US-081</td>
+<td>5</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Part 2 subtotal</strong></td>
+<td></td>
+<td><strong>10</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="part-3-scout-agent-skill-us-082">Part 3: Scout Agent &amp; Skill (US-082)<a class="headerlink" href="#part-3-scout-agent-skill-us-082" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task ID</th>
+<th>Title</th>
+<th>Req</th>
+<th>Points</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-030s</td>
+<td>Create <code>agents/scout.md</code> — research and investigation agent persona</td>
+<td>US-082</td>
+<td>3</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-031s</td>
+<td>Create <code>skills/scout/SKILL.md</code> — spike research skill with report template</td>
+<td>US-082</td>
+<td>3</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-032s</td>
+<td>Create <code>templates/spike_report.md</code> — spike report scaffold</td>
+<td>US-082</td>
+<td>1</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Part 3 subtotal</strong></td>
+<td></td>
+<td><strong>7</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>| | <strong>Parts 1–3 subtotal</strong> | | <strong>33</strong> | |</p>
+<h3 id="part-4-mkdocs-documentation-site-stretch-goal-us-075">Part 4: MkDocs Documentation Site (Stretch Goal — US-075)<a class="headerlink" href="#part-4-mkdocs-documentation-site-stretch-goal-us-075" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Task ID</th>
+<th>Title</th>
+<th>Req</th>
+<th>Points</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-033s</td>
+<td>Create <code>mkdocs.yml</code> with Material theme and nav structure</td>
+<td>US-075</td>
+<td>2</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-034s</td>
+<td>Organize content — map <code>horse/</code> and <code>docs/</code> into nav hierarchy</td>
+<td>US-075</td>
+<td>2</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-035s</td>
+<td>Add <code>make docs</code> target and build script</td>
+<td>US-075</td>
+<td>1</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td>T-036s</td>
+<td>Add docs build to CI and GitHub Pages deployment</td>
+<td>US-075, US-077</td>
+<td>3</td>
+<td>✅ Done</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>Part 4 subtotal (stretch)</strong></td>
+<td></td>
+<td><strong>8</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>| | <strong>Sprint 3 Total (with stretch)</strong> | | <strong>41</strong> | |</p>
+<h3 id="status-key">Status Key<a class="headerlink" href="#status-key" title="Permanent link">&para;</a></h3>
+<ul>
+<li>✅ Done</li>
+<li>🔵 In Progress</li>
+<li>🔍 In Review</li>
+<li>✅ Done</li>
+<li>🚫 Blocked</li>
+</ul>
+<hr />
+<h2 id="task-details">Task Details<a class="headerlink" href="#task-details" title="Permanent link">&para;</a></h2>
+<h3 id="t-020-create-skillstypescript-setupskillmd">T-020: Create <code>skills/typescript-setup/SKILL.md</code><a class="headerlink" href="#t-020-create-skillstypescript-setupskillmd" title="Permanent link">&para;</a></h3>
+<p>Equivalent to <code>skills/python-venv/SKILL.md</code> but for the TypeScript/Node.js ecosystem. Should cover:</p>
+<ol>
+<li>Initialize a Node.js project (<code>npm init</code>)</li>
+<li>Install dev dependencies (vitest, eslint, prettier, typescript)</li>
+<li>Configure <code>tsconfig.json</code> with strict mode</li>
+<li>Configure eslint and prettier</li>
+<li>Set up vitest config</li>
+<li>Verify the environment (<code>npx tsc --noEmit</code>, <code>npx vitest run</code>)</li>
+</ol>
+<p>Read <code>pythonVersion</code>/<code>nodeVersion</code> from <code>.claude/config.json</code>.</p>
+<p><strong>Acceptance</strong>: Skill produces working TypeScript environment from scratch.</p>
+<hr />
+<h3 id="t-021-create-rulestypescript_qualitymd">T-021: Create <code>rules/typescript_quality.md</code><a class="headerlink" href="#t-021-create-rulestypescript_qualitymd" title="Permanent link">&para;</a></h3>
+<p>TypeScript-specific code quality rules, complementing <code>rules/code_quality.md</code> (which is Python-focused). Should cover:</p>
+<ul>
+<li>Strict TypeScript: <code>strict: true</code>, no <code>any</code> without justification</li>
+<li>Prefer <code>interface</code> over <code>type</code> for object shapes</li>
+<li>Use <code>readonly</code> for immutable properties</li>
+<li>Prefer <code>const</code> over <code>let</code>; never use <code>var</code></li>
+<li>Named exports over default exports</li>
+<li>Error handling: typed errors, no bare <code>catch</code></li>
+<li>Import organization: external, internal, types</li>
+<li>File naming: kebab-case for files, PascalCase for components</li>
+</ul>
+<p><strong>Acceptance</strong>: Rule file exists, is referenced by developer/tester/reviewer agent prompts.</p>
+<hr />
+<h3 id="t-022-update-scripts-for-typescript-detection">T-022: Update scripts for TypeScript detection<a class="headerlink" href="#t-022-update-scripts-for-typescript-detection" title="Permanent link">&para;</a></h3>
+<p>Update <code>horse/scripts/setup_env.sh</code>, <code>run_tests.sh</code>, and <code>lint.sh</code> to:</p>
+<ol>
+<li>Auto-detect language from <code>package.json</code> (TypeScript) vs <code>pyproject.toml</code> (Python)</li>
+<li>Read <code>.claude/config.json</code> if available for explicit language setting</li>
+<li>Run the appropriate toolchain commands based on detected/configured language</li>
+</ol>
+<p><strong>Acceptance</strong>: <code>setup_env.sh</code> bootstraps a TypeScript project. <code>run_tests.sh</code> runs vitest. <code>lint.sh</code> runs eslint + prettier. All scripts fall back to Python if no TypeScript indicators found.</p>
+<hr />
+<h3 id="t-023-create-templatesciyml">T-023: Create <code>templates/ci.yml</code><a class="headerlink" href="#t-023-create-templatesciyml" title="Permanent link">&para;</a></h3>
+<p>GitHub Actions workflow template for user projects. Should support:</p>
+<ul>
+<li>Language matrix (Python + TypeScript)</li>
+<li>Test, lint, type-check, coverage, security audit steps per language</li>
+<li>Coverage threshold from <code>.claude/config.json</code></li>
+<li>PR triggers + push to main</li>
+</ul>
+<p><strong>Acceptance</strong>: Template produces a working CI workflow for both Python and TypeScript projects.</p>
+<hr />
+<h3 id="t-024-update-readmemd-and-clean-up-plandocs-discrepancies">T-024: Update README.md and clean up plan/docs discrepancies<a class="headerlink" href="#t-024-update-readmemd-and-clean-up-plandocs-discrepancies" title="Permanent link">&para;</a></h3>
+<p>Update the project README.md with:</p>
+<ul>
+<li>Clear installation instructions</li>
+<li>Configuration guide (both <code>horse.config.md</code> and <code>.claude/config.json</code>)</li>
+<li>Quick start walkthrough</li>
+<li>Command reference table</li>
+<li>Agent descriptions</li>
+<li>Link to example configs</li>
+</ul>
+<p>Also clean up documentation discrepancies flagged in Sprint 2 PR review:</p>
+<ul>
+<li><strong>sprint_2_plan.md T-102</strong>: states frontmatter validator uses PyYAML with Bash fallback, but actual implementation uses regex-based parsing. Update plan to reflect reality.</li>
+<li><strong>sprint_2_plan.md Part 2 intro</strong>: describes <code>.claude/config.json</code> as the only config mechanism, but <code>horse.config.md</code> also exists (two-tier config). Clarify the two-tier approach in the plan text.</li>
+</ul>
+<p><strong>Acceptance</strong>: A new user can install and start using the plugin within 5 minutes by following the README. No stale or misleading descriptions in plan documents.</p>
+<hr />
+<h3 id="t-028-create-skillspr-reviewskillmd">T-028: Create <code>skills/pr-review/SKILL.md</code><a class="headerlink" href="#t-028-create-skillspr-reviewskillmd" title="Permanent link">&para;</a></h3>
+<p>PR review skill that:</p>
+<ol>
+<li>Accepts a PR number (or auto-detects from current branch)</li>
+<li>Fetches PR diff and changed files via <code>gh pr view</code> and <code>gh api</code></li>
+<li>Analyzes each changed file against project rules and conventions</li>
+<li>Posts inline review comments on specific lines using <code>gh api</code></li>
+<li>Posts a summary review with overall assessment</li>
+<li>Categorizes issues as <code>[must-fix]</code>, <code>[should-fix]</code>, <code>[nit]</code></li>
+<li>Approves PRs with no issues</li>
+</ol>
+<p>Should read <code>.claude/config.json</code> for language/toolchain context and reference relevant rules.</p>
+<p><strong>Acceptance</strong>: Skill reviews a real PR and posts structured comments via gh CLI.</p>
+<hr />
+<h3 id="t-029-create-skillspr-fixskillmd">T-029: Create <code>skills/pr-fix/SKILL.md</code><a class="headerlink" href="#t-029-create-skillspr-fixskillmd" title="Permanent link">&para;</a></h3>
+<p>PR fix skill that:</p>
+<ol>
+<li>Fetches all unresolved review comments on a PR via <code>gh api</code></li>
+<li>Triages each comment: <code>fix</code>, <code>defer</code>, or <code>accept</code></li>
+<li>For <code>fix</code>: modifies code, replies with what changed and commit SHA</li>
+<li>For <code>defer</code>: replies with explanation of why</li>
+<li>For <code>accept</code>: replies acknowledging the feedback</li>
+<li>Commits all fixes in a single conventional commit</li>
+<li>Pushes and posts a summary comment listing actions taken</li>
+</ol>
+<p>Should handle comments from any reviewer (human, Copilot, horse review skill).</p>
+<p><strong>Acceptance</strong>: Skill processes review comments on a real PR, makes fixes, and replies to threads.</p>
+<hr />
+<h3 id="t-030s-create-agentsscoutmd">T-030s: Create <code>agents/scout.md</code><a class="headerlink" href="#t-030s-create-agentsscoutmd" title="Permanent link">&para;</a></h3>
+<p>Scout agent persona with YAML frontmatter. The scout:</p>
+<ul>
+<li>Specializes in research, investigation, and feasibility analysis</li>
+<li>Conducts timeboxed spikes with clear questions</li>
+<li>Produces spike reports with findings, trade-offs, and recommendations</li>
+<li>Can optionally draft user stories or ADRs from findings</li>
+<li>Reads project context from config, requirements, and architecture docs</li>
+<li>Composes the scout skill and references documentation rules</li>
+</ul>
+<p><strong>Acceptance</strong>: Agent appears in <code>/agents</code> with correct frontmatter. Persona produces structured spike reports.</p>
+<hr />
+<h3 id="t-031s-create-skillsscoutskillmd">T-031s: Create <code>skills/scout/SKILL.md</code><a class="headerlink" href="#t-031s-create-skillsscoutskillmd" title="Permanent link">&para;</a></h3>
+<p>Scout skill with step-by-step guidance for conducting a spike:</p>
+<ol>
+<li>Define the research question and timebox</li>
+<li>Identify sources (codebase, docs, APIs, libraries, web)</li>
+<li>Conduct investigation using available tools</li>
+<li>Document findings in spike report format</li>
+<li>Build trade-off matrix for options discovered</li>
+<li>Produce recommendation with confidence level</li>
+<li>Optionally generate draft stories/ADRs from findings</li>
+</ol>
+<p>Should reference <code>${CLAUDE_PLUGIN_ROOT}/templates/spike_report.md</code>.</p>
+<p><strong>Acceptance</strong>: Skill guides a productive spike and produces a usable report.</p>
+<hr />
+<h3 id="t-032s-create-templatesspike_reportmd">T-032s: Create <code>templates/spike_report.md</code><a class="headerlink" href="#t-032s-create-templatesspike_reportmd" title="Permanent link">&para;</a></h3>
+<p>Spike report template with sections for:</p>
+<ul>
+<li>Question, approach, findings, trade-off matrix, recommendation, open questions, next steps</li>
+</ul>
+<p><strong>Acceptance</strong>: Template is scaffolded and referenced by scout skill. <em>(Note: already created as part of sprint planning.)</em></p>
+<hr />
+<h3 id="t-033s-create-mkdocsyml-with-material-theme">T-033s: Create <code>mkdocs.yml</code> with Material theme<a class="headerlink" href="#t-033s-create-mkdocsyml-with-material-theme" title="Permanent link">&para;</a></h3>
+<p>Create <code>mkdocs.yml</code> at repo root with:</p>
+<ul>
+<li><code>mkdocs-material</code> theme with search, dark mode</li>
+<li><code>nav:</code> structure covering: Getting Started, Configuration, Commands, Agents, Skills, Rules, Templates, ADRs, Spikes</li>
+<li>Markdown extensions: admonitions, code highlighting, tables, tabs</li>
+</ul>
+<p>Add <code>mkdocs</code> and <code>mkdocs-material</code> to <code>requirements-dev.txt</code> (or a dedicated <code>docs/requirements.txt</code>).</p>
+<p><strong>Acceptance</strong>: <code>mkdocs serve</code> renders the full documentation site locally.</p>
+<hr />
+<h3 id="t-034s-organize-content-into-nav-hierarchy">T-034s: Organize content into nav hierarchy<a class="headerlink" href="#t-034s-organize-content-into-nav-hierarchy" title="Permanent link">&para;</a></h3>
+<p>Map existing markdown into the MkDocs nav. This may require:</p>
+<ul>
+<li>An <code>index.md</code> for each nav section (can be thin wrappers that include/link existing files)</li>
+<li>Symlinking or copying <code>horse/</code> content into a <code>docs/</code> structure MkDocs can read (or using <code>mkdocs-include-markdown-plugin</code>)</li>
+<li>Ensuring relative links between docs still work</li>
+</ul>
+<p><strong>Acceptance</strong>: All plugin docs, rules, templates, ADRs, and spike reports are navigable in the site.</p>
+<hr />
+<h3 id="t-035s-add-make-docs-target-and-build-script">T-035s: Add <code>make docs</code> target and build script<a class="headerlink" href="#t-035s-add-make-docs-target-and-build-script" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>make docs</code> — build the static site to <code>site/</code></li>
+<li><code>make docs-serve</code> — run local dev server (<code>mkdocs serve</code>)</li>
+<li>Add <code>site/</code> to <code>.gitignore</code></li>
+</ul>
+<p><strong>Acceptance</strong>: <code>make docs</code> builds clean. <code>make docs-serve</code> runs locally.</p>
+<hr />
+<h3 id="t-036s-add-docs-build-to-ci-and-github-pages-deployment">T-036s: Add docs build to CI and GitHub Pages deployment<a class="headerlink" href="#t-036s-add-docs-build-to-ci-and-github-pages-deployment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add <code>mkdocs build --strict</code> step to CI workflow (fails on broken links/warnings)</li>
+<li>Add a deploy job that runs <code>mkdocs gh-deploy</code> on merge to <code>main</code></li>
+<li>Configure GitHub Pages to serve from <code>gh-pages</code> branch</li>
+</ul>
+<p><strong>Acceptance</strong>: CI validates docs build. Merges to main auto-deploy to GitHub Pages.</p>
+<hr />
+<h2 id="deferred-to-sprint-4">Deferred to Sprint 4<a class="headerlink" href="#deferred-to-sprint-4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Title</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T-025</td>
+<td>Update <code>scripts/new_project.sh</code> for TypeScript scaffolding</td>
+<td>Should Have; lower priority than PR skills and scout</td>
+</tr>
+<tr>
+<td>T-026</td>
+<td>End-to-end validation: Python project</td>
+<td>Better done after PR skills land</td>
+</tr>
+<tr>
+<td>T-027</td>
+<td>End-to-end validation: TypeScript project</td>
+<td>Better done after PR skills land</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="risks-blockers">Risks &amp; Blockers<a class="headerlink" href="#risks-blockers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint too large (33 SP)</td>
+<td>Med</td>
+<td>Parts are independent — can defer T-023 (CI template) or T-024 (README) to Sprint 4 if needed</td>
+</tr>
+<tr>
+<td>gh CLI not available in all environments</td>
+<td>Med</td>
+<td>PR skills should degrade gracefully with clear error messages</td>
+</tr>
+<tr>
+<td>Scout skill scope creep (research is open-ended)</td>
+<td>Med</td>
+<td>Timeboxing is built into the skill design; spike reports force structured output</td>
+</tr>
+<tr>
+<td>TypeScript scripts complexity</td>
+<td>Low</td>
+<td>Detection logic is straightforward (check for package.json); keep scripts simple</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="definition-of-done">Definition of Done<a class="headerlink" href="#definition-of-done" title="Permanent link">&para;</a></h2>
+<p>A task is <strong>Done</strong> when:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Implementation matches task description and acceptance criteria</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>make check</code> passes</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No broken internal references in plugin</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> New agents have valid YAML frontmatter</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> New skills have valid frontmatter and are config-aware</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Changes committed with Conventional Commits format</li>
+</ul>
+<hr />
+<h2 id="retrospective-notes">Retrospective Notes<a class="headerlink" href="#retrospective-notes" title="Permanent link">&para;</a></h2>
+<p><strong>Sprint goal achieved</strong>: Yes — all three objectives (TypeScript toolchain, PR review/fix skills, scout agent/skill) delivered, plus the MkDocs stretch goal.
+<strong>Velocity</strong>: 41 SP (33 planned + 8 stretch; 100% completion).
+<strong>Bonus work landed outside the plan</strong>: trainer agent (<code>85252f6</code>), sprint-status ownership refactor (<code>1208f01</code>, <code>7b08075</code>).
+<strong>Known drift flagged at close-out</strong>: sprint 3 stories (US-050, US-051, US-060, US-075, US-077, US-080, US-081, US-082) were never transitioned out of <code>draft</code> in their frontmatter or in <code>requirements_doc.md</code> — addressed by the sprint-status refactor but the back-transition is still outstanding.</p>
+<h3 id="start">Start 🟢<a class="headerlink" href="#start" title="Permanent link">&para;</a></h3>
+<p>Adopt a readiness-gate ladder enforced by the <strong>trainer</strong> agent plus CI hooks. Each transition has an automated check (trainer/CI) and, where noted, a human sign-off:</p>
+<ol>
+<li><strong>Ready for sprint</strong> — story meets Definition of Ready; context, acceptance criteria, and dependencies captured</li>
+<li><strong>Ready for commit</strong> — all unit tests pass locally</li>
+<li><strong>Ready for push</strong> — integration and end-to-end tests pass</li>
+<li><strong>Ready for review</strong> — doc synchronization verified (story status, plan docs, README consistent with code)</li>
+<li><strong>Ready for merge</strong> — human review and approval complete</li>
+</ol>
+<p>The trainer owns the automated portion of every gate; humans own the review gate.</p>
+<h3 id="stop">Stop 🔴<a class="headerlink" href="#stop" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Starting work on a stale branch — always <code>git fetch</code> / <code>git pull</code> before committing</li>
+<li>Opening multiple PRs in flight unless explicitly authorized</li>
+<li>Working on more than one branch at a time — one branch, one focus</li>
+</ul>
+<h3 id="continue">Continue 🟡<a class="headerlink" href="#continue" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Splitting sprints into independent parts (Part 1/2/3/stretch) — made it easy to defer or reorder scope</li>
+<li>Marking stretch goals explicitly so scope stays honest</li>
+<li>Conventional commits with clear task-ID references — made this retro trivial to reconstruct from git history</li>
+</ul>
+<h3 id="action-items">Action items<a class="headerlink" href="#action-items" title="Permanent link">&para;</a></h3>
+<p>Trainer's charter: improve the process by proposing trails, skills, rules, agents, commands, and tools as needed to land each item.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Owner</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Define the 5-gate readiness policy in a process doc (e.g. <code>docs/process/readiness_gates.md</code> or ADR-0007)</td>
+<td>trainer</td>
+<td>end of sprint 4</td>
+</tr>
+<tr>
+<td>Implement CI hooks enforcing commit/push/merge gates (unit → integration/e2e → review/doc-sync)</td>
+<td>trainer</td>
+<td>end of sprint 4</td>
+</tr>
+<tr>
+<td>Add doc-synchronization check to the "Ready for review" gate (story status ↔ index table ↔ code)</td>
+<td>trainer</td>
+<td>end of sprint 4</td>
+</tr>
+<tr>
+<td>Document "fresh branch + single branch + single PR" workflow rules in same process doc; propose supporting skills/commands/hooks</td>
+<td>trainer</td>
+<td>end of sprint 4</td>
+</tr>
+<tr>
+<td>Back-transition sprint 3 stories (US-050, US-051, US-060, US-075, US-077, US-080, US-081, US-082) from <code>draft</code> to <code>done</code> in frontmatter + <code>requirements_doc.md</code> index</td>
+<td>trainer</td>
+<td>start of sprint 4</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

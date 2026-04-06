@@ -1,0 +1,2443 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Claude Code plugin for SDLC-driven autonomous development">
+      
+      
+      
+        <link rel="canonical" href="https://edlovesjava.github.io/horse-sense/architecture/architecture_doc/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Architecture Document: horse-sense - horse-sense</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-document-horse-sense" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="horse-sense" class="md-header__button md-logo" aria-label="horse-sense" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            horse-sense
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture Document: horse-sense
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/edlovesjava/horse-sense" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    edlovesjava/horse-sense
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../commands/" class="md-tabs__link">
+        
+  
+    
+  
+  Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../agents/" class="md-tabs__link">
+        
+  
+    
+  
+  Agents
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../skills/" class="md-tabs__link">
+        
+  
+    
+  
+  Skills
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../rules/" class="md-tabs__link">
+        
+  
+    
+  
+  Rules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../templates/" class="md-tabs__link">
+        
+  
+    
+  
+  Templates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../requirements/" class="md-tabs__link">
+          
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../plans/" class="md-tabs__link">
+          
+  
+    
+  
+  Plans
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="horse-sense" class="md-nav__button md-logo" aria-label="horse-sense" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    horse-sense
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/edlovesjava/horse-sense" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    edlovesjava/horse-sense
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../skills/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skills
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ADRs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            ADRs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0001-adopt-official-plugin-format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0001 Adopt Official Plugin Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0002-two-tier-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0002 Two-Tier Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0003-dual-toolchain-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0003 Dual Toolchain Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0004-process-orchestration-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0004 Process Orchestration Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0005-containerized-subagent-execution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0005 Containerized Subagent Execution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adr/0006-build-and-docs-toolchain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0006 Build and Docs Toolchain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../requirements/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../plans/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Plans
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Plans
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/sprints/sprint_1_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/sprints/sprint_2_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/sprints/sprint_3_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-context-goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Context &amp; Goals
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Context & Goals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#system-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      System Purpose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target Users
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-attribute-priorities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Attribute Priorities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. System Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. System Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-style" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Style
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-level-component-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Level Component Diagram
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-descriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component Descriptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-data-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Data Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Data Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#content-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Content Relationships
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-plugin-directory-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Plugin Directory Layout
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Plugin Directory Layout">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#official-plugin-spec-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Official Plugin Spec Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-structural-changes-from-sprint-1-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Structural Changes from Sprint 1 Layout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-trail-orchestration-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Trail &amp; Orchestration Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Trail & Orchestration Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trail-definition-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trail Definition Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow-control-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flow Control Primitives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator-execution-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orchestrator Execution Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-interaction-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      Agent Interaction Pattern
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shipped-trail-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shipped Trail Definitions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-skill-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Skill Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Skill Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#skill-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skill Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skill-config-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skill ↔ Config Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skill-rule-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Skill ↔ Rule Interaction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dual-toolchain-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Dual Toolchain Support
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Dual Toolchain Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detection-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detection Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toolchain-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Toolchain Matrix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cicd-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. CI/CD &amp; GitHub Actions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. CI/CD & GitHub Actions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#review-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Review Workflow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shipped-workflow-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shipped Workflow Template
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-architecture-decision-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Architecture Decision Records
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-open-questions-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Open Questions &amp; Risks
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="architecture-document-horse-sense">Architecture Document: horse-sense<a class="headerlink" href="#architecture-document-horse-sense" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>Document version</strong>: 1.1<br />
+<strong>Created</strong>: 2026-04-03<br />
+<strong>Last updated</strong>: 2026-04-04<br />
+<strong>Owner</strong>: Ed Wentworth<br />
+<strong>Status</strong>: Draft</p>
+</blockquote>
+<hr />
+<h2 id="1-context-goals">1. Context &amp; Goals<a class="headerlink" href="#1-context-goals" title="Permanent link">&para;</a></h2>
+<h3 id="system-purpose">System Purpose<a class="headerlink" href="#system-purpose" title="Permanent link">&para;</a></h3>
+<p><strong>horse-sense</strong> is a project that produces a Claude Code plugin named <strong>horse</strong>. The plugin guides autonomous software development through a structured SDLC methodology, extending Claude Code with specialized agents, reusable skills, and document templates — turning the AI assistant into a disciplined development partner.</p>
+<p>The plugin lives in the <code>horse/</code> subdirectory of the horse-sense repo and is distributed via <code>claude --plugin-dir ./horse</code> or Git clone. Once installed, it provides slash commands (<code>/horse:*</code>), agent personas, and model-invoked skills that adapt to the host project's language, framework, and conventions through a configuration file.</p>
+<blockquote>
+<p><strong>Important architectural constraint (resolved 2026-04-04)</strong>: The official Claude Code plugin spec only auto-discovers these directories: <code>.claude-plugin/</code>, <code>commands/</code>, <code>agents/</code>, <code>skills/</code>, <code>hooks/</code>, <code>output-styles/</code>, <code>bin/</code>, and files <code>.mcp.json</code>, <code>.lsp.json</code>, <code>settings.json</code>. Directories like <code>rules/</code>, <code>templates/</code>, <code>trails/</code>, and <code>scripts/</code> are <strong>not</strong> recognized plugin components — they exist as supporting files that skills and agents reference by path, but the plugin manager does not auto-load them into context.</p>
+</blockquote>
+<h3 id="target-users">Target Users<a class="headerlink" href="#target-users" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Individual developers and small teams using Claude Code for day-to-day development</li>
+<li>Teams wanting repeatable SDLC process without heavy tooling</li>
+</ul>
+<h3 id="quality-attribute-priorities">Quality Attribute Priorities<a class="headerlink" href="#quality-attribute-priorities" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Quality Attribute</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Extensibility</td>
+<td>New skills and agents added without changing core structure</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Adaptability</td>
+<td>Works across Python and TypeScript projects via configuration</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Simplicity</td>
+<td>No build step, no runtime dependencies — plain Markdown + shell scripts</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Discoverability</td>
+<td>Users find the right skill/agent through clear naming and <code>/horse:guide</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="constraints">Constraints<a class="headerlink" href="#constraints" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Must conform to official Claude Code plugin spec (<code>.claude-plugin/plugin.json</code>)</li>
+<li>No runtime dependencies beyond what Claude Code provides (Bash, standard CLI tools)</li>
+<li>Skills must work for both Python (venv, pytest, ruff) and TypeScript (npm, vitest/jest, eslint) projects</li>
+<li>Personal / small-team distribution — Git clone or simple marketplace install</li>
+</ul>
+<hr />
+<h2 id="2-system-architecture">2. System Architecture<a class="headerlink" href="#2-system-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="architecture-style">Architecture Style<a class="headerlink" href="#architecture-style" title="Permanent link">&para;</a></h3>
+<p><strong>Static plugin with layered content and process orchestration</strong> — horse-sense is not a running service. It is a structured collection of Markdown documents, shell scripts, configuration, and process definitions that Claude Code loads at session start. The architecture has these layers:</p>
+<ul>
+<li><strong>Agents</strong> (auto-discovered by plugin manager) — flat <code>.md</code> files with YAML frontmatter (<code>name</code>, <code>description</code>, <code>model</code>, <code>effort</code>, <code>maxTurns</code>, <code>tools</code>, <code>disallowedTools</code>, etc.) defining specialized subagent personas</li>
+<li><strong>Skills</strong> (auto-discovered) — <code>SKILL.md</code> files with frontmatter, model-invoked based on task context</li>
+<li><strong>Commands</strong> (auto-discovered) — user-invoked slash commands (<code>/horse:*</code>) as flat <code>.md</code> files</li>
+<li><strong>bin/</strong> (auto-discovered) — executables added to Bash tool's PATH</li>
+<li><strong>Supporting files</strong> (NOT auto-discovered) — <code>templates/</code>, <code>scripts/</code>, <code>rules/</code>, <code>trails/</code> exist within the plugin directory as reference material that agents and skills read via <code>${CLAUDE_PLUGIN_ROOT}</code> paths, but the plugin manager does not inject them into context automatically</li>
+<li><strong>Configuration</strong> adapts skills to a specific project (language, framework, test runner, paths)</li>
+</ul>
+<h3 id="high-level-component-diagram">High-Level Component Diagram<a class="headerlink" href="#high-level-component-diagram" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>graph TD
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    subgraph &quot;Claude Code Runtime&quot;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        CC[Claude Code CLI]
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        PM[Plugin Manager]
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    end
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    subgraph &quot;horse-sense Plugin&quot;
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        Manifest[&quot;.claude-plugin/plugin.json&quot;]
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        Config[&quot;.claude/config.json&lt;br/&gt;(project-level)&quot;]
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        subgraph &quot;Process Layer&quot;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            Trails[&quot;trails/&lt;br/&gt;Trail definitions&lt;br/&gt;(gates, steps, loops, branches)&quot;]
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        end
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        subgraph &quot;Orchestration Layer&quot;
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            Orchestrators[&quot;agents/&lt;br/&gt;orchestrator-sdlc · orchestrator-sprint&lt;br/&gt;monitor&quot;]
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        end
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        subgraph &quot;Worker Agent Layer&quot;
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            Workers[&quot;agents/&lt;br/&gt;planner · architect · developer&lt;br/&gt;tester · reviewer&quot;]
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        end
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        subgraph &quot;Skills Layer&quot;
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            SlashCmds[&quot;commands/&lt;br/&gt;User-invoked slash commands&quot;]
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            AgentSkills[&quot;skills/&lt;br/&gt;Model-invoked SKILL.md&quot;]
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        end
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        subgraph &quot;Rules Layer&quot;
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>            Rules[&quot;rules/&lt;br/&gt;Glob-matched context&lt;br/&gt;(code_quality, testing,&lt;br/&gt;git_workflow, docs)&quot;]
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>        end
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        subgraph &quot;Resources&quot;
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>            Templates[&quot;templates/&lt;br/&gt;Document scaffolds&quot;]
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>            Scripts[&quot;scripts/ + bin/&lt;br/&gt;Shell automation&quot;]
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>        end
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>    end
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    subgraph &quot;Host Project&quot;
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>        ProjectConfig[&quot;.claude/config.json&quot;]
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>        ProjectCode[&quot;src/ or lib/&quot;]
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>        ProjectTests[&quot;tests/&quot;]
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>    end
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>    subgraph &quot;CI/CD&quot;
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>        GHA[&quot;GitHub Actions&lt;br/&gt;Lint · Test · Review&quot;]
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>    end
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>    CC --&gt; PM
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>    PM --&gt; Manifest
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>    PM --&gt; SlashCmds
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>    PM --&gt; AgentSkills
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>    PM --&gt; Orchestrators
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>    PM --&gt; Workers
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    PM --&gt; Rules
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>    Orchestrators --&gt; Trails
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>    Orchestrators --&gt; Workers
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>    Orchestrators --&gt;|&quot;human checkpoints&quot;| CC
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>    Workers --&gt; AgentSkills
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>    SlashCmds --&gt; AgentSkills
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>    AgentSkills --&gt; Rules
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>    AgentSkills --&gt; Templates
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>    AgentSkills --&gt; Scripts
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>    AgentSkills --&gt; Config
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>    ProjectConfig -.-&gt; Config
+</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>    ProjectCode -.-&gt; Rules
+</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>    ProjectTests -.-&gt; Rules
+</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>    ProjectCode --&gt; GHA
+</span></code></pre></div>
+<h3 id="component-descriptions">Component Descriptions<a class="headerlink" href="#component-descriptions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Auto-discovered?</th>
+<th>Responsibility</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>plugin.json</strong></td>
+<td>Yes</td>
+<td>Plugin identity, version, author — loaded by Claude Code plugin manager</td>
+<td>JSON manifest</td>
+</tr>
+<tr>
+<td><strong>commands/</strong></td>
+<td>Yes</td>
+<td>User-invoked slash commands (<code>/horse:plan</code>, <code>/horse:arch</code>, etc.)</td>
+<td>Markdown files</td>
+</tr>
+<tr>
+<td><strong>skills/</strong></td>
+<td>Yes</td>
+<td>Model-invoked capabilities with <code>SKILL.md</code> + optional reference docs</td>
+<td>Markdown</td>
+</tr>
+<tr>
+<td><strong>agents/</strong></td>
+<td>Yes</td>
+<td>Agent personas with frontmatter — workers (Phase 1) + orchestrators (Phase 2)</td>
+<td>Markdown with YAML frontmatter</td>
+</tr>
+<tr>
+<td><strong>bin/</strong></td>
+<td>Yes</td>
+<td>Executable scripts added to Bash tool's PATH</td>
+<td>Bash/Python/Node</td>
+</tr>
+<tr>
+<td><strong>rules/</strong></td>
+<td><strong>No</strong></td>
+<td>Coding standards referenced by agent prompts and skill content</td>
+<td>Markdown</td>
+</tr>
+<tr>
+<td><strong>templates/</strong></td>
+<td><strong>No</strong></td>
+<td>Scaffolds for requirements, architecture, sprint plans, project plans</td>
+<td>Markdown</td>
+</tr>
+<tr>
+<td><strong>scripts/</strong></td>
+<td><strong>No</strong></td>
+<td>Shell automation (env setup, linting, testing, scaffolding)</td>
+<td>Bash</td>
+</tr>
+<tr>
+<td><strong>trails/</strong></td>
+<td><strong>No</strong></td>
+<td>Trail definitions with steps, gates, loops (Phase 2)</td>
+<td>Markdown</td>
+</tr>
+<tr>
+<td><strong>.claude/config.json</strong></td>
+<td>N/A (host project)</td>
+<td>Project-specific configuration consumed by skills</td>
+<td>JSON</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-data-architecture">3. Data Architecture<a class="headerlink" href="#3-data-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="configuration-model">Configuration Model<a class="headerlink" href="#configuration-model" title="Permanent link">&para;</a></h3>
+<p>horse-sense uses a two-tier configuration model:</p>
+<p><strong>Tier 1: Plugin manifest</strong> (<code>horse/.claude-plugin/plugin.json</code>) — static, ships with the plugin:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;horse&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Structured SDLC plugin for Claude Code — agents, skills, and process orchestration&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ed Wentworth&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>Tier 2: Project config</strong> (<code>.claude/config.json</code>) — per-project, created by users:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;framework&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fastapi&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;testRunner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pytest&quot;</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;linter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ruff&quot;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;typeChecker&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mypy&quot;</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;srcDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;testDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">&quot;packageManager&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pip&quot;</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">&quot;pythonVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.11&quot;</span><span class="p">,</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">&quot;coverageThreshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nt">&quot;branchingStrategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;github-flow&quot;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>TypeScript project example:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;language&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;typescript&quot;</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;framework&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;express&quot;</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;testRunner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;linter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eslint&quot;</span><span class="p">,</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;typeChecker&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tsc&quot;</span><span class="p">,</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;srcDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;src&quot;</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;testDir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tests&quot;</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">&quot;packageManager&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;npm&quot;</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">&quot;nodeVersion&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;20&quot;</span><span class="p">,</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="nt">&quot;coverageThreshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">&quot;branchingStrategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;github-flow&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Skills read <code>config.json</code> to adapt their guidance (e.g., which test command to run, which linter rules to reference).</p>
+<h3 id="content-relationships">Content Relationships<a class="headerlink" href="#content-relationships" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>erDiagram
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    PLUGIN_JSON {
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        string name
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        string version
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        string description
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    }
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    CONFIG_JSON {
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        string language
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        string framework
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        string testRunner
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>        string linter
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    }
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    PROCESS {
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>        string name
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>        string description
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>        string trigger
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>        list steps
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>    }
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>    PROCESS_STEP {
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>        string name
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        string agent
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>        list skills
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>        string entry_gate
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        string completion_criteria
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        string fail_condition
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>        string flow_control &quot;sequence, loop, branch, recurse&quot;
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>        boolean human_checkpoint
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>    }
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>    ORCHESTRATOR {
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>        string name
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>        string type &quot;sdlc, sprint, monitor&quot;
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>    }
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>    WORKER {
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>        string role
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>        list skills_used
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>    }
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>    SKILL {
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>        string name
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>        string description
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>        string type &quot;slash-command or model-invoked&quot;
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>    }
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>    RULE {
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>        list globs
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>        string scope
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>    }
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a>    TEMPLATE {
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>        string name
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a>        string purpose
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>    }
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a>    SCRIPT {
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>        string name
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a>        string purpose
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a>    }
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>    PLUGIN_JSON ||--o{ SKILL : &quot;namespaces&quot;
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a>    PROCESS ||--|{ PROCESS_STEP : &quot;defines&quot;
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a>    ORCHESTRATOR ||--|{ PROCESS : &quot;executes&quot;
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a>    ORCHESTRATOR ||--|{ WORKER : &quot;dispatches&quot;
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>    PROCESS_STEP ||--|| WORKER : &quot;assigns&quot;
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a>    PROCESS_STEP ||--|{ SKILL : &quot;uses&quot;
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a>    WORKER ||--|{ SKILL : &quot;composes&quot;
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a>    SKILL ||--o{ RULE : &quot;contextualized by&quot;
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a>    SKILL ||--o{ TEMPLATE : &quot;generates from&quot;
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>    SKILL ||--o{ SCRIPT : &quot;executes&quot;
+</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a>    SKILL ||--o| CONFIG_JSON : &quot;reads&quot;
+</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>    RULE ||--o| CONFIG_JSON : &quot;adapts via&quot;
+</span></code></pre></div>
+<hr />
+<h2 id="4-plugin-directory-layout">4. Plugin Directory Layout<a class="headerlink" href="#4-plugin-directory-layout" title="Permanent link">&para;</a></h2>
+<h3 id="official-plugin-spec-mapping">Official Plugin Spec Mapping<a class="headerlink" href="#official-plugin-spec-mapping" title="Permanent link">&para;</a></h3>
+<p>The plugin lives in the <code>horse/</code> subdirectory of the horse-sense repo. Only directories and files marked <strong>[auto-discovered]</strong> are recognized by the Claude Code plugin manager. Everything else is supporting material referenced by skills/agents via <code>${CLAUDE_PLUGIN_ROOT}</code> paths.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>horse-sense/                          # Project repo root
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── horse/                            # ← THE PLUGIN (--plugin-dir target)
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>│   ├── .claude-plugin/
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│   │   └── plugin.json              # Plugin manifest: name=&quot;horse&quot; [auto-discovered]
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   ├── commands/                     # User-invoked slash commands [auto-discovered]
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│   │   ├── guide.md                 # /horse:guide
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>│   │   ├── plan.md                  # /horse:plan
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   │   ├── arch.md                  # /horse:arch
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│   │   ├── implement.md             # /horse:implement
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│   │   ├── review.md                # /horse:review
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│   │   ├── test.md                  # /horse:test
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>│   │   ├── deploy.md                # /horse:deploy
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>│   │   ├── sprint.md                # /horse:sprint
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>│   │   └── retrospective.md        # /horse:retrospective
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>│   ├── skills/                       # Model-invoked agent skills [auto-discovered]
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>│   │   ├── requirements-analysis/
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>│   │   │   └── SKILL.md
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>│   │   ├── architecture-design/
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>│   │   │   └── SKILL.md
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>│   │   ├── implementation/
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>│   │   │   └── SKILL.md
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>│   │   ├── testing/
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>│   │   │   └── SKILL.md
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>│   │   ├── deployment/
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>│   │   │   └── SKILL.md
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>│   │   └── python-venv/
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>│   │       └── SKILL.md
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>│   ├── agents/                       # Agent personas — FLAT, with frontmatter [auto-discovered]
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>│   │   ├── planner.md               # name: planner, description: ...
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>│   │   ├── architect.md             # name: architect, description: ...
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>│   │   ├── developer.md            # name: developer, description: ...
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>│   │   ├── tester.md                # name: tester, description: ...
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>│   │   ├── reviewer.md             # name: reviewer, description: ...
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>│   │   ├── sdlc.md                  # SDLC orchestrator (Phase 2)
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>│   │   ├── sprint-orchestrator.md   # Sprint orchestrator (Phase 2)
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>│   │   └── monitor.md              # Quality monitor (Phase 2)
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>│   ├── bin/                          # Executables added to PATH [auto-discovered]
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>│   │   └── .gitkeep
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>│   ├── templates/                    # Document scaffolds [NOT auto-discovered]
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>│   │   ├── requirements_doc.md
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>│   │   ├── architecture_doc.md
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>│   │   ├── project_plan.md
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>│   │   └── sprint_plan.md
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>│   ├── scripts/                      # Shell automation [NOT auto-discovered]
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>│   │   ├── setup_env.sh
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>│   │   ├── run_tests.sh
+</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>│   │   ├── lint.sh
+</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>│   │   └── new_project.sh
+</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>│   ├── rules/                        # Coding standards reference [NOT auto-discovered]
+</span><span id="__span-5-50"><a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>│   │   ├── code_quality.md          # Referenced by agent prompts and skills
+</span><span id="__span-5-51"><a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>│   │   ├── testing.md
+</span><span id="__span-5-52"><a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>│   │   ├── git_workflow.md
+</span><span id="__span-5-53"><a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>│   │   └── documentation.md
+</span><span id="__span-5-54"><a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>│   └── trails/                       # Trail definitions [NOT auto-discovered] (Phase 2)
+</span><span id="__span-5-55"><a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a>│       ├── feature_delivery.md
+</span><span id="__span-5-56"><a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>│       ├── sprint_execution.md
+</span><span id="__span-5-57"><a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>│       ├── bug_fix.md
+</span><span id="__span-5-58"><a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>│       └── code_review.md
+</span><span id="__span-5-59"><a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a>├── docs/                             # Project documentation (NOT part of plugin)
+</span><span id="__span-5-60"><a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a>│   ├── adr/
+</span><span id="__span-5-61"><a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a>│   ├── architecture/
+</span><span id="__span-5-62"><a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a>│   ├── plans/
+</span><span id="__span-5-63"><a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a>│   └── requirements/
+</span><span id="__span-5-64"><a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a>├── CLAUDE.md                         # Project-level instructions
+</span><span id="__span-5-65"><a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a>├── README.md
+</span><span id="__span-5-66"><a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a>└── LICENSE
+</span></code></pre></div>
+<h3 id="key-structural-changes-from-sprint-1-layout">Key Structural Changes from Sprint 1 Layout<a class="headerlink" href="#key-structural-changes-from-sprint-1-layout" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Sprint 1 (current)</th>
+<th>New Target</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plugin at repo root</td>
+<td>Plugin in <code>horse/</code> subdirectory</td>
+<td>Separates plugin from project; cleaner distribution</td>
+</tr>
+<tr>
+<td><code>name: "horse-sense"</code></td>
+<td><code>name: "horse"</code></td>
+<td>Shorter namespace (<code>/horse:*</code> vs <code>/horse:*</code>)</td>
+</tr>
+<tr>
+<td><code>agents/workers/*.md</code> (no frontmatter)</td>
+<td><code>agents/*.md</code> (flat, with frontmatter)</td>
+<td>Plugin spec requires flat <code>agents/</code> with YAML frontmatter</td>
+</tr>
+<tr>
+<td><code>rules/</code> assumed auto-loaded</td>
+<td><code>rules/</code> as reference files only</td>
+<td>Plugin spec does NOT auto-discover <code>rules/</code></td>
+</tr>
+<tr>
+<td><code>templates/</code> assumed auto-loaded</td>
+<td><code>templates/</code> as reference files only</td>
+<td>Plugin spec does NOT auto-discover <code>templates/</code></td>
+</tr>
+<tr>
+<td><code>agents/orchestrators/</code> (planned)</td>
+<td>Flat in <code>agents/</code> (Phase 2)</td>
+<td>Plugin spec auto-discovers flat <code>agents/</code> only</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-trail-orchestration-architecture">5. Trail &amp; Orchestration Architecture<a class="headerlink" href="#5-trail-orchestration-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="trail-definition-format">Trail Definition Format<a class="headerlink" href="#trail-definition-format" title="Permanent link">&para;</a></h3>
+<p>Trail documents live in <code>trails/</code> and define workflows as structured Markdown with frontmatter:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>---
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>name: trail-name
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>description: What this trail accomplishes
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="gu">trigger: /horse:command  # optional slash command trigger</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="gu">---</span>
+</span></code></pre></div>
+<p>Each trail document contains:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Entry gate</strong></td>
+<td>Preconditions (checklist) that must be satisfied before the trail starts</td>
+<td><code>- [ ] requirements_doc.md exists</code></td>
+</tr>
+<tr>
+<td><strong>Steps</strong></td>
+<td>Ordered sequence of work units</td>
+<td><code>### Step 1: Requirements</code></td>
+</tr>
+<tr>
+<td><strong>Agent assignment</strong></td>
+<td>Which worker agent executes the step</td>
+<td><code>- **Agent**: planner</code></td>
+</tr>
+<tr>
+<td><strong>Skills &amp; tools</strong></td>
+<td>Which skills the step uses</td>
+<td><code>- **Skills**: requirements-analysis</code></td>
+</tr>
+<tr>
+<td><strong>Monitor</strong></td>
+<td>Optional monitor agent for loops</td>
+<td><code>- **Monitor**: monitor</code></td>
+</tr>
+<tr>
+<td><strong>Completion criteria</strong></td>
+<td>How to know the step succeeded</td>
+<td><code>- **Completion**: all tests pass</code></td>
+</tr>
+<tr>
+<td><strong>Fail conditions</strong></td>
+<td>When to abort or escalate</td>
+<td><code>- **Fail**: 5 iterations without convergence</code></td>
+</tr>
+<tr>
+<td><strong>Human checkpoints</strong></td>
+<td>Points requiring human decision</td>
+<td><code>- **Gate**: HUMAN APPROVAL</code></td>
+</tr>
+<tr>
+<td><strong>Flow control</strong></td>
+<td>Loops, branches, sub-process references</td>
+<td><code>- **Loop**: write → test → fix</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="flow-control-primitives">Flow Control Primitives<a class="headerlink" href="#flow-control-primitives" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Syntax in Trail Doc</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequence</strong></td>
+<td>Steps numbered in order</td>
+<td>Execute step N, then step N+1</td>
+</tr>
+<tr>
+<td><strong>Loop</strong></td>
+<td><code>- **Loop**: step_a → step_b → step_c</code></td>
+<td>Repeat until <code>- **Loop exit**: condition</code></td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td><code>- **Branch**: If condition → GOTO Step N</code></td>
+<td>Conditional jump to another step</td>
+</tr>
+<tr>
+<td><strong>Recurse</strong></td>
+<td><code>- **Sub-trail**: trails/other.md</code></td>
+<td>Load and execute a child trail, return when done</td>
+</tr>
+<tr>
+<td><strong>Human gate</strong></td>
+<td><code>- **Gate**: HUMAN APPROVAL</code></td>
+<td>Pause, present summary, wait for human response</td>
+</tr>
+<tr>
+<td><strong>Fail/escalate</strong></td>
+<td><code>- **Fail**: condition → HUMAN DECISION</code></td>
+<td>Halt step, present options to human</td>
+</tr>
+</tbody>
+</table>
+<h3 id="orchestrator-execution-model">Orchestrator Execution Model<a class="headerlink" href="#orchestrator-execution-model" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>stateDiagram-v2
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    [*] --&gt; LoadProcess: Orchestrator activated
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    LoadProcess --&gt; CheckEntryGate: Parse process definition
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    CheckEntryGate --&gt; Blocked: Gate NOT satisfied
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    Blocked --&gt; CheckEntryGate: Prerequisite resolved
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    CheckEntryGate --&gt; ExecuteStep: Gate satisfied
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    ExecuteStep --&gt; DispatchWorker: Assign agent + skills
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    DispatchWorker --&gt; WorkerExecuting: Worker performs step
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    WorkerExecuting --&gt; MonitorCheck: Monitor observes (if assigned)
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    MonitorCheck --&gt; WorkerExecuting: Monitor provides guidance
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    MonitorCheck --&gt; EvalCompletion: Monitor signals done
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    WorkerExecuting --&gt; EvalCompletion: Step work finished
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    EvalCompletion --&gt; NextStep: Completion criteria met
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    EvalCompletion --&gt; LoopBack: Loop condition (iterate again)
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    EvalCompletion --&gt; BranchJump: Branch condition (goto other step)
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>    EvalCompletion --&gt; FailPath: Fail condition reached
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    LoopBack --&gt; DispatchWorker: Re-dispatch worker
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>    BranchJump --&gt; ExecuteStep: Jump to target step
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>    NextStep --&gt; HumanGate: Human checkpoint?
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>    HumanGate --&gt; WaitHuman: Yes — pause for decision
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>    WaitHuman --&gt; ExecuteStep: Human approves → next step
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>    WaitHuman --&gt; BranchJump: Human rejects → route back
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>    HumanGate --&gt; ExecuteStep: No checkpoint → next step
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>    NextStep --&gt; ProcessComplete: No more steps
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>    FailPath --&gt; WaitHuman: Escalate to human
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>    ProcessComplete --&gt; [*]: Report summary
+</span></code></pre></div>
+<h3 id="agent-interaction-pattern">Agent Interaction Pattern<a class="headerlink" href="#agent-interaction-pattern" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>┌─────────────────────────────────────────────────────────┐
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│ ORCHESTRATOR (e.g., SDLC Orchestrator)                  │
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>│                                                         │
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│  1. Load process definition                             │
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>│  2. Check entry gate                                    │
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│  3. For each step:                                      │
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>│     a. Evaluate entry conditions                        │
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│     b. Dispatch worker agent with skills + context      │
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│     c. (Optional) Activate monitor on loops             │
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>│     d. Evaluate completion / fail / loop / branch       │
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│     e. If HUMAN GATE → pause, present, wait             │
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>│  4. Report execution summary                            │
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│                                                         │
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>│  ┌──────────┐  ┌──────────┐  ┌──────────┐             │
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>│  │ Planner  │  │Developer │  │ Tester   │  ...workers  │
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>│  │ (worker) │  │(worker)  │  │ (worker) │              │
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>│  └────┬─────┘  └────┬─────┘  └────┬─────┘             │
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>│       │              │              │                    │
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>│       ▼              ▼              ▼                    │
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>│    Skills         Skills         Skills                  │
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>│    + Rules        + Rules        + Rules                 │
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>│    + Config       + Config       + Config                │
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>│                                                         │
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>│  ┌──────────┐                                           │
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>│  │ Monitor  │ ← observes loops, intervenes if needed    │
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>│  │ (orch.)  │                                           │
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>│  └──────────┘                                           │
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>└─────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<h3 id="shipped-trail-definitions">Shipped Trail Definitions<a class="headerlink" href="#shipped-trail-definitions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Trail</th>
+<th>Trigger</th>
+<th>Steps</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feature_delivery.md</code></td>
+<td><code>/horse:guide</code></td>
+<td>Requirements → Architecture → Implementation → Testing → Review → Deploy</td>
+<td>Full feature lifecycle</td>
+</tr>
+<tr>
+<td><code>sprint_execution.md</code></td>
+<td><code>/horse:sprint</code></td>
+<td>For each story: Implement → Test → Review</td>
+<td>Sprint iteration</td>
+</tr>
+<tr>
+<td><code>bug_fix.md</code></td>
+<td>(manual)</td>
+<td>Reproduce → Root cause → Fix → Regression test → Review</td>
+<td>Bug triage and fix</td>
+</tr>
+<tr>
+<td><code>code_review.md</code></td>
+<td><code>/horse:review</code></td>
+<td>Review → Feedback → Author fixes → Re-review</td>
+<td>Review cycle</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-skill-architecture">6. Skill Architecture<a class="headerlink" href="#6-skill-architecture" title="Permanent link">&para;</a></h2>
+<h3 id="skill-types">Skill Types<a class="headerlink" href="#skill-types" title="Permanent link">&para;</a></h3>
+<p><strong>Slash-command skills</strong> (<code>commands/</code>) — explicitly invoked by users:</p>
+<ul>
+<li>Trigger: user types <code>/horse:&lt;command&gt;</code></li>
+<li>Content: Markdown instructions for Claude, with <code>$ARGUMENTS</code> placeholder</li>
+<li>Example: <code>/horse:implement add user authentication</code></li>
+</ul>
+<p><strong>Model-invoked skills</strong> (<code>skills/</code>) — automatically triggered by Claude based on context:</p>
+<ul>
+<li>Trigger: Claude recognizes the need based on SKILL.md <code>description</code> field</li>
+<li>Content: SKILL.md with YAML frontmatter (<code>name</code>, <code>description</code>) + guide body</li>
+<li>May include sibling reference docs and scripts</li>
+</ul>
+<h3 id="skill-config-integration">Skill ↔ Config Integration<a class="headerlink" href="#skill-config-integration" title="Permanent link">&para;</a></h3>
+<p>Skills read <code>.claude/config.json</code> to adapt behavior. Example pattern inside a SKILL.md:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="gu">## Configuration</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Read <span class="sb">`.claude/config.json`</span> for project settings. Adapt commands based on:
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">-</span><span class="w"> </span><span class="sb">`language`</span>: &quot;python&quot; → use pytest, ruff; &quot;typescript&quot; → use vitest, eslint
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">-</span><span class="w"> </span><span class="sb">`testRunner`</span>: determines test execution command
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">-</span><span class="w"> </span><span class="sb">`srcDir`</span> / <span class="sb">`testDir`</span>: determines file paths
+</span></code></pre></div>
+<h3 id="skill-rule-interaction">Skill ↔ Rule Interaction<a class="headerlink" href="#skill-rule-interaction" title="Permanent link">&para;</a></h3>
+<p>Rules provide ambient context. When a user edits a <code>.py</code> file, <code>rules/code_quality.md</code> (glob: <code>**/*.py</code>) injects Python-specific standards. When the <code>implementation</code> skill is active, it benefits from this context without explicitly loading it.</p>
+<hr />
+<h2 id="7-dual-toolchain-support">7. Dual Toolchain Support<a class="headerlink" href="#7-dual-toolchain-support" title="Permanent link">&para;</a></h2>
+<h3 id="detection-strategy">Detection Strategy<a class="headerlink" href="#detection-strategy" title="Permanent link">&para;</a></h3>
+<p>Scripts in <code>scripts/</code> and <code>bin/</code> detect the project language from <code>.claude/config.json</code> or by file presence:</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pyproject.toml</code> or <code>requirements.txt</code></td>
+<td>Python</td>
+</tr>
+<tr>
+<td><code>package.json</code> or <code>tsconfig.json</code></td>
+<td>TypeScript</td>
+</tr>
+<tr>
+<td><code>.claude/config.json</code> → <code>language</code></td>
+<td>Explicit override</td>
+</tr>
+</tbody>
+</table>
+<h3 id="toolchain-matrix">Toolchain Matrix<a class="headerlink" href="#toolchain-matrix" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Python</th>
+<th>TypeScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Package manager</td>
+<td>pip + venv</td>
+<td>npm / pnpm</td>
+</tr>
+<tr>
+<td>Linter</td>
+<td>ruff</td>
+<td>eslint</td>
+</tr>
+<tr>
+<td>Formatter</td>
+<td>ruff format</td>
+<td>prettier</td>
+</tr>
+<tr>
+<td>Type checker</td>
+<td>mypy</td>
+<td>tsc</td>
+</tr>
+<tr>
+<td>Test runner</td>
+<td>pytest</td>
+<td>vitest / jest</td>
+</tr>
+<tr>
+<td>Coverage</td>
+<td>pytest-cov</td>
+<td>c8 / istanbul</td>
+</tr>
+<tr>
+<td>Security audit</td>
+<td>pip audit</td>
+<td>npm audit</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>setuptools / hatch</td>
+<td>tsc / esbuild</td>
+</tr>
+</tbody>
+</table>
+<p>Skills reference this matrix via config, not hardcoded assumptions.</p>
+<hr />
+<h2 id="8-cicd-github-actions">8. CI/CD &amp; GitHub Actions<a class="headerlink" href="#8-cicd-github-actions" title="Permanent link">&para;</a></h2>
+<h3 id="review-workflow">Review Workflow<a class="headerlink" href="#review-workflow" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>graph LR
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    PR[Pull Request] --&gt; Lint[Lint &amp; Format Check]
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    PR --&gt; Test[Run Tests + Coverage]
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    PR --&gt; TypeCheck[Type Check]
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    PR --&gt; Audit[Security Audit]
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    Lint --&gt; Gate{All Pass?}
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    Test --&gt; Gate
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    TypeCheck --&gt; Gate
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    Audit --&gt; Gate
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    Gate --&gt;|Yes| Review[Human / AI Review]
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>    Gate --&gt;|No| Block[Block Merge]
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    Review --&gt; Merge[Squash &amp; Merge]
+</span></code></pre></div>
+<h3 id="shipped-workflow-template">Shipped Workflow Template<a class="headerlink" href="#shipped-workflow-template" title="Permanent link">&para;</a></h3>
+<p>The plugin ships a GitHub Actions workflow template in <code>templates/ci.yml</code> that projects can copy to <code>.github/workflows/</code>. It supports both Python and TypeScript via a matrix strategy keyed on <code>.claude/config.json</code>.</p>
+<hr />
+<h2 id="9-architecture-decision-records">9. Architecture Decision Records<a class="headerlink" href="#9-architecture-decision-records" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../adr/0001-adopt-official-plugin-format/">ADR-0001</a></td>
+<td>Adopt official Claude Code plugin format</td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td><a href="../adr/0002-two-tier-configuration/">ADR-0002</a></td>
+<td>Two-tier configuration model (plugin.json + config.json)</td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td><a href="../adr/0003-dual-toolchain-support/">ADR-0003</a></td>
+<td>Dual Python/TypeScript toolchain support via config</td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td><a href="../adr/0004-process-orchestration-model/">ADR-0004</a></td>
+<td>Process orchestration — workers, orchestrators, and monitors</td>
+<td>Accepted</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-open-questions-risks">10. Open Questions &amp; Risks<a class="headerlink" href="#10-open-questions-risks" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question / Risk</th>
+<th>Owner</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Will <code>rules/</code> and <code>templates/</code> dirs be recognized by plugin manager or need workaround?</td>
+<td>Ed</td>
+<td>✅ <strong>Resolved 2026-04-04</strong> — NO. Plugin manager only auto-discovers: <code>.claude-plugin/</code>, <code>commands/</code>, <code>agents/</code>, <code>skills/</code>, <code>hooks/</code>, <code>output-styles/</code>, <code>bin/</code>, <code>.mcp.json</code>, <code>.lsp.json</code>, <code>settings.json</code>. Rules and templates must be referenced explicitly by skills/agents via <code>${CLAUDE_PLUGIN_ROOT}/rules/</code> paths.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SKILL.md frontmatter schema — what fields beyond <code>name</code> and <code>description</code> are supported?</td>
+<td>Ed</td>
+<td>✅ <strong>Resolved 2026-04-04</strong> — Skills support <code>name</code>, <code>description</code>, <code>disable-model-invocation</code>. Agents support <code>name</code>, <code>description</code>, <code>model</code>, <code>effort</code>, <code>maxTurns</code>, <code>tools</code>, <code>disallowedTools</code>, <code>skills</code>, <code>memory</code>, <code>background</code>, <code>isolation</code>. Agents do NOT support <code>hooks</code>, <code>mcpServers</code>, or <code>permissionMode</code>.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Can hooks/ be used to auto-inject rules based on file globs, or is that handled by settings?</td>
+<td>Ed</td>
+<td>✅ <strong>Resolved 2026-04-04</strong> — Hooks respond to lifecycle events (PostToolUse, PreToolUse, etc.) not file globs. The <code>InstructionsLoaded</code> and <code>FileChanged</code> events exist but are not glob-pattern rule injection. Rules content should be folded into agent system prompts or referenced by skills.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Should <code>bin/hs</code> CLI helper exist or is it unnecessary overhead for personal use?</td>
+<td>Ed</td>
+<td>⬜ Open — defer until needed</td>
+</tr>
+<tr>
+<td>5</td>
+<td>How do orchestrators dispatch workers — Agent tool, subagents, or context switching?</td>
+<td>Ed</td>
+<td>✅ <strong>Resolved 2026-04-04</strong> — Plugin agents appear in <code>/agents</code> and can be invoked by Claude via the Agent tool as subagents. They work alongside built-in agents. Orchestrators dispatch workers as subagents.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Can monitor agents run concurrently with workers or only between iterations?</td>
+<td>Ed</td>
+<td>⬜ Open — depends on Claude Code concurrency model (Agent tool supports <code>run_in_background</code>)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Should process definitions support parameters (e.g., max loop iterations configurable per project)?</td>
+<td>Ed</td>
+<td>⬜ Open — start without, add if needed</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>agents/</code> must be flat — how to distinguish workers from orchestrators?</td>
+<td>Ed</td>
+<td>✅ <strong>Resolved 2026-04-04</strong> — Use naming convention and <code>description</code> frontmatter. Workers: <code>planner.md</code>, <code>developer.md</code>, etc. Orchestrators: <code>sdlc.md</code>, <code>sprint-orchestrator.md</code>, <code>monitor.md</code>. The <code>description</code> field tells Claude when to invoke each.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3051 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Claude Code plugin for SDLC-driven autonomous development">
+      
+      
+      
+        <link rel="canonical" href="https://edlovesjava.github.io/horse-sense/commands/">
+      
+      
+        <link rel="prev" href="../getting-started/configuration/">
+      
+      
+        <link rel="next" href="../agents/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Commands - horse-sense</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#commands" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="horse-sense" class="md-header__button md-logo" aria-label="horse-sense" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            horse-sense
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/edlovesjava/horse-sense" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    edlovesjava/horse-sense
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/" class="md-tabs__link">
+          
+  
+    
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Commands
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../agents/" class="md-tabs__link">
+        
+  
+    
+  
+  Agents
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../skills/" class="md-tabs__link">
+        
+  
+    
+  
+  Skills
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../rules/" class="md-tabs__link">
+        
+  
+    
+  
+  Rules
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../templates/" class="md-tabs__link">
+        
+  
+    
+  
+  Templates
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/" class="md-tabs__link">
+          
+  
+    
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../requirements/" class="md-tabs__link">
+          
+  
+    
+  
+  Requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../plans/" class="md-tabs__link">
+          
+  
+    
+  
+  Plans
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="horse-sense" class="md-nav__button md-logo" aria-label="horse-sense" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    horse-sense
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/edlovesjava/horse-sense" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    edlovesjava/horse-sense
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Commands
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Commands
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseguide" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guiding-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guiding Principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      plan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseplan" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arch" class="md-nav__link">
+    <span class="md-ellipsis">
+      arch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:arch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:arch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr-numbering" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADR Numbering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement" class="md-nav__link">
+    <span class="md-ellipsis">
+      implement
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseimplement" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:implement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:implement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Message Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-done-check-before-finishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition of Done (check before finishing)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    <span class="md-ellipsis">
+      review
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsereview" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:review
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severity Labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Checks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      deploy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:deploy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:deploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rollback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables Reminder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      sprint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsesprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:sprint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:sprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instructions for Claude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-a-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting a Sprint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#story-status-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Story Status Transitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daily-standup-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Standup Support
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprint Completion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sprint Completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-task-story-wrap-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Task &amp; Story Wrap-up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-close-out-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Close-out Gate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-commit-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Commit &amp; Push
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-review-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Review &amp; Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Clean Up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-velocity-retrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Velocity &amp; Retrospective
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      retrospective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseretrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:retrospective
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:retrospective">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instructions for Claude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-stop-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start / Stop / Continue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action Items
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-across-sprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracking Across Sprints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Skills
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../templates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Templates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../architecture/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_2" id="__nav_8_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    ADRs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_2">
+            <span class="md-nav__icon md-icon"></span>
+            ADRs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/adr/0001-adopt-official-plugin-format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0001 Adopt Official Plugin Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/adr/0002-two-tier-configuration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0002 Two-Tier Configuration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/adr/0003-dual-toolchain-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0003 Dual Toolchain Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/adr/0004-process-orchestration-model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0004 Process Orchestration Model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/adr/0005-containerized-subagent-execution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0005 Containerized Subagent Execution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/adr/0006-build-and-docs-toolchain/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ADR-0006 Build and Docs Toolchain
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../requirements/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Requirements
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../plans/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Plans
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Plans
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plans/sprints/sprint_1_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plans/sprints/sprint_2_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plans/sprints/sprint_3_plan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprint 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guide" class="md-nav__link">
+    <span class="md-ellipsis">
+      guide
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseguide" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:guide
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guiding-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guiding Principles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      plan
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseplan" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arch" class="md-nav__link">
+    <span class="md-ellipsis">
+      arch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:arch
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:arch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr-numbering" class="md-nav__link">
+    <span class="md-ellipsis">
+      ADR Numbering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implement" class="md-nav__link">
+    <span class="md-ellipsis">
+      implement
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseimplement" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:implement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:implement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-message-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commit Message Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-done-check-before-finishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definition of Done (check before finishing)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      test
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-template" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Template
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#review" class="md-nav__link">
+    <span class="md-ellipsis">
+      review
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsereview" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:review
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Severity Labels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Checks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      deploy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:deploy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:deploy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rollback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-reminder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Variables Reminder
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      sprint
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horsesprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:sprint
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:sprint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instructions for Claude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-a-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      Starting a Sprint
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#story-status-transitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Story Status Transitions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daily-standup-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      Daily Standup Support
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sprint-completion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sprint Completion
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sprint Completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-task-story-wrap-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Task &amp; Story Wrap-up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-close-out-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Close-out Gate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-commit-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Commit &amp; Push
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-review-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Review &amp; Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-clean-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Clean Up
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-velocity-retrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Velocity &amp; Retrospective
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#retrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      retrospective
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#horseretrospective" class="md-nav__link">
+    <span class="md-ellipsis">
+      /horse:retrospective
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="/horse:retrospective">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-this-command-does_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      What This Command Does
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instructions-for-claude_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instructions for Claude
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Instructions for Claude">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#start-stop-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Start / Stop / Continue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      Action Items
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracking-across-sprints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracking Across Sprints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h1>
+<p>Slash commands drive the horse-sense SDLC workflow. Invoke them inside Claude Code by typing <code>/horse:&lt;command&gt;</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#guide"><code>/horse:guide</code></a></td>
+<td>Kick off the SDLC trail: requirements → design → planning → implementation</td>
+</tr>
+<tr>
+<td><a href="#plan"><code>/horse:plan</code></a></td>
+<td>Create or update the project plan and sprint backlog</td>
+</tr>
+<tr>
+<td><a href="#arch"><code>/horse:arch</code></a></td>
+<td>Design system architecture, generate diagrams and ADRs</td>
+</tr>
+<tr>
+<td><a href="#implement"><code>/horse:implement</code></a></td>
+<td>Implement a user story with a TDD workflow</td>
+</tr>
+<tr>
+<td><a href="#test"><code>/horse:test</code></a></td>
+<td>Create and run tests with coverage reporting</td>
+</tr>
+<tr>
+<td><a href="#review"><code>/horse:review</code></a></td>
+<td>Code review against project standards</td>
+</tr>
+<tr>
+<td><a href="#deploy"><code>/horse:deploy</code></a></td>
+<td>Deploy to staging or production with pre-flight checks</td>
+</tr>
+<tr>
+<td><a href="#sprint"><code>/horse:sprint</code></a></td>
+<td>Plan and manage a sprint</td>
+</tr>
+<tr>
+<td><a href="#retrospective"><code>/horse:retrospective</code></a></td>
+<td>Facilitate a sprint retrospective</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="guide">guide<a class="headerlink" href="#guide" title="Permanent link">&para;</a></h2>
+<h2 id="horseguide">/horse:guide<a class="headerlink" href="#horseguide" title="Permanent link">&para;</a></h2>
+<p>Kick off the full SDLC workflow for a new project or feature.</p>
+<h3 id="what-this-command-does">What This Command Does<a class="headerlink" href="#what-this-command-does" title="Permanent link">&para;</a></h3>
+<p>Guides you step-by-step through the horse-sense SDLC phases:</p>
+<ol>
+<li><strong>Requirements</strong> — populate requirements (monolith or per-story, based on <code>horse.config.md</code>)</li>
+<li><strong>Architecture</strong> — populate <code>${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md</code> and create ADRs</li>
+<li><strong>Planning</strong> — populate <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code> and <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code></li>
+<li><strong>Environment Setup</strong> — run <code>${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh</code></li>
+<li><strong>Implementation</strong> — follow <code>${CLAUDE_PLUGIN_ROOT}/skills/implementation/SKILL.md</code></li>
+<li><strong>Testing</strong> — follow <code>${CLAUDE_PLUGIN_ROOT}/skills/testing/SKILL.md</code></li>
+<li><strong>Deployment</strong> — follow <code>${CLAUDE_PLUGIN_ROOT}/skills/deployment/SKILL.md</code></li>
+</ol>
+<h3 id="instructions-for-claude">Instructions for Claude<a class="headerlink" href="#instructions-for-claude" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Ask the user: <em>"What are you building? Give me a one-sentence description."</em></li>
+<li>Ask: <em>"Who are the primary users and what problem does it solve for them?"</em></li>
+<li>Ask: <em>"What are the must-have features for the first release?"</em></li>
+<li>Ask: <em>"Do you have any technology preferences or constraints?"</em></li>
+<li>Ask: <em>"How would you like to organize requirements — a single document or one file per story?"</em></li>
+<li>Ask: <em>"Do you prefer rebase or merge for integrating feature branches?"</em></li>
+<li>Generate <code>horse.config.md</code> in the project root using <code>${CLAUDE_PLUGIN_ROOT}/templates/horse_config.md</code>, setting <code>requirements_format</code> and <code>git_strategy</code> based on the user's answers.</li>
+<li>Based on the config:</li>
+<li><strong>monolith</strong>: generate a draft <code>requirements_doc.md</code> using <code>${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md</code>.</li>
+<li><strong>per-story</strong>: generate a draft <code>requirements_doc.md</code> using <code>${CLAUDE_PLUGIN_ROOT}/templates/requirements_index.md</code> (index only), then create individual story files using <code>${CLAUDE_PLUGIN_ROOT}/templates/user_story.md</code> in the configured <code>requirements_stories_dir</code>.</li>
+<li>Propose a high-level architecture with two or three options and trade-offs.</li>
+<li>Once the user selects an architecture, generate a draft <code>architecture_doc.md</code>.</li>
+<li>Break the requirements into a sprint backlog and generate a <code>sprint_plan.md</code>.</li>
+<li>Run <code>${CLAUDE_PLUGIN_ROOT}/scripts/setup_env.sh</code> or guide the user to do so.</li>
+<li>Confirm the user is ready to begin implementation and point them to <code>${CLAUDE_PLUGIN_ROOT}/agents/developer.md</code>.</li>
+</ol>
+<h3 id="guiding-principles">Guiding Principles<a class="headerlink" href="#guiding-principles" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Ask one clarifying question at a time.</li>
+<li>Never start the next phase without completing the current one.</li>
+<li>Document decisions immediately — don't defer to "we'll figure it out later".</li>
+<li>Keep the scope tight for the first sprint — better to ship less and iterate.</li>
+</ul>
+<hr />
+<h2 id="plan">plan<a class="headerlink" href="#plan" title="Permanent link">&para;</a></h2>
+<h2 id="horseplan">/horse:plan<a class="headerlink" href="#horseplan" title="Permanent link">&para;</a></h2>
+<p>Create or update the project plan and sprint backlog.</p>
+<h3 id="what-this-command-does_1">What This Command Does<a class="headerlink" href="#what-this-command-does_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reviews existing requirements in <code>${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md</code> (if present)</li>
+<li>Creates or updates <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code></li>
+<li>Creates or updates <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code> for the next sprint</li>
+<li>Applies MoSCoW prioritization to the backlog</li>
+</ul>
+<h3 id="instructions-for-claude_1">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_1" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Check <code>horse.config.md</code> for <code>requirements_format</code>.</li>
+<li><strong>monolith</strong>: read the project's <code>requirements_doc.md</code> for all stories.</li>
+<li><strong>per-story</strong>: read the project's <code>requirements_doc.md</code> index and scan the <code>requirements_stories_dir</code> (default: <code>docs/requirements/stories/</code>) for individual story files.</li>
+<li>Check if <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code> exists.</li>
+<li>If yes: ask "Do you want to update the existing plan or create a new sprint plan?"</li>
+<li>If no: start the project plan from scratch using <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code>.</li>
+<li>Gather any new requirements or changes since the last plan update.</li>
+<li>Apply MoSCoW prioritization:</li>
+<li>Must Have: list non-negotiable items</li>
+<li>Should Have: list important but deferrable items</li>
+<li>Could Have: list nice-to-haves</li>
+<li>Won't Have: explicitly call out what's out of scope</li>
+<li>Break Must Have items into user stories with acceptance criteria.</li>
+<li>Estimate story points (Fibonacci: 1, 2, 3, 5, 8, 13).</li>
+<li>Assign stories to a sprint based on team capacity.</li>
+<li>Write the sprint plan to <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code>.</li>
+</ol>
+<h3 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Updated <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code></li>
+<li>New <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code> for the upcoming sprint</li>
+</ul>
+<hr />
+<h2 id="arch">arch<a class="headerlink" href="#arch" title="Permanent link">&para;</a></h2>
+<h2 id="horsearch">/horse:arch<a class="headerlink" href="#horsearch" title="Permanent link">&para;</a></h2>
+<p>Design or update the system architecture.</p>
+<h3 id="what-this-command-does_2">What This Command Does<a class="headerlink" href="#what-this-command-does_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Gathers context about the project's requirements and constraints</li>
+<li>Proposes architectural options with trade-offs</li>
+<li>Creates or updates <code>${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md</code></li>
+<li>Creates Architecture Decision Records (ADRs) in <code>docs/architecture/adr/</code></li>
+</ul>
+<h3 id="instructions-for-claude_2">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_2" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Read <code>${CLAUDE_PLUGIN_ROOT}/templates/requirements_doc.md</code> if it exists.</li>
+<li>Ask clarifying questions:</li>
+<li><em>"What is the expected scale (concurrent users, requests/second)?"</em></li>
+<li><em>"Are there existing systems this must integrate with?"</em></li>
+<li><em>"What is the team's technology expertise?"</em></li>
+<li><em>"Are there compliance or regulatory requirements?"</em></li>
+<li>Propose two or three architecture options (e.g., monolith vs. microservices) with:</li>
+<li>Pros and cons for each option</li>
+<li>Recommended option with rationale</li>
+<li>Once the user confirms the architecture:</li>
+<li>Generate a component diagram using Mermaid</li>
+<li>Define the API contracts for key endpoints</li>
+<li>Design the data model (ER diagram in Mermaid)</li>
+<li>Identify cross-cutting concerns (auth, logging, observability)</li>
+<li>Write the architecture to <code>${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md</code>.</li>
+<li>Create an ADR for each significant decision in <code>docs/architecture/adr/NNNN-title.md</code>.</li>
+</ol>
+<h3 id="adr-numbering">ADR Numbering<a class="headerlink" href="#adr-numbering" title="Permanent link">&para;</a></h3>
+<p>ADRs are numbered sequentially: <code>0001</code>, <code>0002</code>, etc.
+Check <code>docs/architecture/adr/</code> for the highest existing number before creating a new one.</p>
+<h3 id="output_1">Output<a class="headerlink" href="#output_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Updated <code>${CLAUDE_PLUGIN_ROOT}/templates/architecture_doc.md</code></li>
+<li>One or more new <code>docs/architecture/adr/NNNN-title.md</code> files</li>
+</ul>
+<hr />
+<h2 id="implement">implement<a class="headerlink" href="#implement" title="Permanent link">&para;</a></h2>
+<h2 id="horseimplement">/horse:implement<a class="headerlink" href="#horseimplement" title="Permanent link">&para;</a></h2>
+<p>Begin implementing a user story or task.</p>
+<h3 id="what-this-command-does_3">What This Command Does<a class="headerlink" href="#what-this-command-does_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reads the story and acceptance criteria</li>
+<li>Breaks the work into small, independently commitable steps</li>
+<li>Follows the TDD workflow from <code>${CLAUDE_PLUGIN_ROOT}/skills/implementation/SKILL.md</code></li>
+<li>Ensures code quality rules from <code>${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md</code> are applied</li>
+</ul>
+<h3 id="instructions-for-claude_3">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_3" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Ask: <em>"Which story or task are you implementing? (provide story ID or description)"</em></li>
+<li>Look up the story:</li>
+<li>Check <code>horse.config.md</code> for <code>requirements_format</code>.</li>
+<li><strong>monolith</strong>: find the story in <code>requirements_doc.md</code>.</li>
+<li><strong>per-story</strong>: find the story file in the configured <code>requirements_stories_dir</code> (default: <code>docs/requirements/stories/</code>) matching the given ID.</li>
+<li>Confirm the acceptance criteria are clear — if not, clarify before writing code.</li>
+<li>Identify the files that need to change.</li>
+<li>Write a failing test first (TDD):</li>
+<li>Place in <code>tests/unit/</code> or <code>tests/integration/</code> as appropriate</li>
+<li>Use the naming convention <code>test_&lt;what&gt;_&lt;condition&gt;_&lt;expected_result&gt;</code></li>
+<li>Implement the minimum code to make the test pass.</li>
+<li>Refactor for clarity and adherence to <code>${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md</code>.</li>
+<li>Run the full test suite: <code>bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh --unit</code></li>
+<li>Run the linter: <code>bash ${CLAUDE_PLUGIN_ROOT}/scripts/lint.sh</code></li>
+<li>Prepare a conventional commit message for the user to review.</li>
+</ol>
+<h3 id="commit-message-format">Commit Message Format<a class="headerlink" href="#commit-message-format" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>feat(&lt;scope&gt;): &lt;short description&gt;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>&lt;optional body&gt;
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Closes #&lt;ticket-id&gt;
+</span></code></pre></div>
+<h3 id="definition-of-done-check-before-finishing">Definition of Done (check before finishing)<a class="headerlink" href="#definition-of-done-check-before-finishing" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tests written and passing</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Linter passes with zero warnings</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Type hints on all new public functions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Docstrings on all new public classes and functions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Relevant docs updated (README, CHANGELOG, etc.)</li>
+</ul>
+<hr />
+<h2 id="test">test<a class="headerlink" href="#test" title="Permanent link">&para;</a></h2>
+<h2 id="horsetest">/horse:test<a class="headerlink" href="#horsetest" title="Permanent link">&para;</a></h2>
+<p>Create and run tests for a feature or module.</p>
+<h3 id="what-this-command-does_4">What This Command Does<a class="headerlink" href="#what-this-command-does_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Identifies untested code paths</li>
+<li>Creates unit, integration, or e2e tests as appropriate</li>
+<li>Runs the test suite with coverage reporting</li>
+<li>Enforces the quality gates from <code>${CLAUDE_PLUGIN_ROOT}/rules/testing.md</code></li>
+</ul>
+<h3 id="instructions-for-claude_4">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_4" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Ask: <em>"What do you want to test? (feature name, module path, or story ID)"</em></li>
+<li>Review the existing tests for the relevant module.</li>
+<li>Identify untested code paths using coverage data (if available).</li>
+<li>Categorize the needed tests:</li>
+<li><strong>Unit</strong>: isolated functions/classes → <code>tests/unit/</code></li>
+<li><strong>Integration</strong>: component interactions → <code>tests/integration/</code></li>
+<li><strong>E2E</strong>: user journeys → <code>tests/e2e/</code></li>
+<li>Write the tests following naming conventions from <code>${CLAUDE_PLUGIN_ROOT}/rules/testing.md</code>.</li>
+<li>Use pytest fixtures for shared setup; don't repeat setup code.</li>
+<li>Run the tests: <code>bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh</code></li>
+<li>If coverage is below 80%, identify the gaps and fill them.</li>
+</ol>
+<h3 id="test-template">Test Template<a class="headerlink" href="#test-template" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># tests/unit/test_&lt;module&gt;.py</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">src.</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Class</span> <span class="ow">or</span> <span class="n">function</span><span class="o">&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">Test</span><span class="o">&lt;</span><span class="n">Feature</span><span class="o">&gt;</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests for &lt;feature description&gt;.&quot;&quot;&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_</span><span class="o">&lt;</span><span class="n">action</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">expected</span><span class="o">&gt;</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="c1"># Arrange</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        <span class="o">...</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        <span class="c1"># Act</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="n">result</span> <span class="o">=</span> <span class="o">...</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="c1"># Assert</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="n">expected_value</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_</span><span class="o">&lt;</span><span class="n">action</span><span class="o">&gt;</span><span class="n">_raises_on_</span><span class="o">&lt;</span><span class="n">invalid_condition</span><span class="o">&gt;</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="o">&lt;</span><span class="n">ExceptionType</span><span class="o">&gt;</span><span class="p">):</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>            <span class="o">...</span>
+</span></code></pre></div>
+<h3 id="running-tests">Running Tests<a class="headerlink" href="#running-tests" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># All tests</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>bash<span class="w"> </span><span class="si">${</span><span class="nv">CLAUDE_PLUGIN_ROOT</span><span class="si">}</span>/scripts/run_tests.sh<span class="w"> </span>--all
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Unit tests only (fast feedback)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>bash<span class="w"> </span><span class="si">${</span><span class="nv">CLAUDE_PLUGIN_ROOT</span><span class="si">}</span>/scripts/run_tests.sh<span class="w"> </span>--unit
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Integration tests</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>bash<span class="w"> </span><span class="si">${</span><span class="nv">CLAUDE_PLUGIN_ROOT</span><span class="si">}</span>/scripts/run_tests.sh<span class="w"> </span>--integration
+</span></code></pre></div>
+<hr />
+<h2 id="review">review<a class="headerlink" href="#review" title="Permanent link">&para;</a></h2>
+<h2 id="horsereview">/horse:review<a class="headerlink" href="#horsereview" title="Permanent link">&para;</a></h2>
+<p>Perform a thorough code review of the current changes or a specified file/PR.</p>
+<h3 id="what-this-command-does_5">What This Command Does<a class="headerlink" href="#what-this-command-does_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reviews code changes against the project's coding standards (<code>${CLAUDE_PLUGIN_ROOT}/rules/code_quality.md</code>)</li>
+<li>Checks test coverage and quality (<code>${CLAUDE_PLUGIN_ROOT}/rules/testing.md</code>)</li>
+<li>Identifies security vulnerabilities</li>
+<li>Provides actionable feedback with severity labels</li>
+</ul>
+<h3 id="instructions-for-claude_5">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_5" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Ask: <em>"What should I review? (current uncommitted changes / a specific file / a PR number)"</em></li>
+<li>If reviewing a PR number or URL: follow <code>${CLAUDE_PLUGIN_ROOT}/skills/pr-review/SKILL.md</code> to fetch the diff via <code>gh</code> CLI and post structured review comments.</li>
+<li>If reviewing uncommitted changes: run <code>git diff</code> to see what has changed.</li>
+<li>Apply the full review checklist from <code>${CLAUDE_PLUGIN_ROOT}/agents/reviewer.md</code>:</li>
+<li>Correctness</li>
+<li>Code quality</li>
+<li>Testing</li>
+<li>Security</li>
+<li>Performance</li>
+<li>Documentation</li>
+<li>For each issue found, provide:</li>
+<li>File and line number</li>
+<li>Severity label: <code>[blocking]</code>, <code>[suggestion]</code>, or <code>[nit]</code></li>
+<li>Clear explanation of the problem</li>
+<li>Concrete suggestion for improvement</li>
+<li>Summarize the overall review at the top:</li>
+<li>Overall assessment (approve / request changes / needs discussion)</li>
+<li>Number of blocking issues, suggestions, and nits</li>
+</ol>
+<h3 id="severity-labels">Severity Labels<a class="headerlink" href="#severity-labels" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>[blocking]</code> — Must be fixed before merge</li>
+<li><code>[suggestion]</code> — Should be addressed; code quality concern</li>
+<li><code>[nit]</code> — Minor preference; author's discretion</li>
+</ul>
+<h3 id="security-checks">Security Checks<a class="headerlink" href="#security-checks" title="Permanent link">&para;</a></h3>
+<p>Always check for:</p>
+<ul>
+<li>Hardcoded secrets or credentials</li>
+<li>Unsanitized user input</li>
+<li>SQL injection risks</li>
+<li>Path traversal vulnerabilities</li>
+<li>Dependency vulnerabilities (suggest running <code>pip audit</code>)</li>
+</ul>
+<hr />
+<h2 id="deploy">deploy<a class="headerlink" href="#deploy" title="Permanent link">&para;</a></h2>
+<h2 id="horsedeploy">/horse:deploy<a class="headerlink" href="#horsedeploy" title="Permanent link">&para;</a></h2>
+<p>Prepare and execute a deployment to the target environment.</p>
+<h3 id="what-this-command-does_6">What This Command Does<a class="headerlink" href="#what-this-command-does_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Runs the full pre-deployment checklist from <code>${CLAUDE_PLUGIN_ROOT}/skills/deployment/SKILL.md</code></li>
+<li>Helps configure the target environment</li>
+<li>Executes or guides the deployment steps</li>
+<li>Verifies the deployment with health checks</li>
+</ul>
+<h3 id="instructions-for-claude_6">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_6" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol class="task-list">
+<li>Ask: <em>"Which environment are you deploying to? (staging / production)"</em></li>
+<li>Run through the pre-deployment checklist:</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All tests passing (<code>bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> No security vulnerabilities (<code>pip audit</code>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Version bumped in <code>pyproject.toml</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>CHANGELOG.md</code> updated</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Database migrations reviewed</li>
+<li>If any checklist item fails, stop and help the user fix it before proceeding.</li>
+<li>Guide the deployment:</li>
+<li>Build the Docker image (if applicable)</li>
+<li>Push to the container registry</li>
+<li>Apply database migrations</li>
+<li>Deploy the new image</li>
+<li>Verify health check endpoint</li>
+<li>After deployment, confirm:</li>
+<li>Health check returns 200</li>
+<li>Key user journeys work (smoke test)</li>
+<li>Error rates in monitoring are normal</li>
+</ol>
+<h3 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h3>
+<p>If anything goes wrong:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Redeploy the previous tag</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>bash<span class="w"> </span><span class="si">${</span><span class="nv">CLAUDE_PLUGIN_ROOT</span><span class="si">}</span>/scripts/deploy.sh<span class="w"> </span>&lt;previous-tag&gt;
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Rollback database migration</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>alembic<span class="w"> </span>downgrade<span class="w"> </span>-1
+</span></code></pre></div>
+<h3 id="environment-variables-reminder">Environment Variables Reminder<a class="headerlink" href="#environment-variables-reminder" title="Permanent link">&para;</a></h3>
+<p>Before deploying to a new environment, ensure all required environment variables are set:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># List all env vars the application needs</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>grep<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;os.getenv\|os.environ&quot;</span><span class="w"> </span>src/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;.pyc&quot;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="sprint">sprint<a class="headerlink" href="#sprint" title="Permanent link">&para;</a></h2>
+<h2 id="horsesprint">/horse:sprint<a class="headerlink" href="#horsesprint" title="Permanent link">&para;</a></h2>
+<p>Plan and manage a sprint.</p>
+<h3 id="what-this-command-does_7">What This Command Does<a class="headerlink" href="#what-this-command-does_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Creates a new sprint plan using <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code></li>
+<li>Reviews and prioritizes the backlog</li>
+<li>Assigns stories based on team capacity</li>
+<li>Tracks progress during the sprint</li>
+</ul>
+<h3 id="instructions-for-claude_7">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_7" title="Permanent link">&para;</a></h3>
+<h4 id="starting-a-sprint">Starting a Sprint<a class="headerlink" href="#starting-a-sprint" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Ask: <em>"Is this a new sprint or an update to an in-progress sprint?"</em></li>
+<li>If new sprint:</li>
+<li><strong>Pre-flight check</strong>: Verify the previous sprint is fully closed out before starting a new one. Check:<ul>
+<li>The previous sprint plan's Sprint Review section is filled in (not placeholder text)</li>
+<li>The previous sprint's PR has been merged (check <code>gh pr list --state merged</code>)</li>
+<li>The previous sprint's branch has been deleted (check <code>git branch -r</code>)</li>
+<li>If any of these are incomplete, prompt: <em>"Sprint N is not fully closed out yet. Please complete the close-out sequence first."</em></li>
+</ul>
+</li>
+<li>Read the current <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code> to find unfinished stories.</li>
+<li>Check <code>horse.config.md</code> for <code>requirements_format</code>. If <strong>per-story</strong>, also scan <code>requirements_stories_dir</code> for story files to cross-reference status and details.</li>
+<li>Ask: <em>"What is the sprint goal (in one sentence)?"</em></li>
+<li>Ask: <em>"How many person-days of capacity does the team have?"</em></li>
+<li>Select stories from the backlog to fill ~80% of capacity (leave buffer for unplanned work).</li>
+<li>Generate a new sprint plan at <code>docs/plans/sprints/sprint_&lt;N&gt;_plan.md</code> using <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code>.</li>
+<li><strong>Transition each selected story to <code>in-progress</code></strong> (see "Story Status Transitions" below).</li>
+<li>If updating:</li>
+<li>Read the existing sprint plan.</li>
+<li>Ask which stories are done, in progress, or blocked.</li>
+<li>Update statuses and note any blockers.</li>
+<li><strong>Transition any newly blocked story to <code>blocked</code></strong> (see "Story Status Transitions" below).</li>
+</ol>
+<h4 id="story-status-transitions">Story Status Transitions<a class="headerlink" href="#story-status-transitions" title="Permanent link">&para;</a></h4>
+<p>Story status is the canonical responsibility of <code>/horse:sprint</code>. Task status inside a sprint is owned by the developer (see <code>implementation</code> skill); story status across sprints is owned here.</p>
+<p>Each story has status in <strong>two places</strong> that must stay in sync:</p>
+<ol>
+<li><strong>YAML frontmatter</strong> in the story file: <code>status: &lt;value&gt;</code></li>
+<li><strong>Index table</strong> in <code>requirements_doc.md</code> (or <code>requirements_index.md</code> for per-story mode): the Status column</li>
+</ol>
+<p>Valid values: <code>draft</code>, <code>ready</code>, <code>in-progress</code>, <code>done</code>, <code>blocked</code>.</p>
+<p><strong>When starting a sprint</strong> — for each story entering the sprint:</p>
+<ul>
+<li>Open the story file (default: <code>docs/requirements/stories/US-&lt;NNN&gt;-&lt;title&gt;.md</code>)</li>
+<li>Update the frontmatter: <code>status: in-progress</code></li>
+<li>Update the Status cell in the requirements index table</li>
+<li>Both edits go in the same commit that creates the sprint plan</li>
+</ul>
+<p><strong>When ending a sprint</strong> — for each completed sprint task, check if its parent story has any remaining open tasks:</p>
+<ul>
+<li>If <strong>all</strong> tasks for the story are done: transition story to <code>done</code> (frontmatter + index)</li>
+<li>If tasks remain: leave story as <code>in-progress</code> (it rolls into the next sprint)</li>
+<li>If the story became blocked mid-sprint: set to <code>blocked</code> and note the blocker under Risks &amp; Blockers in the sprint plan</li>
+</ul>
+<p><strong>Never</strong> edit story status silently — always record the transition in the commit message (e.g., <code>chore(stories): mark US-080, US-081 as done</code>).</p>
+<h4 id="daily-standup-support">Daily Standup Support<a class="headerlink" href="#daily-standup-support" title="Permanent link">&para;</a></h4>
+<p>Ask each team member:</p>
+<ul>
+<li><em>"What did you complete yesterday?"</em></li>
+<li><em>"What are you working on today?"</em></li>
+<li><em>"Do you have any blockers?"</em></li>
+</ul>
+<p>Update the sprint plan's standup notes table.</p>
+<h4 id="sprint-completion">Sprint Completion<a class="headerlink" href="#sprint-completion" title="Permanent link">&para;</a></h4>
+<p>At the end of the sprint, execute the close-out sequence in order. Each step must pass before proceeding to the next.</p>
+<h5 id="step-1-task-story-wrap-up">Step 1: Task &amp; Story Wrap-up<a class="headerlink" href="#step-1-task-story-wrap-up" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Mark completed sprint tasks as <code>✅ Done</code> in the sprint plan (if the developer hasn't already — they should have, per the <code>implementation</code> skill).</li>
+<li><strong>Transition each fully-completed story to <code>done</code></strong> per the "Story Status Transitions" rules above. Stories with remaining open tasks stay <code>in-progress</code> and roll into the next sprint's backlog.</li>
+<li>Move incomplete sprint tasks back to the backlog with a note.</li>
+</ol>
+<h5 id="step-2-close-out-gate">Step 2: Close-out Gate<a class="headerlink" href="#step-2-close-out-gate" title="Permanent link">&para;</a></h5>
+<p>Run the close-out checklist before committing. All items must pass:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All sprint tasks are <code>✅ Done</code> or explicitly deferred with rationale</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>make doc-sync</code> passes (story frontmatter ↔ index table parity)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>make can-review</code> passes (structure, frontmatter, markdown, shellcheck, doc-sync)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Story statuses transitioned in both frontmatter and index</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Sprint review section filled in (velocity, what was delivered, what was not)</li>
+</ul>
+<p>If any item fails, fix it before proceeding.</p>
+<h5 id="step-3-commit-push">Step 3: Commit &amp; Push<a class="headerlink" href="#step-3-commit-push" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Commit all close-out changes (sprint plan updates, story transitions) with a clear message (e.g., <code>chore(sprint-4): close out sprint — 41 SP delivered</code>).</li>
+<li>Push the sprint branch to remote.</li>
+</ol>
+<h5 id="step-4-review-merge">Step 4: Review &amp; Merge<a class="headerlink" href="#step-4-review-merge" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Create a PR for the sprint branch (or update the existing one).</li>
+<li>Request Copilot review: <code>gh pr edit &lt;number&gt; --add-reviewer @me</code> (triggers GitHub Copilot code review automatically).</li>
+<li>Address any Copilot findings before requesting human review.</li>
+<li>Request human review — the reviewer should verify the close-out gate items.</li>
+<li>Merge after both Copilot and human approval.</li>
+</ol>
+<h5 id="step-5-clean-up">Step 5: Clean Up<a class="headerlink" href="#step-5-clean-up" title="Permanent link">&para;</a></h5>
+<p>After the PR is merged:</p>
+<ol>
+<li>Delete the remote sprint branch: <code>git push origin --delete sprint-&lt;N&gt;</code></li>
+<li>Delete the local sprint branch: <code>git checkout main &amp;&amp; git pull &amp;&amp; git branch -d sprint-&lt;N&gt;</code></li>
+<li>Verify clean state: no stale sprint branches remain (<code>git branch -a | grep sprint</code>)</li>
+</ol>
+<h5 id="step-6-velocity-retrospective">Step 6: Velocity &amp; Retrospective<a class="headerlink" href="#step-6-velocity-retrospective" title="Permanent link">&para;</a></h5>
+<ol>
+<li>Calculate velocity: total story points completed.</li>
+<li>Prompt: <em>"Ready to run a retrospective? Use /horse:retrospective"</em></li>
+</ol>
+<hr />
+<h2 id="retrospective">retrospective<a class="headerlink" href="#retrospective" title="Permanent link">&para;</a></h2>
+<h2 id="horseretrospective">/horse:retrospective<a class="headerlink" href="#horseretrospective" title="Permanent link">&para;</a></h2>
+<p>Facilitate a sprint retrospective and capture action items.</p>
+<h3 id="what-this-command-does_8">What This Command Does<a class="headerlink" href="#what-this-command-does_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Guides the team through a retrospective session</li>
+<li>Captures "what went well", "what could improve", and action items</li>
+<li>Appends retrospective notes to the completed sprint plan</li>
+<li>Tracks recurring issues across sprints</li>
+</ul>
+<h3 id="instructions-for-claude_8">Instructions for Claude<a class="headerlink" href="#instructions-for-claude_8" title="Permanent link">&para;</a></h3>
+<p>When this command is invoked:</p>
+<ol>
+<li>Ask: <em>"Which sprint are we retrospecting? (sprint number or name)"</em></li>
+<li>Read the relevant <code>${CLAUDE_PLUGIN_ROOT}/templates/sprint_plan.md</code>.</li>
+<li>Note the velocity and whether the sprint goal was achieved.</li>
+<li>Run the retrospective using the Start / Stop / Continue format:</li>
+</ol>
+<h4 id="start-stop-continue">Start / Stop / Continue<a class="headerlink" href="#start-stop-continue" title="Permanent link">&para;</a></h4>
+<p><strong>Start</strong>: Things the team should start doing</p>
+<ul>
+<li>Ask: <em>"What should we start doing that we haven't been doing?"</em></li>
+</ul>
+<p><strong>Stop</strong>: Things the team should stop doing</p>
+<ul>
+<li>Ask: <em>"What should we stop doing because it's not helping?"</em></li>
+</ul>
+<p><strong>Continue</strong>: Things the team should keep doing</p>
+<ul>
+<li>Ask: <em>"What's working well and should be continued?"</em></li>
+</ul>
+<h4 id="action-items">Action Items<a class="headerlink" href="#action-items" title="Permanent link">&para;</a></h4>
+<p>For each improvement identified:</p>
+<ul>
+<li>Define a <strong>specific, measurable action</strong> (not vague wishes)</li>
+<li>Assign an <strong>owner</strong> (a specific person)</li>
+<li>Set a <strong>due date</strong> (ideally within the next sprint)</li>
+</ul>
+<h4 id="output_2">Output<a class="headerlink" href="#output_2" title="Permanent link">&para;</a></h4>
+<p>Update the sprint plan's Retrospective Notes section with:</p>
+<ul>
+<li>Sprint goal achieved: Yes / Partial / No</li>
+<li>Velocity</li>
+<li>Start / Stop / Continue items</li>
+<li>Action items table with owner and due date</li>
+</ul>
+<h4 id="tracking-across-sprints">Tracking Across Sprints<a class="headerlink" href="#tracking-across-sprints" title="Permanent link">&para;</a></h4>
+<p>If the same issue appears in multiple retrospectives, escalate it as a risk in <code>${CLAUDE_PLUGIN_ROOT}/templates/project_plan.md</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
