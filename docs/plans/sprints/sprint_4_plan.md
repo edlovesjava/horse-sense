@@ -44,7 +44,7 @@ Three objectives, in priority order:
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
 | T-130 | ADR-0007: five-gate readiness policy (ready-for-sprint → ready-for-commit → ready-for-push → ready-for-review → ready-for-merge) | — | 3 | ✅ Done |
-| T-131 | CI hooks enforcing commit/push/merge gates (unit → integration/e2e → review/doc-sync) in `horse/templates/ci.yml` | US-077 | 5 | ⬜ To Do |
+| T-131 | CI hooks enforcing commit/push/merge gates (unit → integration/e2e → review/doc-sync) in `horse/templates/ci.yml` | US-077 | 5 | ✅ Done |
 | T-132 | Doc-sync check for "ready-for-review" gate (story status ↔ index table ↔ code references) | — | 3 | ✅ Done |
 | T-133 | Branch/PR workflow doc: "fresh branch + single branch + single PR" rules; propose supporting skills/commands/hooks | — | 2 | ✅ Done |
 | T-134 | Housekeeping: back-transition any Sprint 3 story drift (frontmatter ↔ index parity audit) | — | 1 | ⬜ To Do |

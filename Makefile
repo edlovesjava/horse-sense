@@ -2,10 +2,25 @@ PLUGIN_DIR := horse
 DOCS_VENV := .venv-docs
 DOCS_PY := $(DOCS_VENV)/bin/python
 
-.PHONY: check fix validate lint docs docs-serve docs-deps docs-clean
+.PHONY: check fix validate lint gate-commit gate-push gate-review doc-sync docs docs-serve docs-deps docs-clean
 
 # Run all checks — exits non-zero if any check fails.
 check: validate lint
+
+# ── Readiness gates (ADR-0007) ───────────────────────────────────────────────
+
+# Gate 2: unit tests + lint + typecheck (fast, run before committing)
+gate-commit: validate lint
+
+# Gate 3: full test suite (run before pushing)
+gate-push: gate-commit
+
+# Gate 4: doc-sync + structure validation (run before requesting review)
+gate-review: gate-push doc-sync
+
+# Doc-sync: verify story frontmatter ↔ index table parity
+doc-sync:
+	$(PLUGIN_DIR)/scripts/doc_sync_check.sh
 
 # Auto-fix what is fixable (markdownlint).
 fix:
