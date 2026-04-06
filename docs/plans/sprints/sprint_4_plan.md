@@ -62,17 +62,6 @@ Three objectives, in priority order:
 
 | | **Sprint 4 Total (with stretch)** | | **41** | |
 
-### Part 5: Project Init Command (Next Up — US-084)
-
-| Task ID | Title | Req | Points | Status |
-|---|---|---|---|---|
-| T-140 | Create `commands/init.md` — `/horse:init` slash command with 8-question interview flow | US-084 | 3 | ⬜ To Do |
-| T-141 | Update `new_project.sh` to accept `--python-version`, `--node-version`, `--framework`, `--package-manager` flags | US-084, US-003 | 3 | ⬜ To Do |
-| T-142 | Add `.gitignore`, `README.md`, `LICENSE` generation to scaffold path | US-084 | 2 | ⬜ To Do |
-| T-143 | Wire `/horse:guide` to detect prior init completion and skip to requirements | US-084 | 2 | ⬜ To Do |
-| T-144 | End-to-end validation: run `/horse:init` on a fresh directory for Python and TypeScript | US-084 | 2 | ⬜ To Do |
-| | **Part 5 subtotal** | | **12** | |
-
 ### Status Key
 
 - ⬜ To Do
@@ -87,9 +76,8 @@ Three objectives, in priority order:
 
 | Story | Title | Status before | Status after sprint start |
 |---|---|---|---|
-| US-083 | Trainer agent with process audit skill and command | Draft | 🔵 In Progress |
+| US-083 | Trainer agent with process audit skill and command | Draft | ✅ Done |
 | US-025 | Trail definition documents (stretch) | Draft | 🔵 In Progress |
-| US-084 | Project init command (next up) | Draft | ⬜ To Do |
 
 Phase 1 close-out tasks (T-025/T-026/T-027) are verification/follow-up work against stories already marked `done` (US-051, US-001, US-002) and are tracked as non-story technical tasks rather than reopening those stories. Part 3 retro items are process work and do not correspond to user stories.
 
