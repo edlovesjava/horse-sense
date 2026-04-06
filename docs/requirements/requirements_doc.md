@@ -133,7 +133,7 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-083](stories/US-083-trainer-process-audit.md) | Trainer agent with process audit skill and command | Must Have | 8 | In Progress |
+| [US-083](stories/US-083-trainer-process-audit.md) | Trainer agent with process audit skill and command | Must Have | 8 | Done |
 
 ### Summary
 

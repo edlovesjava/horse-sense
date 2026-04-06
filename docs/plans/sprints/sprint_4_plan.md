@@ -34,9 +34,9 @@ Three objectives, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-037 | Create `skills/process-audit/SKILL.md` — step-by-step audit skill for the trainer agent | US-083 | 5 | ⬜ To Do |
-| T-038 | Create `commands/audit.md` — `/horse:audit` slash command | US-083 | 2 | ⬜ To Do |
-| T-039 | Create `templates/audit_report.md` — structured audit report template | US-083 | 1 | ⬜ To Do |
+| T-037 | Create `skills/process-audit/SKILL.md` — step-by-step audit skill for the trainer agent | US-083 | 5 | ✅ Done |
+| T-038 | Create `commands/audit.md` — `/horse:audit` slash command | US-083 | 2 | ✅ Done |
+| T-039 | Create `templates/audit_report.md` — structured audit report template | US-083 | 1 | ✅ Done |
 | | **Part 2 subtotal** | | **8** | |
 
 ### Part 3: Readiness-Gate Policy & Enforcement (Sprint 3 retro action items)
