@@ -66,10 +66,38 @@ Update the sprint plan's standup notes table.
 
 ### Sprint Completion
 
-At the end of the sprint:
+At the end of the sprint, execute the close-out sequence in order. Each step must pass before proceeding to the next.
+
+#### Step 1: Task & Story Wrap-up
 
 1. Mark completed sprint tasks as `✅ Done` in the sprint plan (if the developer hasn't already — they should have, per the `implementation` skill).
 2. **Transition each fully-completed story to `done`** per the "Story Status Transitions" rules above. Stories with remaining open tasks stay `in-progress` and roll into the next sprint's backlog.
 3. Move incomplete sprint tasks back to the backlog with a note.
-4. Calculate velocity: total story points completed.
-5. Prompt: *"Ready to run a retrospective? Use /horse:retrospective"*
+
+#### Step 2: Close-out Gate
+
+Run the close-out checklist before committing. All items must pass:
+
+- [ ] All sprint tasks are `✅ Done` or explicitly deferred with rationale
+- [ ] `make doc-sync` passes (story frontmatter ↔ index table parity)
+- [ ] `make check` passes (structure, frontmatter, markdown, shellcheck)
+- [ ] Story statuses transitioned in both frontmatter and index
+- [ ] Sprint review section filled in (velocity, what was delivered, what was not)
+
+If any item fails, fix it before proceeding.
+
+#### Step 3: Commit & Push
+
+1. Commit all close-out changes (sprint plan updates, story transitions) with a clear message (e.g., `chore(sprint-4): close out sprint — 41 SP delivered`).
+2. Push the sprint branch to remote.
+
+#### Step 4: Human Review & Merge
+
+1. Create a PR for the sprint branch (or update the existing one).
+2. Request human review — the reviewer should verify the close-out gate items.
+3. Merge after approval.
+
+#### Step 5: Velocity & Retrospective
+
+1. Calculate velocity: total story points completed.
+2. Prompt: *"Ready to run a retrospective? Use /horse:retrospective"*
