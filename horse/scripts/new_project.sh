@@ -166,10 +166,10 @@ info "Created .env.example"
 # ── conftest.py ───────────────────────────────────────────────────────────────
 cat > "tests/conftest.py" << CONFTEST
 """Shared pytest fixtures for all test categories."""
-import pytest
-
 
 # Add shared fixtures here, e.g.:
+# import pytest
+#
 # @pytest.fixture
 # def sample_user():
 #     return {"id": 1, "email": "alice@example.com"}
