@@ -270,17 +270,21 @@ A task is **Done** when:
 
 ## Sprint Review Notes
 
-**Demo completed**: ☐ Yes / ☐ No
-**Sprint goal achieved**: ☐ Yes / ☐ Partial / ☐ No
-**Velocity**: [N story points completed]
+**Demo completed**: ☑ Yes
+**Sprint goal achieved**: ☑ Yes
+**Velocity**: 41 SP (31 core + 10 stretch; 100% completion)
 
 ### What was delivered
 
-- _[fill in at close]_
+- **Part 1 — Phase 1 close-out (9 SP)**: TypeScript scaffolding in `new_project.sh` with `--language` flag; Python and TypeScript E2E validation (both passed after fixing conftest import, next-steps output, and missing devDependencies)
+- **Part 2 — Trainer audit skill (8 SP)**: `skills/process-audit/SKILL.md`, `/horse:audit` command, `templates/audit_report.md`; US-083 → done
+- **Part 3 — Readiness gates (14 SP)**: ADR-0007 five-gate policy, CI template restructured with gate jobs, `doc_sync_check.sh` script, Makefile gate targets, workflow rules doc, Sprint 3 drift audit (clean)
+- **Part 4 — Trail definitions (10 SP stretch)**: Trail format spec (`docs/process/trail_format.md`), `trails/feature_delivery.md` covering the full SDLC lifecycle
+- **Bonus**: Sprint close-out gate sequence added to `/horse:sprint` command; US-084 story created and queued for Sprint 5
 
 ### What was not completed (and why)
 
-- _[fill in at close]_
+- Nothing — all 13 tasks completed, including stretch goals
 
 ---
 
