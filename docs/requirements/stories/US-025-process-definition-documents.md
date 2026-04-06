@@ -1,7 +1,7 @@
 ---
 id: US-025
 title: Trail definition documents
-status: draft
+status: in-progress
 priority: Must Have
 story_points: 8
 section: "3.4 Trail Definitions — Workflow Specification"

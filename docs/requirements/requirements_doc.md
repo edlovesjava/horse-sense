@@ -68,7 +68,7 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-025](stories/US-025-process-definition-documents.md) | Trail definition documents | Must Have | 8 | Draft |
+| [US-025](stories/US-025-process-definition-documents.md) | Trail definition documents | Must Have | 8 | In Progress |
 | [US-026](stories/US-026-process-flow-control.md) | Process flow control | Must Have | 8 | Draft |
 | [US-027](stories/US-027-entry-gates-and-completion-criteria.md) | Entry gates and completion criteria | Must Have | 5 | Draft |
 | [US-028](stories/US-028-human-in-the-loop-decision-points.md) | Human-in-the-loop decision points | Must Have | 5 | Draft |
@@ -133,7 +133,7 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-083](stories/US-083-trainer-process-audit.md) | Trainer agent with process audit skill and command | Must Have | 8 | Draft |
+| [US-083](stories/US-083-trainer-process-audit.md) | Trainer agent with process audit skill and command | Must Have | 8 | Done |
 
 ### Summary
 

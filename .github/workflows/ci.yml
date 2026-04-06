@@ -41,6 +41,9 @@ jobs:
       - name: Shell lint
         run: shellcheck horse/scripts/*.sh scripts/*.sh
 
+      - name: Doc-sync check
+        run: horse/scripts/doc_sync_check.sh
+
   docs:
     name: Build docs
     runs-on: ubuntu-latest
