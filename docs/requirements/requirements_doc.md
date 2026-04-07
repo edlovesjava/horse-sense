@@ -44,6 +44,7 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 | [US-001](stories/US-001-install-plugin.md) | Install plugin | Must Have | 3 | Draft |
 | [US-002](stories/US-002-configure-for-a-project.md) | Configure for a project | Must Have | 5 | Draft |
 | [US-003](stories/US-003-project-scaffolding.md) | Project scaffolding | Must Have | 5 | Draft |
+| [US-084](stories/US-084-project-init-command.md) | Project init command | Must Have | 8 | Draft |
 
 ### 3.2 Skills — Primary Behavior Definition
 
@@ -135,13 +136,52 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 |---|---|---|---|---|
 | [US-083](stories/US-083-trainer-process-audit.md) | Trainer agent with process audit skill and command | Must Have | 8 | Done |
 
+### 3.13 Doc Writer — Documentation Authoring & Maintenance
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-085](stories/US-085-doc-writer-agent.md) | Doc writer agent persona | Must Have | 5 | Draft |
+| [US-086](stories/US-086-documentation-skill.md) | Documentation authoring skill | Must Have | 8 | Draft |
+| [US-087](stories/US-087-diagrams-skill.md) | Mermaid diagrams skill | Must Have | 8 | Draft |
+| [US-088](stories/US-088-code-docs-skill.md) | Code documentation skill | Should Have | 5 | Draft |
+| [US-089](stories/US-089-doc-review-skill.md) | Documentation review skill | Should Have | 5 | Draft |
+
+### 3.14 Leadership Views — Product Manager
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-090](stories/US-090-product-planning-skill.md) | Product planning skill | Must Have | 8 | Draft |
+| [US-095](stories/US-095-product-planning-templates.md) | Product and quality planning templates | Must Have | 5 | Draft |
+
+### 3.15 Leadership Views — Project Manager
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-091](stories/US-091-release-planning-skill.md) | Release planning skill | Must Have | 8 | Draft |
+| [US-093](stories/US-093-story-dependency-tracking.md) | Story dependency tracking | Must Have | 3 | Draft |
+| [US-094](stories/US-094-backlog-refinement-command.md) | Backlog refinement command | Must Have | 5 | Draft |
+
+### 3.16 Leadership Views — QA Lead
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-092](stories/US-092-quality-planning-skill.md) | Quality planning skill | Must Have | 8 | Draft |
+
+### 3.17 Project Scope Profiles
+
+| Story | Title | Priority | SP | Status |
+|---|---|---|---|---|
+| [US-096](stories/US-096-project-scope-profiles.md) | Project scope profiles | Must Have | 5 | Draft |
+| [US-097](stories/US-097-scope-guided-qa.md) | Scope-guided Q&A in project setup | Must Have | 5 | Draft |
+| [US-098](stories/US-098-scope-aware-guide-workflow.md) | Scope-aware guide workflow | Must Have | 8 | Draft |
+
 ### Summary
 
 | Priority | Count | Total SP |
 |---|---|---|
-| Must Have | 29 | 152 |
-| Should Have | 9 | 29 |
-| **Total** | **38** | **181** |
+| Must Have | 42 | 236 |
+| Should Have | 11 | 39 |
+| **Total** | **53** | **275** |
 
 ---
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 120" width="960" height="120"
+     role="img" aria-label="SDLC Workflow: Requirements, Architecture, Implementation, Testing, Code Review, Deployment">
+  <defs>
+    <style>
+      .box   { fill: #4a6fa5; stroke: #2d4a7a; stroke-width: 1.5; rx: 8; ry: 8; }
+      .label { fill: #fff; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 13px; text-anchor: middle; }
+      .cmd   { fill: #c8d8ec; font-family: "SF Mono", "Fira Code", Consolas, monospace; font-size: 10px; text-anchor: middle; }
+      .arrow { fill: none; stroke: #2d4a7a; stroke-width: 1.5; marker-end: url(#ah); }
+      .ret   { fill: none; stroke: #2d4a7a; stroke-width: 1.2; stroke-dasharray: 6,3; marker-end: url(#ah); }
+    </style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2d4a7a"/>
+    </marker>
+  </defs>
+
+  <!-- 1  Requirements -->
+  <rect class="box" x="10"  y="20" width="130" height="56"/>
+  <text class="label" x="75"  y="43">Requirements</text>
+  <text class="cmd"   x="75"  y="62">/horse:plan</text>
+
+  <line class="arrow" x1="140" y1="48" x2="158" y2="48"/>
+
+  <!-- 2  Architecture -->
+  <rect class="box" x="160" y="20" width="130" height="56"/>
+  <text class="label" x="225" y="43">Architecture</text>
+  <text class="cmd"   x="225" y="62">/horse:arch</text>
+
+  <line class="arrow" x1="290" y1="48" x2="308" y2="48"/>
+
+  <!-- 3  Implementation -->
+  <rect class="box" x="310" y="20" width="140" height="56"/>
+  <text class="label" x="380" y="43">Implementation</text>
+  <text class="cmd"   x="380" y="62">/horse:implement</text>
+
+  <line class="arrow" x1="450" y1="48" x2="468" y2="48"/>
+
+  <!-- 4  Testing -->
+  <rect class="box" x="470" y="20" width="120" height="56"/>
+  <text class="label" x="530" y="43">Testing</text>
+  <text class="cmd"   x="530" y="62">/horse:test</text>
+
+  <line class="arrow" x1="590" y1="48" x2="608" y2="48"/>
+
+  <!-- 5  Code Review -->
+  <rect class="box" x="610" y="20" width="130" height="56"/>
+  <text class="label" x="675" y="43">Code Review</text>
+  <text class="cmd"   x="675" y="62">/horse:review</text>
+
+  <line class="arrow" x1="740" y1="48" x2="758" y2="48"/>
+
+  <!-- 6  Deployment -->
+  <rect class="box" x="760" y="20" width="130" height="56"/>
+  <text class="label" x="825" y="43">Deployment</text>
+  <text class="cmd"   x="825" y="62">/horse:deploy</text>
+
+  <!-- Return arrow: Deployment bottom → Requirements bottom -->
+  <path class="ret" d="M 825 76 L 825 100 Q 825 110 815 110 L 85 110 Q 75 110 75 100 L 75 76"/>
+</svg>
