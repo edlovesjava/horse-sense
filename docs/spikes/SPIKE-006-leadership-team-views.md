@@ -26,14 +26,14 @@ The horse-sense plugin currently operates at the sprint execution level — stor
 The leadership team operates across three time horizons that nest inside each other:
 
 ```
-Strategic (quarters/releases)     ← Product Manager, Architect, Ops
-  └─ Tactical (sprints/iterations) ← Project Manager, QA Lead, Designer
+Strategic (quarters/releases)     ← Product Manager, Architect, Ops, Security Lead
+  └─ Tactical (sprints/iterations) ← Project Manager, QA Lead, Designer, Data Scientist
        └─ Operational (days/tasks)  ← Sprint Lead (current planner role)
 ```
 
 The plugin currently handles only the operational horizon well. The strategic and tactical horizons are ad-hoc or absent.
 
-### Finding 2: Seven Leadership Views
+### Finding 2: Nine Leadership Views
 
 Each view has a distinct perspective, artifacts, and success criteria:
 
@@ -140,6 +140,36 @@ Each view has a distinct perspective, artifacts, and success criteria:
 
 **Current plugin coverage**: Partial. The deployment skill covers CI/CD, Docker, and rollback. Missing: observability requirements as a first-class artifact, infrastructure planning, cost modeling, SLO/SLI definitions.
 
+#### View 8: Security Lead — "How Safe Is It"
+
+**Horizon**: Strategic (system lifetime) and Tactical (per-release)
+**Focus**: Threat modeling, secure coding, vulnerability management, compliance
+
+| Artifact | Purpose |
+|---|---|
+| **Threat Model** | STRIDE/DREAD analysis, attack surface inventory, trust boundaries, data flow diagrams with security annotations |
+| **Security Requirements** | Authentication/authorization model, encryption standards, data classification, input validation rules, secrets management policy |
+| **Secure Coding Standards** | Language-specific secure coding guidelines, banned API/pattern list, dependency policy (CVE tolerance, update cadence) |
+| **Compliance Matrix** | Regulatory requirements mapping (OWASP Top 10, SOC 2, GDPR, HIPAA as applicable), control implementation status |
+| **Vulnerability Register** | Known vulnerabilities, severity (CVSS), remediation status, SLA for fix by severity |
+
+**Current plugin coverage**: Minimal. The reviewer agent checks for basic security issues during code review, but there is no proactive threat modeling, no security requirements artifact, no dependency vulnerability tracking, and no compliance mapping. Security is reactive (caught in review) rather than proactive (designed in).
+
+#### View 9: Data Scientist — "What the Data Tells Us"
+
+**Horizon**: Tactical (per-feature/experiment) and Operational (ongoing)
+**Focus**: Data pipelines, ML model lifecycle, experiment design, feature engineering, data quality
+
+| Artifact | Purpose |
+|---|---|
+| **Data Strategy** | Data sources inventory, collection plan, storage architecture, retention policy, privacy constraints |
+| **Experiment Design** | Hypothesis, metrics, A/B test plan, statistical power analysis, success criteria, rollback triggers |
+| **ML Model Card** | Model purpose, training data, performance metrics, bias assessment, limitations, versioning, retraining schedule |
+| **Data Pipeline Spec** | ETL/ELT pipeline definitions, data quality checks, schema evolution strategy, lineage tracking |
+| **Feature Engineering Doc** | Feature definitions, transformations, feature store schema, freshness requirements |
+
+**Current plugin coverage**: None. No agent, skill, or template addresses data science workflows, ML model lifecycle, experiment design, or data pipeline specifications. The architect handles system-level data flow but not analytical data concerns.
+
 ### Finding 3: How the Views Connect
 
 The views aren't independent — they form a dependency chain:
@@ -152,14 +182,23 @@ flowchart TD
     PJM["Project Manager\nStory Map → Release Plan → Resources"]
     QA["QA Lead\nQuality Plan → Gates → Checklists"]
     OPS["Ops Lead\nObservability → Infrastructure → Cost"]
+    SEC["Security Lead\nThreat Model → Secure Coding → Compliance"]
+    DS["Data Scientist\nData Strategy → Experiments → ML Models"]
     SPR["Sprint Lead\nSprint Plan → Tasks → Velocity"]
 
     PM -->|epics & priorities| PJM
     PM -->|user needs| DES
     PM -->|quality attributes| AR
+    PM -->|experiment hypotheses| DS
     AR -->|technical constraints| PJM
     AR -->|deployment model| OPS
+    AR -->|trust boundaries| SEC
+    AR -->|data architecture| DS
     DES -->|interaction specs| PJM
+    SEC -->|security requirements| PJM
+    SEC -->|security gates| QA
+    DS -->|data pipeline specs| PJM
+    DS -->|model metrics| QA
     PJM -->|sprint backlog| SPR
     QA -->|quality gates| SPR
     OPS -->|infra constraints| PJM
@@ -179,6 +218,8 @@ flowchart TD
 | Designer | *(none)* | None | Entirely missing |
 | Architect | architect | Good | No tech vision doc, no DDD artifacts |
 | Ops Lead | *(partial via deployment skill)* | CI/CD, Docker, rollback | No observability reqs, infra plan, cost model |
+| Security Lead | reviewer (minimal) | Basic security checks in code review | No threat model, security requirements, secure coding standards, compliance matrix, vulnerability register |
+| Data Scientist | *(none)* | None | Entirely missing — no data strategy, experiment design, ML model lifecycle, pipeline specs |
 
 ## Trade-off Matrix
 
@@ -204,6 +245,7 @@ Enhance existing agents and add the most critical missing view:
 | **QA Lead** | Enhance tester agent + add quality-planning skill | Quality plan, V&V checklists, quality gates, defect register | 8 |
 
 **Why these three first?**
+
 - Product Manager view provides the *strategic direction* that everything else flows from
 - Project Manager view provides the *tactical coordination* (SPIKE-005's core finding)
 - QA Lead view provides *quality governance* that the trainer audits against but nobody actively manages
@@ -217,6 +259,8 @@ Add the remaining views after Phase 1 validates the model:
 | **Designer** | New designer agent + ux-design skill | UX research, interaction design, usability criteria, human factors checklist | 8 |
 | **Architect (enhanced)** | Add technical-vision skill + ddd skill | Technical vision doc, bounded contexts, context map, quality attribute scenarios | 5 |
 | **Ops Lead** | New ops agent + ops-planning skill | Observability requirements, infrastructure plan, cost model, SLO/SLI definitions | 8 |
+| **Security Lead** | New security agent + security-planning skill | Threat model, security requirements, secure coding standards, compliance matrix, vulnerability register | 8 |
+| **Data Scientist** | New data-scientist agent + data-science skill | Data strategy, experiment design, ML model card, data pipeline spec, feature engineering doc | 8 |
 
 ### Supporting Changes (Both Phases)
 
@@ -251,6 +295,10 @@ The leadership views should be accessible via a convention:
 - [ ] How much of the QA view overlaps with the trainer's process audit? Should the trainer evolve into the QA lead?
 - [ ] Should quality gates be defined per-project in a quality_plan.md or built into the plugin's trail definitions?
 - [ ] Is a `/horse:dashboard` command useful to present a consolidated leadership summary?
+- [ ] Should the security agent own threat modeling exclusively, or should the architect co-own trust boundary analysis?
+- [ ] Should security gates be part of the QA lead's quality gates or managed separately by the security lead?
+- [ ] Should the data scientist agent focus on ML-heavy projects only, or also cover analytics/BI-focused data work?
+- [ ] How should the data scientist view interact with the architect's data architecture concerns — shared artifacts or cross-references?
 
 ## Next Steps
 
@@ -258,4 +306,6 @@ The leadership views should be accessible via a convention:
 - [ ] Draft user stories for supporting template and frontmatter changes
 - [ ] Review whether the planner agent should split into product-planner and project-planner personas, or remain one agent that composes different skills
 - [ ] Validate Phase 1 scope against upcoming sprint capacity
+- [ ] Draft user stories for Security Lead view (threat modeling, secure coding, compliance)
+- [ ] Draft user stories for Data Scientist view (data strategy, experiments, ML model lifecycle)
 - [ ] Defer Phase 2 stories until Phase 1 is delivered and validated

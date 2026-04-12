@@ -32,6 +32,11 @@ Plan and manage a sprint.
    - Ask which stories are done, in progress, or blocked.
    - Update statuses and note any blockers.
    - **Transition any newly blocked story to `blocked`** (see "Story Status Transitions" below).
+4. If executing:
+   - Ask: *"Ready to execute the sprint? I'll orchestrate the implement → test → review cycle for each story."*
+   - Follow the sprint orchestrator protocol defined in `${CLAUDE_PLUGIN_ROOT}/agents/sprint-orchestrator.md`: read the sprint plan, iterate over stories in priority order, dispatch `horse:developer` → `horse:tester` → `horse:reviewer` for each story, track loop iterations, and escalate to `horse:trainer` (monitor) if loops don't converge.
+   - Update task status in the sprint plan as work progresses (`⬜` → `🔵` → `🔍` → `✅`).
+   - Pause for human decision when a loop exceeds its iteration limit or when all stories are complete.
 
 ### Story Status Transitions
 

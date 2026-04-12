@@ -18,7 +18,7 @@ When this command is invoked:
    - Check `horse.config.md` for `requirements_format`.
    - **monolith**: find the story in `requirements_doc.md`.
    - **per-story**: find the story file in the configured `requirements_stories_dir` (default: `docs/requirements/stories/`) matching the given ID.
-3. Confirm the acceptance criteria are clear — if not, clarify before writing code.
+3. **Entry gate — are requirements sufficient?** Confirm the acceptance criteria are clear, the scope is small enough for one implementation pass, and edge cases are covered. Check whether a parent scope (milestone, epic) already provides sufficient requirements for this story or task. If not, tell the user: *"The requirements need more detail before we start coding — [specific gap]. Want to refine them now, or switch to `/horse:plan`?"* Do not proceed until requirements are sufficient.
 4. Identify the files that need to change.
 5. Write a failing test first (TDD):
    - Place in `tests/unit/` or `tests/integration/` as appropriate

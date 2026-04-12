@@ -142,6 +142,10 @@ flowchart LR
 
 Each phase has a dedicated slash command, a specialized agent, and a skill guide that walks you through it step by step.
 
+> **This is a loop, not a line.** RAITCrD is naturally iterative — work flows forward through phases, but any phase can send you back when a gap appears. Unclear requirement? Return to **R**. Design assumption breaks during coding? Revisit **A**. Test reveals a defect? Back to **I**. Quality gates between phases catch problems early, but they're checkpoints you pass through as many times as needed, not one-way doors.
+>
+> **Not every level needs every phase.** Work decomposes from milestones → epics → stories → tasks, and RAITCrD applies at each level — but higher-scope work often covers phases for everything beneath it. Requirements at the milestone level may be sufficient for its stories. Architecture at the epic level may define enough for each story to skip straight to implementation. Once an epic's design is set, its stories can proceed through I → T → Cr in parallel.
+
 ---
 
 ## Slash Commands
