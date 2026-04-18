@@ -81,6 +81,7 @@ Full schema: `horse/schemas/config.schema.json`. Example configs: `horse/templat
 
 | Command | Description |
 |---|---|
+| `/horse:init` | Initialize a new project (interview-driven scaffold) |
 | `/horse:plan` | Create or update a project plan |
 | `/horse:arch` | Design system architecture |
 | `/horse:implement` | Begin a feature implementation |

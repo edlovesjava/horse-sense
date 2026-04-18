@@ -138,6 +138,7 @@ project_scope: project
 ```
 
 **Why `horse.config.md` and not `.claude/config.json`?**
+
 - `.claude/config.json` is toolchain config (language, linter, test runner) — *how* to build
 - `horse.config.md` is workflow config (requirements format, git strategy) — *how much process* to apply
 - Scope profile is a workflow concern — it controls which steps, roles, and artifacts are active
@@ -203,17 +204,20 @@ Rationale:
 ### Implementation Phases
 
 **Phase 1 (MVP — Must Have):**
+
 - Add `project_scope` field to `horse.config.md` template
 - Add scope Q&A to `/horse:guide` command (3 questions)
 - Guide workflow skips/includes steps based on profile
 - Document profile definitions and artifact/role mappings
 
 **Phase 2 (Propagation — Should Have):**
+
 - Individual commands check `project_scope` and adjust prompts
 - Skills check `project_scope` and skip heavyweight steps when not applicable
 - Agent suggestions filtered by active roles for the profile
 
 **Phase 3 (Overrides — Could Have):**
+
 - `active_roles` / `skip_roles` override fields
 - `require` / `skip` artifact override fields
 - `/horse:scope` command to review and change profile mid-project

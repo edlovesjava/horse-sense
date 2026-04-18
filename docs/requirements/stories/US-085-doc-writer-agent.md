@@ -1,7 +1,7 @@
 ---
 id: US-085
 title: Doc writer agent persona
-status: draft
+status: in-progress
 priority: Must Have
 story_points: 5
 section: "3.13 Doc Writer — Documentation Authoring & Maintenance"

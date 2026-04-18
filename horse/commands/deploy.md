@@ -13,21 +13,22 @@ Prepare and execute a deployment to the target environment.
 
 When this command is invoked:
 
-1. Ask: *"Which environment are you deploying to? (staging / production)"*
-2. Run through the pre-deployment checklist:
+1. **Entry gate — is there an artifact to ship?** Check whether there is a merged branch, built artifact, or deployable change. If this is just a documentation update, config change, or spike with no runtime impact, tell the user: *"There's no runtime artifact to deploy here — is a merge sufficient, or do you need a full deployment?"*
+2. Ask: *"Which environment are you deploying to? (staging / production)"*
+3. Run through the pre-deployment checklist:
    - [ ] All tests passing (`bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh`)
    - [ ] No security vulnerabilities (`pip audit`)
    - [ ] Version bumped in `pyproject.toml`
    - [ ] `CHANGELOG.md` updated
    - [ ] Database migrations reviewed
-3. If any checklist item fails, stop and help the user fix it before proceeding.
-4. Guide the deployment:
+4. If any checklist item fails, stop and help the user fix it before proceeding.
+5. Guide the deployment:
    - Build the Docker image (if applicable)
    - Push to the container registry
    - Apply database migrations
    - Deploy the new image
    - Verify health check endpoint
-5. After deployment, confirm:
+6. After deployment, confirm:
    - Health check returns 200
    - Key user journeys work (smoke test)
    - Error rates in monitoring are normal

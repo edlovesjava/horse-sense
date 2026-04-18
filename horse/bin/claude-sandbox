@@ -1,0 +1,255 @@
+#!/usr/bin/env bash
+# claude-sandbox — one-shot sandboxed `claude -p` runner.
+# See docs/architecture/adr/0005-containerized-subagent-execution.md
+# See docs/spikes/SPIKE-010-containerized-subagent-dispatch.md
+#
+# Produces a JSON result on stdout (or --output PATH) matching the
+# invocation contract:
+#   { "result", "exit_code", "stderr", "duration_seconds",
+#     "tokens_used": { "input", "output" } }
+
+set -euo pipefail
+
+VERSION="0.1.0"
+IMAGE="${CLAUDE_SANDBOX_IMAGE:-claude-sandbox:dev}"
+TIMEOUT=120
+# Network defaults to `bridge` because `claude -p` needs egress to
+# api.anthropic.com. ADR-0005 originally said `--network none`; that is
+# mutually exclusive with the primary use case. See T-061 commit + the
+# pending ADR amendment. Use `--no-network` for offline/test runs.
+NETWORK="bridge"
+MEMORY="2g"
+CPUS="2"
+TMPFS_SIZE="256m"
+PROMPT=""
+PROMPT_FILE=""
+OUTPUT_PATH=""
+MOUNTS=()
+ENV_VARS=()
+
+usage() {
+  cat <<USAGE
+claude-sandbox ${VERSION} — one-shot sandboxed claude CLI runner
+
+Usage: claude-sandbox --prompt TEXT [options]
+       claude-sandbox --prompt-file PATH [options]
+
+Options:
+  --prompt TEXT            Prompt text (required unless --prompt-file is given)
+  --prompt-file PATH       Read prompt from a file
+  --mount HOST:CONT[:MODE] Bind-mount host path (repeatable). Mode defaults to ro.
+  --timeout SECS           Kill the container after SECS (default: ${TIMEOUT})
+  --output PATH            Write JSON result to PATH (default: stdout)
+  --env KEY=VALUE          Pass env var to the container (repeatable)
+  --network MODE           Docker --network value (default: ${NETWORK})
+  --no-network             Shorthand for --network none (offline)
+  --image NAME             Override image (default: \${CLAUDE_SANDBOX_IMAGE:-claude-sandbox:dev})
+  --memory SIZE            Docker --memory (default: ${MEMORY})
+  --cpus N                 Docker --cpus (default: ${CPUS})
+  -h, --help               Show this help and exit
+  -V, --version            Print version and exit
+
+Output (JSON, per ADR-0005):
+  {
+    "result": "...",
+    "exit_code": 0,
+    "stderr": "",
+    "duration_seconds": 14.2,
+    "tokens_used": { "input": 0, "output": 0 }
+  }
+
+ANTHROPIC_API_KEY is forwarded from the host environment by default.
+When Docker is unavailable, falls back to local \`claude -p\` (no sandboxing,
+warning emitted on stderr). The output contract is preserved in both paths.
+USAGE
+}
+
+parse_args() {
+  while (( $# > 0 )); do
+    case "$1" in
+      --prompt)        PROMPT="${2:?--prompt requires a value}"; shift 2 ;;
+      --prompt-file)   PROMPT_FILE="${2:?--prompt-file requires a value}"; shift 2 ;;
+      --mount)         MOUNTS+=("${2:?--mount requires a value}"); shift 2 ;;
+      --timeout)       TIMEOUT="${2:?--timeout requires a value}"; shift 2 ;;
+      --output)        OUTPUT_PATH="${2:?--output requires a value}"; shift 2 ;;
+      --env)           ENV_VARS+=("${2:?--env requires a value}"); shift 2 ;;
+      --network)       NETWORK="${2:?--network requires a value}"; shift 2 ;;
+      --no-network)    NETWORK="none"; shift ;;
+      --image)         IMAGE="${2:?--image requires a value}"; shift 2 ;;
+      --memory)        MEMORY="${2:?--memory requires a value}"; shift 2 ;;
+      --cpus)          CPUS="${2:?--cpus requires a value}"; shift 2 ;;
+      -h|--help)       usage; exit 0 ;;
+      -V|--version)    printf 'claude-sandbox %s\n' "$VERSION"; exit 0 ;;
+      --)              shift; break ;;
+      *)               printf 'claude-sandbox: unknown option: %s\n' "$1" >&2
+                       usage >&2
+                       exit 2 ;;
+    esac
+  done
+}
+
+validate_args() {
+  if [[ -z "${PROMPT}" && -z "${PROMPT_FILE}" ]]; then
+    printf 'claude-sandbox: one of --prompt or --prompt-file is required\n' >&2
+    usage >&2
+    exit 2
+  fi
+  if [[ -n "${PROMPT_FILE}" ]]; then
+    if [[ ! -r "${PROMPT_FILE}" ]]; then
+      printf 'claude-sandbox: prompt file not readable: %s\n' "${PROMPT_FILE}" >&2
+      exit 2
+    fi
+    PROMPT="$(cat -- "${PROMPT_FILE}")"
+  fi
+}
+
+docker_available() {
+  command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1
+}
+
+now_epoch_frac() {
+  # GNU date supports %N; on macOS date %N yields literal N. Fall back to integer seconds.
+  local ts
+  ts="$(date +%s.%N 2>/dev/null || true)"
+  if [[ -z "${ts}" || "${ts}" == *N* ]]; then
+    ts="$(date +%s).0"
+  fi
+  printf '%s' "${ts}"
+}
+
+run_in_docker() {
+  local docker_args=(
+    run --rm
+    --read-only
+    --tmpfs "/tmp:size=${TMPFS_SIZE}"
+    --user "1000:1000"
+    --memory "${MEMORY}"
+    --cpus "${CPUS}"
+    --network "${NETWORK}"
+    --workdir /workspace
+  )
+  if [[ -n "${ANTHROPIC_API_KEY:-}" ]]; then
+    docker_args+=(--env "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}")
+  else
+    # shellcheck disable=SC2016  # backticks in the message are literal
+    printf 'claude-sandbox: WARNING — ANTHROPIC_API_KEY is not set in the host environment. The sandboxed `claude` CLI has no access to host OAuth credentials and will likely produce an empty result.\n' >&2
+  fi
+  local mount mode
+  for mount in "${MOUNTS[@]}"; do
+    # Default mount mode to :ro when not specified (HOST:CONT → HOST:CONT:ro).
+    mode="$(awk -F: '{print NF-1}' <<<"${mount}")"
+    if [[ "${mode}" == "1" ]]; then
+      mount="${mount}:ro"
+    fi
+    docker_args+=(--volume "${mount}")
+  done
+  local env_var
+  for env_var in "${ENV_VARS[@]:-}"; do
+    [[ -z "${env_var}" ]] && continue
+    docker_args+=(--env "${env_var}")
+  done
+
+  local start end duration exit_code=0
+  local stdout_file stderr_file
+  stdout_file="$(mktemp)"
+  stderr_file="$(mktemp)"
+  start="$(now_epoch_frac)"
+  timeout --preserve-status "${TIMEOUT}" \
+    docker "${docker_args[@]}" "${IMAGE}" \
+      claude -p "${PROMPT}" --output-format json \
+      >"${stdout_file}" 2>"${stderr_file}" \
+    || exit_code=$?
+  end="$(now_epoch_frac)"
+  duration="$(awk -v s="${start}" -v e="${end}" 'BEGIN{printf "%.3f", e-s}')"
+
+  emit_result "${stdout_file}" "${stderr_file}" "${exit_code}" "${duration}"
+  rm -f -- "${stdout_file}" "${stderr_file}"
+}
+
+run_fallback() {
+  # shellcheck disable=SC2016  # backticks in messages are literal markdown-style
+  printf 'claude-sandbox: WARNING — Docker unavailable; falling back to local `claude -p` (no sandboxing)\n' >&2
+  if ! command -v claude >/dev/null 2>&1; then
+    # shellcheck disable=SC2016
+    printf 'claude-sandbox: neither Docker nor a local `claude` CLI is available\n' >&2
+    exit 127
+  fi
+  local start end duration exit_code=0
+  local stdout_file stderr_file
+  stdout_file="$(mktemp)"
+  stderr_file="$(mktemp)"
+  start="$(now_epoch_frac)"
+  timeout --preserve-status "${TIMEOUT}" \
+    claude -p "${PROMPT}" --output-format json \
+      >"${stdout_file}" 2>"${stderr_file}" \
+    || exit_code=$?
+  end="$(now_epoch_frac)"
+  duration="$(awk -v s="${start}" -v e="${end}" 'BEGIN{printf "%.3f", e-s}')"
+
+  emit_result "${stdout_file}" "${stderr_file}" "${exit_code}" "${duration}"
+  rm -f -- "${stdout_file}" "${stderr_file}"
+}
+
+emit_result() {
+  local stdout_file="$1"
+  local stderr_file="$2"
+  local exit_code="$3"
+  local duration="$4"
+
+  local final_json
+  # Prefer to parse claude's own JSON envelope when present, so we surface
+  # its `result` and `usage.*_tokens` inside our contract. Otherwise wrap the
+  # raw bytes as `result`.
+  if command -v jq >/dev/null 2>&1 \
+     && jq -e . >/dev/null 2>&1 <"${stdout_file}"; then
+    final_json="$(jq \
+      --rawfile stderr_raw "${stderr_file}" \
+      --argjson exit_code "${exit_code}" \
+      --argjson duration "${duration}" \
+      '{
+        result: (.result // (. | tostring)),
+        exit_code: $exit_code,
+        stderr: $stderr_raw,
+        duration_seconds: $duration,
+        tokens_used: {
+          input:  (.usage.input_tokens  // 0),
+          output: (.usage.output_tokens // 0)
+        }
+      }' <"${stdout_file}")"
+  elif command -v jq >/dev/null 2>&1; then
+    final_json="$(jq -n \
+      --rawfile result_raw "${stdout_file}" \
+      --rawfile stderr_raw "${stderr_file}" \
+      --argjson exit_code "${exit_code}" \
+      --argjson duration "${duration}" \
+      '{
+        result: $result_raw,
+        exit_code: $exit_code,
+        stderr: $stderr_raw,
+        duration_seconds: $duration,
+        tokens_used: { input: 0, output: 0 }
+      }')"
+  else
+    # jq is a hard dependency of this runner for correct JSON escaping.
+    printf 'claude-sandbox: jq is required for JSON output — please install jq\n' >&2
+    exit 127
+  fi
+
+  if [[ -n "${OUTPUT_PATH}" ]]; then
+    printf '%s\n' "${final_json}" >"${OUTPUT_PATH}"
+  else
+    printf '%s\n' "${final_json}"
+  fi
+}
+
+main() {
+  parse_args "$@"
+  validate_args
+  if docker_available; then
+    run_in_docker
+  else
+    run_fallback
+  fi
+}
+
+main "$@"

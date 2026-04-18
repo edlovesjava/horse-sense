@@ -14,16 +14,21 @@ Create and run tests for a feature or module.
 When this command is invoked:
 
 1. Ask: *"What do you want to test? (feature name, module path, or story ID)"*
-2. Review the existing tests for the relevant module.
-3. Identify untested code paths using coverage data (if available).
-4. Categorize the needed tests:
+2. **Entry gate — what test scope is needed at this decomposition level?** Unit tests from TDD in **I** cover the task level. Evaluate what's needed at the current scope:
+   - **Task level**: TDD unit tests from implementation may already be sufficient.
+   - **Story level**: integration tests across components within the story.
+   - **Epic level**: end-to-end tests across stories, non-functional tests (performance, security).
+   - If coverage is already sufficient for this scope level and no integration boundaries exist, tell the user: *"Unit test coverage from implementation looks solid for this scope. Do you want to add integration or e2e tests at a higher level, or move on to review?"*
+3. Review the existing tests for the relevant module.
+4. Identify untested code paths using coverage data (if available).
+5. Categorize the needed tests:
    - **Unit**: isolated functions/classes → `tests/unit/`
    - **Integration**: component interactions → `tests/integration/`
    - **E2E**: user journeys → `tests/e2e/`
-5. Write the tests following naming conventions from `${CLAUDE_PLUGIN_ROOT}/rules/testing.md`.
-6. Use pytest fixtures for shared setup; don't repeat setup code.
-7. Run the tests: `bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh`
-8. If coverage is below 80%, identify the gaps and fill them.
+6. Write the tests following naming conventions from `${CLAUDE_PLUGIN_ROOT}/rules/testing.md`.
+7. Use pytest fixtures for shared setup; don't repeat setup code.
+8. Run the tests: `bash ${CLAUDE_PLUGIN_ROOT}/scripts/run_tests.sh`
+9. If coverage is below 80%, identify the gaps and fill them.
 
 ## Test Template
 

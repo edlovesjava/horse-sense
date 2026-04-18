@@ -1,8 +1,9 @@
 # ADR-0005: Containerized Subagent Execution
 
-**Status**: Accepted  
-**Date**: 2026-04-04  
+**Status**: Accepted (amended)
+**Date**: 2026-04-04
 **Decision makers**: Ed Wentworth
+**Amended by**: [ADR-0008 — Sandbox Network and Authentication Amendment](0008-sandbox-network-and-auth-amendment.md) (2026-04-18)
 
 ## Context
 

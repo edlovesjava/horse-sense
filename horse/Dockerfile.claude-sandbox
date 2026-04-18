@@ -1,0 +1,37 @@
+# syntax=docker/dockerfile:1.7
+# claude-sandbox: minimal image for one-shot, isolated `claude -p` execution.
+# See docs/architecture/adr/0005-containerized-subagent-execution.md
+# and docs/spikes/SPIKE-010-containerized-subagent-dispatch.md for design rationale.
+
+FROM node:22-slim
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Python is the Python-3 interpreter only (no pip/venv). Subagents that need
+# pip must install it at runtime or we add it back here — keep the base image
+# minimal per the <500 MB target in ADR-0005.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+        git \
+        ca-certificates \
+        python3-minimal \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g @anthropic-ai/claude-code@2.1.113 \
+ && npm cache clean --force
+
+# node:22-slim ships a `node` user at UID/GID 1000 — remove it so we can
+# create `claude:claude` at the same IDs (matches `--user 1000:1000` in
+# bin/claude-sandbox and keeps volume-mount ownership sensible).
+RUN userdel --remove node \
+ && groupadd --gid 1000 claude \
+ && useradd  --uid 1000 --gid claude --create-home --shell /bin/bash claude \
+ && mkdir -p /workspace \
+ && chown claude:claude /workspace
+
+USER claude:claude
+WORKDIR /workspace
+
+# No ENTRYPOINT — `bin/claude-sandbox` passes the full command (`claude -p ...`)
+# so ad-hoc invocations like `docker run claude-sandbox claude --version` work too.
+CMD ["claude", "--help"]
