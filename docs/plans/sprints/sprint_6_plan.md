@@ -24,7 +24,7 @@ Two streams, in priority order:
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
 | T-060 | Create `Dockerfile.claude-sandbox` — minimal image with `claude` CLI, Node.js, Python, git | — | 5 | ✅ Done |
-| T-061 | Create `bin/claude-sandbox` — shell wrapper for `docker run` with volume mounts, env passthrough, timeout, secure defaults | — | 5 | ⬜ To Do |
+| T-061 | Create `bin/claude-sandbox` — shell wrapper for `docker run` with volume mounts, env passthrough, timeout, secure defaults | — | 5 | ✅ Done |
 | T-062 | Create `skills/subagent-dispatch/SKILL.md` — when and how to spawn a containerized subagent (prompt construction, JSON parsing, error handling) | — | 3 | ⬜ To Do |
 | T-063 | Define subagent invocation contract: input (prompt + context files), output (JSON with `result`, `exit_code`, `stderr`), timeout, resource limits | — | 3 | ⬜ To Do |
 | T-064 | Create `templates/subagent_prompt.md` — template for constructing well-formed one-shot prompts | — | 2 | ⬜ To Do |
@@ -118,6 +118,8 @@ claude-sandbox --prompt "task description" \
 Graceful degradation: if Docker is not available, fall back to local `claude -p` with a warning.
 
 **Acceptance**: Script passes shellcheck. `claude-sandbox --help` prints usage. Runs successfully with Docker. Falls back gracefully without Docker.
+
+**Delivered (Day 3)**: `horse/bin/claude-sandbox` v0.1.0. Shellcheck clean. `--help`/`--version` work. Fallback path verified end-to-end with a real API call (returned `OK`, 6/6 tokens extracted from claude's JSON envelope). Docker path plumbing verified (emits warning on missing `ANTHROPIC_API_KEY` and produces the contract JSON shape). Network default changed from `--network none` to `--network bridge` per [ADR-0008](../../architecture/adr/0008-sandbox-network-and-auth-amendment.md) — host OAuth creds are not mounted; `ANTHROPIC_API_KEY` must be set on the host for the Docker path.
 
 ---
 
