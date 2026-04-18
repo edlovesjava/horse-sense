@@ -23,7 +23,7 @@ Two streams, in priority order:
 
 | Task ID | Title | Req | Points | Status |
 |---|---|---|---|---|
-| T-060 | Create `Dockerfile.claude-sandbox` — minimal image with `claude` CLI, Node.js, Python, git | — | 5 | ⬜ To Do |
+| T-060 | Create `Dockerfile.claude-sandbox` — minimal image with `claude` CLI, Node.js, Python, git | — | 5 | ✅ Done |
 | T-061 | Create `bin/claude-sandbox` — shell wrapper for `docker run` with volume mounts, env passthrough, timeout, secure defaults | — | 5 | ⬜ To Do |
 | T-062 | Create `skills/subagent-dispatch/SKILL.md` — when and how to spawn a containerized subagent (prompt construction, JSON parsing, error handling) | — | 3 | ⬜ To Do |
 | T-063 | Define subagent invocation contract: input (prompt + context files), output (JSON with `result`, `exit_code`, `stderr`), timeout, resource limits | — | 3 | ⬜ To Do |
@@ -89,6 +89,8 @@ Contents:
 - Working directory: `/workspace`
 
 **Acceptance**: Image builds successfully. `docker run claude-sandbox claude --version` returns a valid version. Image size < 500MB.
+
+**Delivered (Day 3)**: `horse/Dockerfile.claude-sandbox` built using `node:22-slim` (LTS deviation from ADR-0005's `node:20-slim` — see SPIKE-010). `claude --version` returns `2.1.113 (Claude Code)`. Image size is **576 MB** — over target by 15%; size optimization filed as a follow-up (spike alpine base or multi-stage build before Sprint 7).
 
 ---
 
