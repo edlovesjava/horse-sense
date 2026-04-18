@@ -60,10 +60,10 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 | M1: Plugin structure | `horse/` module with `.claude-plugin/plugin.json`, `commands/`, flat `agents/` with frontmatter | Sprint 1 | ✅ Done |
 | M1.5: Plugin toolchain | Validation, linting, `make check`, GitHub Actions CI | Sprint 2 | ✅ Done |
 | M2: Skills & agents migrated | config.json support, rules folded into agent prompts | Sprint 2 | ✅ Done |
-| M3: Dual toolchain + CI | TypeScript support, documentation, end-to-end validation | Sprint 3 | ⬜ |
-| M4: Phase 1 complete — usable plugin | End-to-end `claude --plugin-dir ./horse` → use in a real project | Sprint 3 | ⬜ |
-| M5: Trail definitions & orchestrators | Trail docs, orchestrator agents, monitor agent | Sprint 4 | ⬜ |
-| M6: Phase 2 complete — orchestrated SDLC | Feature-delivery workflow running end-to-end | Sprint 5 | ⬜ |
+| M3: Dual toolchain + CI | TypeScript support, documentation, end-to-end validation | Sprint 3 | ✅ Done |
+| M4: Phase 1 complete — usable plugin | End-to-end `claude --plugin-dir ./horse` → use in a real project | Sprint 3 | ✅ Done |
+| M5: Trail definitions & orchestrators | Trail docs, orchestrator agents, monitor agent | Sprint 4 | ✅ Done |
+| M6: Phase 2 complete — orchestrated SDLC | Feature-delivery workflow running end-to-end | Sprint 5 | ✅ Done |
 | M7: Subagent dispatch infrastructure | `bin/claude-sandbox` runner, Dockerfile, dispatch skill working | Sprint 6 | ⬜ |
 | M8: Phase 3 complete — containerized subagents | Orchestrator can dispatch one-shot Claude tasks in Docker, collect JSON results | Sprint 7 | ⬜ |
 
@@ -128,32 +128,32 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc) | Must | 3 | 3 | ⬜ |
-| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific rules | Must | 3 | 3 | ⬜ |
-| T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | Must | 5 | 3 | ⬜ |
-| T-023 | Create `templates/ci.yml` GitHub Actions workflow (Python + TS matrix) | Should | 3 | 3 | ⬜ |
-| T-024 | Update README.md for plugin installation, configuration, and usage | Must | 2 | 3 | ⬜ |
-| T-028 | Create `skills/pr-review/SKILL.md` — PR review with gh CLI | Must | 5 | 3 | ⬜ |
-| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply | Must | 5 | 3 | ⬜ |
-| T-030s | Create `agents/scout.md` — research and investigation agent | Must | 3 | 3 | ⬜ |
-| T-031s | Create `skills/scout/SKILL.md` — spike research skill | Must | 3 | 3 | ⬜ |
+| T-020 | Create `skills/typescript-setup/SKILL.md` (npm, vitest, eslint, tsc) | Must | 3 | 3 | ✅ Done |
+| T-021 | Create `rules/typescript_quality.md` with TypeScript-specific rules | Must | 3 | 3 | ✅ Done |
+| T-022 | Update scripts (setup_env, run_tests, lint) to detect and support TypeScript | Must | 5 | 3 | ✅ Done |
+| T-023 | Create `templates/ci.yml` GitHub Actions workflow (Python + TS matrix) | Should | 3 | 3 | ✅ Done |
+| T-024 | Update README.md for plugin installation, configuration, and usage | Must | 2 | 3 | ✅ Done |
+| T-028 | Create `skills/pr-review/SKILL.md` — PR review with gh CLI | Must | 5 | 3 | ✅ Done |
+| T-029 | Create `skills/pr-fix/SKILL.md` — PR fix/triage/reply | Must | 5 | 3 | ✅ Done |
+| T-030s | Create `agents/scout.md` — research and investigation agent | Must | 3 | 3 | ✅ Done |
+| T-031s | Create `skills/scout/SKILL.md` — spike research skill | Must | 3 | 3 | ✅ Done |
 | T-032s | Create `templates/spike_report.md` — spike report scaffold | Must | 1 | 3 | ✅ Done |
-| T-033s | Create `mkdocs.yml` with Material theme and nav structure | Should | 2 | 3 | ⬜ |
-| T-034s | Organize content — map horse/ and docs/ into nav hierarchy | Should | 2 | 3 | ⬜ |
-| T-035s | Add `make docs` target and build script | Should | 1 | 3 | ⬜ |
-| T-036s | Add docs build to CI and GitHub Pages deployment | Should | 3 | 3 | ⬜ |
+| T-033s | Create `mkdocs.yml` with Material theme and nav structure | Should | 2 | 3 | ✅ Done |
+| T-034s | Organize content — map horse/ and docs/ into nav hierarchy | Should | 2 | 3 | ✅ Done |
+| T-035s | Add `make docs` target and build script | Should | 1 | 3 | ✅ Done |
+| T-036s | Add docs build to CI and GitHub Pages deployment | Should | 3 | 3 | ✅ Done |
 | | **Sprint 3 Total (with stretch)** | | **41** | | |
 
 #### Deferred to Sprint 4 (from original Sprint 3 + new work)
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 4 | ⬜ |
-| T-026 | End-to-end validation: install plugin into a fresh Python project | Must | 3 | 4 | ⬜ |
-| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 4 | ⬜ |
-| T-037 | Create `skills/process-audit/SKILL.md` — step-by-step audit skill for the trainer agent | Must | 5 | 4 | ⬜ |
-| T-038 | Create `commands/audit.md` — `/horse:audit` slash command | Must | 2 | 4 | ⬜ |
-| T-039 | Create `templates/audit_report.md` — structured audit report template | Should | 1 | 4 | ⬜ |
+| T-025 | Update `scripts/new_project.sh` to support TypeScript scaffolding | Should | 3 | 4 | ✅ Done |
+| T-026 | End-to-end validation: install plugin into a fresh Python project | Must | 3 | 4 | ✅ Done |
+| T-027 | End-to-end validation: install plugin into a fresh TypeScript project | Must | 3 | 4 | ✅ Done |
+| T-037 | Create `skills/process-audit/SKILL.md` — step-by-step audit skill for the trainer agent | Must | 5 | 4 | ✅ Done |
+| T-038 | Create `commands/audit.md` — `/horse:audit` slash command | Must | 2 | 4 | ✅ Done |
+| T-039 | Create `templates/audit_report.md` — structured audit report template | Should | 1 | 4 | ✅ Done |
 
 **Phase 1 Total: 78 story points across 3 sprints (+ 17 SP deferred to Sprint 4)**
 
@@ -167,11 +167,11 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-030 | Define trail document format (frontmatter, steps, gates, flow control) | Must | 5 | 4 | ⬜ |
-| T-031 | Create `trails/feature_delivery.md` (full SDLC lifecycle) | Must | 5 | 4 | ⬜ |
-| T-032 | Create `trails/sprint_execution.md` (story-level iteration) | Must | 3 | 4 | ⬜ |
-| T-033 | Create `trails/bug_fix.md` (triage → fix → verify) | Should | 3 | 4 | ⬜ |
-| T-034 | Create `trails/code_review.md` (review → feedback → resolve) | Should | 2 | 4 | ⬜ |
+| T-030 | Define trail document format (frontmatter, steps, gates, flow control) | Must | 5 | 4 | ✅ Done |
+| T-031 | Create `trails/feature_delivery.md` (full SDLC lifecycle) | Must | 5 | 4 | ✅ Done |
+| T-032 | Create `trails/sprint_execution.md` (story-level iteration) | Must | 3 | 5 | ✅ Done |
+| T-033 | Create `trails/bug_fix.md` (triage → fix → verify) | Should | 3 | 5 | ✅ Done |
+| T-034 | Create `trails/code_review.md` (review → feedback → resolve) | Should | 2 | 5 | ✅ Done |
 | | **Sprint 4 Total** | | **18** | | |
 
 #### Epic 5: Orchestrator & Monitor Agents (Sprint 5)
@@ -180,12 +180,12 @@ Claude Code produces inconsistent results without structured guidance. horse-sen
 
 | Story ID | Title | Priority | Points | Sprint | Status |
 |---|---|---|---|---|---|
-| T-040 | Create `agents/sdlc.md` — SDLC orchestrator agent (flat, with frontmatter) | Must | 8 | 5 | ⬜ |
-| T-041 | Create `agents/sprint-orchestrator.md` — Sprint orchestrator agent | Must | 5 | 5 | ⬜ |
-| T-042 | Create `agents/monitor.md` — Loop quality monitor agent | Should | 5 | 5 | ⬜ |
-| T-043 | Update `/horse:guide` command to invoke SDLC orchestrator | Must | 3 | 5 | ⬜ |
-| T-044 | Update `/horse:sprint` command to invoke Sprint orchestrator | Must | 2 | 5 | ⬜ |
-| T-045 | End-to-end validation: run feature-delivery process on a test project | Must | 5 | 5 | ⬜ |
+| T-040 | Create `agents/sdlc.md` — SDLC orchestrator agent (flat, with frontmatter) | Must | 8 | 5 | ✅ Done |
+| T-041 | Create `agents/sprint-orchestrator.md` — Sprint orchestrator agent | Must | 5 | 5 | ✅ Done |
+| T-042 | Create `agents/monitor.md` — Loop quality monitor agent | Should | 5 | 5 | ✅ Done |
+| T-043 | Update `/horse:guide` command to invoke SDLC orchestrator | Must | 3 | 5 | ✅ Done |
+| T-044 | Update `/horse:sprint` command to invoke Sprint orchestrator | Must | 2 | 5 | ✅ Done |
+| T-045 | End-to-end validation: run feature-delivery process on a test project | Must | 5 | 5 | ✅ Done |
 | | **Sprint 5 Total** | | **28** | | |
 
 **Phase 2 Total: 46 story points across 2 sprints**

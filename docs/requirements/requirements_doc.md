@@ -41,54 +41,54 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-001](stories/US-001-install-plugin.md) | Install plugin | Must Have | 3 | Draft |
-| [US-002](stories/US-002-configure-for-a-project.md) | Configure for a project | Must Have | 5 | Draft |
-| [US-003](stories/US-003-project-scaffolding.md) | Project scaffolding | Must Have | 5 | Draft |
-| [US-084](stories/US-084-project-init-command.md) | Project init command | Must Have | 8 | Draft |
+| [US-001](stories/US-001-install-plugin.md) | Install plugin | Must Have | 3 | Done |
+| [US-002](stories/US-002-configure-for-a-project.md) | Configure for a project | Must Have | 5 | Done |
+| [US-003](stories/US-003-project-scaffolding.md) | Project scaffolding | Must Have | 5 | Done |
+| [US-084](stories/US-084-project-init-command.md) | Project init command | Must Have | 8 | Done |
 
 ### 3.2 Skills — Primary Behavior Definition
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-010](stories/US-010-skill-as-step-by-step-guide.md) | Skill as step-by-step guide | Must Have | 3 | Draft |
-| [US-011](stories/US-011-slash-command-skills.md) | Slash-command skills (user-invoked) | Must Have | 3 | Draft |
-| [US-012](stories/US-012-model-invoked-skills.md) | Model-invoked skills (automatic) | Should Have | 3 | Draft |
-| [US-013](stories/US-013-skills-read-project-config-variables.md) | Skills read project config variables | Must Have | 5 | Draft |
+| [US-010](stories/US-010-skill-as-step-by-step-guide.md) | Skill as step-by-step guide | Must Have | 3 | Done |
+| [US-011](stories/US-011-slash-command-skills.md) | Slash-command skills (user-invoked) | Must Have | 3 | Done |
+| [US-012](stories/US-012-model-invoked-skills.md) | Model-invoked skills (automatic) | Should Have | 3 | Done |
+| [US-013](stories/US-013-skills-read-project-config-variables.md) | Skills read project config variables | Must Have | 5 | Done |
 
 ### 3.3 Agents — Workers and Orchestrators
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-020](stories/US-020-worker-agent-personas.md) | Worker agent personas | Must Have | 5 | Draft |
-| [US-021](stories/US-021-worker-agents-compose-skills.md) | Worker agents compose skills | Must Have | 3 | Draft |
-| [US-022](stories/US-022-agents-as-independent-long-lived-sessions.md) | Agents as independent long-lived sessions | Should Have | 3 | Draft |
-| [US-023](stories/US-023-orchestrator-agents-direct-worker-agents.md) | Orchestrator agents direct worker agents | Must Have | 8 | Draft |
-| [US-024](stories/US-024-monitor-agents-observe-and-refine.md) | Monitor agents observe and refine | Should Have | 5 | Draft |
+| [US-020](stories/US-020-worker-agent-personas.md) | Worker agent personas | Must Have | 5 | Done |
+| [US-021](stories/US-021-worker-agents-compose-skills.md) | Worker agents compose skills | Must Have | 3 | Done |
+| [US-022](stories/US-022-agents-as-independent-long-lived-sessions.md) | Agents as independent long-lived sessions | Should Have | 3 | Done |
+| [US-023](stories/US-023-orchestrator-agents-direct-worker-agents.md) | Orchestrator agents direct worker agents | Must Have | 8 | Done |
+| [US-024](stories/US-024-monitor-agents-observe-and-refine.md) | Monitor agents observe and refine | Should Have | 5 | Done |
 
 ### 3.4 Trail Definitions — Workflow Specification
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-025](stories/US-025-process-definition-documents.md) | Trail definition documents | Must Have | 8 | In Progress |
-| [US-026](stories/US-026-process-flow-control.md) | Process flow control | Must Have | 8 | Draft |
-| [US-027](stories/US-027-entry-gates-and-completion-criteria.md) | Entry gates and completion criteria | Must Have | 5 | Draft |
-| [US-028](stories/US-028-human-in-the-loop-decision-points.md) | Human-in-the-loop decision points | Must Have | 5 | Draft |
-| [US-029](stories/US-029-process-execution-tracking.md) | Process execution tracking | Should Have | 3 | Draft |
+| [US-025](stories/US-025-process-definition-documents.md) | Trail definition documents | Must Have | 8 | Done |
+| [US-026](stories/US-026-process-flow-control.md) | Process flow control | Must Have | 8 | Done |
+| [US-027](stories/US-027-entry-gates-and-completion-criteria.md) | Entry gates and completion criteria | Must Have | 5 | Done |
+| [US-028](stories/US-028-human-in-the-loop-decision-points.md) | Human-in-the-loop decision points | Must Have | 5 | Done |
+| [US-029](stories/US-029-process-execution-tracking.md) | Process execution tracking | Should Have | 3 | Done |
 
 ### 3.5 Rules — Contextual Standards
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-030](stories/US-030-glob-matched-rules.md) | Glob-matched rules | Must Have | 3 | Draft |
-| [US-031](stories/US-031-rules-customize-skill-behavior.md) | Rules customize skill behavior | Must Have | 3 | Draft |
-| [US-032](stories/US-032-user-customizable-rules.md) | User-customizable rules | Should Have | 2 | Draft |
+| [US-030](stories/US-030-glob-matched-rules.md) | Glob-matched rules | Must Have | 3 | Done |
+| [US-031](stories/US-031-rules-customize-skill-behavior.md) | Rules customize skill behavior | Must Have | 3 | Done |
+| [US-032](stories/US-032-user-customizable-rules.md) | User-customizable rules | Should Have | 2 | Done |
 
 ### 3.6 SDLC Workflow (Orchestrated)
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-040](stories/US-040-end-to-end-sdlc-flow.md) | End-to-end SDLC flow via process orchestration | Must Have | 8 | Draft |
-| [US-041](stories/US-041-quality-gates-enforced-by-orchestrator.md) | Quality gates enforced by orchestrator | Must Have | 3 | Draft |
+| [US-040](stories/US-040-end-to-end-sdlc-flow.md) | End-to-end SDLC flow via process orchestration | Must Have | 8 | Done |
+| [US-041](stories/US-041-quality-gates-enforced-by-orchestrator.md) | Quality gates enforced by orchestrator | Must Have | 3 | Done |
 
 ### 3.7 Dual Toolchain Support
 
@@ -107,15 +107,15 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-070](stories/US-070-plugin-structure-validation.md) | Plugin structure validation | Must Have | 5 | Draft |
-| [US-071](stories/US-071-markdown-linting.md) | Markdown linting | Must Have | 3 | Draft |
-| [US-072](stories/US-072-shell-script-linting.md) | Shell script linting | Must Have | 2 | Draft |
-| [US-073](stories/US-073-json-schema-validation.md) | JSON schema validation | Should Have | 2 | Draft |
-| [US-074](stories/US-074-frontmatter-schema-validation.md) | Frontmatter schema validation | Must Have | 3 | Draft |
+| [US-070](stories/US-070-plugin-structure-validation.md) | Plugin structure validation | Must Have | 5 | Done |
+| [US-071](stories/US-071-markdown-linting.md) | Markdown linting | Must Have | 3 | Done |
+| [US-072](stories/US-072-shell-script-linting.md) | Shell script linting | Must Have | 2 | Done |
+| [US-073](stories/US-073-json-schema-validation.md) | JSON schema validation | Should Have | 2 | Done |
+| [US-074](stories/US-074-frontmatter-schema-validation.md) | Frontmatter schema validation | Must Have | 3 | Done |
 | [US-075](stories/US-075-documentation-generation.md) | Documentation generation | Should Have | 3 | Done |
 | [US-076](stories/US-076-distribution-via-git-releases.md) | Distribution via Git releases | Should Have | 3 | Draft |
 | [US-077](stories/US-077-cicd-pipeline-via-github-actions.md) | CI/CD pipeline via GitHub Actions | Must Have | 5 | Done |
-| [US-078](stories/US-078-local-developer-workflow.md) | Local developer workflow | Must Have | 3 | Draft |
+| [US-078](stories/US-078-local-developer-workflow.md) | Local developer workflow | Must Have | 3 | Done |
 
 ### 3.10 PR Review & Fix Skills
 
@@ -140,8 +140,8 @@ Individual user stories live in [`stories/`](stories/). Each file is named `US-N
 
 | Story | Title | Priority | SP | Status |
 |---|---|---|---|---|
-| [US-085](stories/US-085-doc-writer-agent.md) | Doc writer agent persona | Must Have | 5 | Draft |
-| [US-086](stories/US-086-documentation-skill.md) | Documentation authoring skill | Must Have | 8 | Draft |
+| [US-085](stories/US-085-doc-writer-agent.md) | Doc writer agent persona | Must Have | 5 | In Progress |
+| [US-086](stories/US-086-documentation-skill.md) | Documentation authoring skill | Must Have | 8 | In Progress |
 | [US-087](stories/US-087-diagrams-skill.md) | Mermaid diagrams skill | Must Have | 8 | Draft |
 | [US-088](stories/US-088-code-docs-skill.md) | Code documentation skill | Should Have | 5 | Draft |
 | [US-089](stories/US-089-doc-review-skill.md) | Documentation review skill | Should Have | 5 | Draft |

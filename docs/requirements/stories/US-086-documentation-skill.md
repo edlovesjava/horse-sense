@@ -1,7 +1,7 @@
 ---
 id: US-086
 title: Documentation authoring skill
-status: draft
+status: in-progress
 priority: Must Have
 story_points: 8
 section: "3.13 Doc Writer — Documentation Authoring & Maintenance"

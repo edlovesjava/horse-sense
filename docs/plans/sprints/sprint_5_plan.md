@@ -272,7 +272,21 @@ A task is **Done** when:
 
 ## Sprint Review Notes
 
-_[fill in via `/horse:sprint` at sprint end]_
+**Velocity**: 44 SP (28 core + 8 stretch A + 8 stretch B) — all delivered.
+
+**What was delivered**:
+
+- **Epic 5 complete (M6)**: SDLC orchestrator (`sdlc.md`), sprint orchestrator (`sprint-orchestrator.md`), and loop monitor (`monitor.md`) agents — the plugin can now autonomously drive a feature from requirements through deployment
+- **Trail documents**: `sprint_execution.md`, `bug_fix.md`, `code_review.md` (stretch A — all 3 deferred trails from Epic 4)
+- **`/horse:init` command** (stretch B — T-050): interview-driven project scaffolding
+- **Guide + Sprint command updates**: both commands now invoke their respective orchestrators
+- **End-to-end validation**: feature-delivery trail validated on a test project (`docs/validation/e2e_orchestrator_validation.md`)
+
+**What was not delivered**: Nothing — all core and stretch goals completed.
+
+**Phase 2: Process Orchestration is complete.** Milestone M6 achieved.
+
+**Note**: Sprint 5 close-out was performed retroactively — work was committed directly to `main` without a PR branch. Process gap acknowledged.
 
 ---
 
